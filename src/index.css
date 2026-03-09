@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Open+Sans:wght@400;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Marcellus", serif;
+  --font-paragraph: "Open Sans", sans-serif;
+
+  --color-background: #2F3E2F;
+  --color-foreground: #FFFFFF;
+  
+  --color-primary: #2F3E2F;
+  --color-primary-foreground: #C9D6B9;
+  
+  --color-secondary: #8A9A5B;
+  --color-secondary-foreground: #FFFFFF;
+  
+  --color-destructive: #DF3131;
+  --color-destructive-foreground: #FFFFFF;
+  
+  --color-buttonbackground: #8A9A5B;
+  --color-buttonforeground: #FFFFFF;
+  
+  --color-textlight: #C9D6B9;
+  --color-textbody: #FFFFFF;
+  
+  --color-bordersubtle: #5A6A4A;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-paragraph;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
