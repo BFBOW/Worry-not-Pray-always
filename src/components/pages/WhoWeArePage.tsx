@@ -170,7 +170,7 @@ export default function WhoWeArePage() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-secondary font-heading text-xl mb-8 opacity-40 uppercase tracking-[0.2em] overflow-hidden whitespace-nowrap"
+              className="text-secondary font-heading text-xl mb-8 opacity-40 uppercase tracking-[0.2em]"
             >
               Hebrews 13:16 "And do not forget to do good and to share with others, for with such sacrifices God is pleased"
             </motion.div>
@@ -204,53 +204,6 @@ export default function WhoWeArePage() {
                 We’ve built a community where no one feels alone, and every act of service reflects the unconditional love of Christ.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Introduction */}
-      <section className="py-24 bg-secondary/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-6xl font-heading mb-8">Meet the People Behind the Purpose</h2>
-            <p className="text-xl text-textlight max-w-3xl mx-auto leading-relaxed">
-              At the Belleville Food Bank On Wheels, our team is united by a shared passion for service. From our leadership to our volunteers, every member brings dedication, compassion, and faith to their role. Together, we make a difference every day.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Founding Team Section */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-sm uppercase tracking-[0.3em] font-bold text-secondary mb-4">The Founding Team</h3>
-            <h2 className="text-4xl font-heading">Meet The Founding Team</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[1, 2, 3].map((item) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: item * 0.1 }}
-                className="group"
-              >
-                <div className="aspect-[3/4] bg-secondary/10 rounded-2xl mb-6 overflow-hidden relative">
-                  <div className="absolute inset-0 flex items-center justify-center text-secondary/20">
-                    <Users size={64} />
-                  </div>
-                </div>
-                <div className="h-8 w-48 bg-bordersubtle/10 rounded mb-2" /> {/* Placeholder for name */}
-                <div className="h-4 w-32 bg-bordersubtle/5 rounded" /> {/* Placeholder for title */}
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
@@ -310,13 +263,60 @@ export default function WhoWeArePage() {
               className="relative rounded-3xl overflow-hidden aspect-square"
             >
               <img 
-                src="https://images.unsplash.com/photo-1559027615-cd26735550b4?auto=format&fit=crop&q=80&w=1000"
-                alt="Volunteers at work"
+                src="https://images.unsplash.com/photo-1593113630400-ea4288922497?auto=format&fit=crop&q=80&w=1000"
+                alt="Volunteers working together"
                 className="w-full h-full object-cover opacity-80"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-60" />
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Introduction */}
+      <section className="py-24 bg-secondary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-6xl font-heading mb-8">Meet the People Behind the Purpose</h2>
+            <p className="text-xl text-textlight max-w-3xl mx-auto leading-relaxed">
+              At the Belleville Food Bank On Wheels, our team is united by a shared passion for service. From our leadership to our volunteers, every member brings dedication, compassion, and faith to their role. Together, we make a difference every day.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Founding Team Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h3 className="text-sm uppercase tracking-[0.3em] font-bold text-secondary mb-4">The Founding Team</h3>
+            <h2 className="text-4xl font-heading">Meet The Founding Team</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[1, 2, 3].map((item) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: item * 0.1 }}
+                className="group"
+              >
+                <div className="aspect-[3/4] bg-secondary/10 rounded-2xl mb-6 overflow-hidden relative">
+                  <div className="absolute inset-0 flex items-center justify-center text-secondary/20">
+                    <Users size={64} />
+                  </div>
+                </div>
+                <div className="h-8 w-48 bg-bordersubtle/10 rounded mb-2" /> {/* Placeholder for name */}
+                <div className="h-4 w-32 bg-bordersubtle/5 rounded" /> {/* Placeholder for title */}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

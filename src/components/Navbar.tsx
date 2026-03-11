@@ -1,17 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Menu, X } from 'lucide-react';
-import { useCart } from '../store/useCart';
-import { Cart } from './Cart';
+import { Menu, X } from 'lucide-react';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const { items, actions } = useCart();
-  const itemCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <>
-      <Cart />
       <header className="bg-primary border-b border-bordersubtle sticky top-0 z-40">
         <div className="max-w-[120rem] mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
@@ -66,37 +61,10 @@ export function Navbar() {
               >
                 Donate
               </Link>
-              
-              {/* Cart Icon */}
-              <button
-                onClick={actions.toggleCart}
-                className="relative text-textbody hover:text-primary-foreground transition-colors"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart size={24} />
-                {itemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 w-5 h-5 bg-secondary text-secondary-foreground rounded-full flex items-center justify-center text-xs font-paragraph font-semibold">
-                    {itemCount}
-                  </span>
-                )}
-              </button>
             </nav>
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden flex items-center space-x-4">
-              <button
-                onClick={actions.toggleCart}
-                className="relative text-textbody hover:text-primary-foreground transition-colors"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart size={24} />
-                {itemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 w-5 h-5 bg-secondary text-secondary-foreground rounded-full flex items-center justify-center text-xs font-paragraph font-semibold">
-                    {itemCount}
-                  </span>
-                )}
-              </button>
-              
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-textbody hover:text-primary-foreground transition-colors"
