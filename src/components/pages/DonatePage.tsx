@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { 
   Heart, 
   TrendingUp, 
@@ -14,56 +14,55 @@ import {
   MapPin
 } from 'lucide-react';
 import { Button } from '../ui/button';
+import { Image } from '../ui/image';
 
 export default function DonatePage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <div className="bg-background min-h-screen">
+    <div ref={containerRef} className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-bordersubtle/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+      <section className="relative w-full h-[80vh] flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
+        <motion.div 
+          style={{ y: heroY }}
+          className="absolute inset-0 z-0"
+        >
+          <Image 
+            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=2000"
+            alt="Donate Hero"
+            className="w-full h-full object-cover opacity-40 grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
+        </motion.div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
+              Give Today, <br />
+              <span className="text-secondary italic font-normal">Change</span> Tomorrow.
+            </h1>
+            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+              Every dollar you give helps us provide nutritious meals and essential support to families in need. With your generosity, we can turn hunger into hope.
+            </p>
+            <motion.div 
+              style={{ opacity }}
+              className="mt-16 flex justify-center"
             >
-              <h1 className="text-6xl md:text-8xl font-heading mb-8 leading-[0.9]">
-                Give Today, <br />
-                <span className="text-secondary italic">Change</span> Tomorrow.
-              </h1>
-              <p className="text-xl text-textlight leading-relaxed mb-8">
-                Every dollar you give helps us provide nutritious meals and essential support to families in need. Monetary donations allow us to respond quickly to community needs, source fresh produce, and expand our programs to reach more people.
-              </p>
-              <p className="text-lg text-textlight/80 italic mb-10">
-                With your generosity, we can turn hunger into hope.
-              </p>
-              <Button 
-                className="px-10 py-8 text-lg uppercase tracking-[0.2em]"
-                onClick={() => document.getElementById('giving-options')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Donate Now
-              </Button>
+              <div className="w-px h-24 bg-gradient-to-b from-secondary to-transparent" />
             </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1000"
-                alt="Giving back to community"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
-              <div className="absolute bottom-10 left-10 right-10 p-8 bg-background/90 backdrop-blur-md border border-bordersubtle/30 rounded-2xl">
-                <p className="text-secondary font-heading text-2xl mb-2">Impact Highlight</p>
-                <p className="text-textlight text-sm">Your donation is the most effective way to make a lasting difference in our community.</p>
-              </div>
-            </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -184,8 +183,15 @@ export default function DonatePage() {
       </section>
 
       {/* Giving Options Section */}
-      <section id="giving-options" className="py-24 bg-primary text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="giving-options" className="relative py-24 bg-primary text-primary-foreground">
+        <div className="absolute inset-0 z-0 opacity-10">
+          <Image 
+            src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&q=80&w=2000"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
             <motion.h2 
               initial={{ opacity: 0 }}

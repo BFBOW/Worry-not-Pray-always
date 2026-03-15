@@ -106,12 +106,19 @@ export default function HomePage() {
       <section className="relative w-full min-h-[90vh] flex flex-col lg:flex-row border-b border-bordersubtle/20">
         
         {/* Left Panel: Content */}
-        <div className="w-full lg:w-1/2 bg-primary flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 relative z-10">
+        <div className="w-full lg:w-1/2 bg-primary flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 relative z-10 overflow-hidden">
+          <div className="absolute inset-0 z-0 opacity-10">
+            <Image 
+              src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=2000"
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+          </div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-xl"
+            className="max-w-xl relative z-10"
           >
             <div className="flex items-center gap-3 mb-8">
               <span className="h-px w-12 bg-secondary"></span>

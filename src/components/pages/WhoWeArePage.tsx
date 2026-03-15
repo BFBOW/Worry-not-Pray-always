@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { 
   Heart, 
   History, 
@@ -15,31 +15,55 @@ import {
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Link } from 'react-router-dom';
+import { Image } from '../ui/image';
 
 export default function WhoWeArePage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <div className="bg-background min-h-screen">
+    <div ref={containerRef} className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-bordersubtle/20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+      <section className="relative w-full h-[80vh] flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
+        <motion.div 
+          style={{ y: heroY }}
+          className="absolute inset-0 z-0"
+        >
+          <Image 
+            src="https://images.unsplash.com/photo-1593113630400-ea4288922497?auto=format&fit=crop&q=80&w=2000"
+            alt="Who We Are Hero"
+            className="w-full h-full object-cover opacity-40 grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
+        </motion.div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
+              Guided by Faith, <br />
+              <span className="text-secondary italic font-normal">Nourishing</span> with Love
+            </h1>
+            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+              "Let brotherly love continue" — Hebrews 13:1. Our mission has always been about more than food. It’s about restoring dignity, offering hope, and sharing God’s love.
+            </p>
+            <motion.div 
+              style={{ opacity }}
+              className="mt-16 flex justify-center"
             >
-              <h1 className="text-6xl md:text-8xl font-heading mb-8 leading-[0.9]">
-                Guided by Faith, <br />
-                <span className="text-secondary italic">Nourishing</span> with Love
-              </h1>
-              <p className="text-xl text-textlight leading-relaxed mb-10">
-                The Belleville Food Bank On Wheels began as an act of faith, a response to the growing need in our community. Inspired by Hebrews 13:1—“Let brotherly love continue”—our mission has always been about more than food. It’s about restoring dignity, offering hope, and sharing God’s love with everyone who walks through our doors.
-              </p>
-              <p className="text-lg text-textlight/80 max-w-2xl mx-auto">
-                What started as a small outreach has grown into a lifeline for thousands, serving over 3,000 families monthly across Belleville and the GTA. Through God’s grace and the kindness of volunteers, donors, and partners, we’ve become a beacon of hope for those in need.
-              </p>
+              <div className="w-px h-24 bg-gradient-to-b from-secondary to-transparent" />
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -118,8 +142,15 @@ export default function WhoWeArePage() {
       </section>
 
       {/* Why We Serve Section */}
-      <section className="py-24 bg-primary text-primary-foreground overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 bg-primary text-primary-foreground overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-10">
+          <Image 
+            src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=2000"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
             <motion.h2 
               initial={{ opacity: 0 }}
@@ -209,8 +240,15 @@ export default function WhoWeArePage() {
       </section>
 
       {/* Volunteers Section */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 bg-primary text-primary-foreground">
+        <div className="absolute inset-0 z-0 opacity-10">
+          <Image 
+            src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=2000"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}

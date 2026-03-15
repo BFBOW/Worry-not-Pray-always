@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { 
   HelpCircle, 
   ChevronDown, 
@@ -14,9 +14,11 @@ import {
   MapPin,
   Info,
   Dog,
-  UserPlus
+  UserPlus,
+  Leaf
 } from 'lucide-react';
 import { Button } from '../ui/button';
+import { Image } from '../ui/image';
 
 interface FAQItemProps {
   question: string;
@@ -54,6 +56,15 @@ const FAQItem = ({ question, answer }: FAQItemProps) => {
 };
 
 export default function FindSupportPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   const faqs = [
     {
       question: "Who can access the Belleville Food Bank On Wheels?",
@@ -98,30 +109,42 @@ export default function FindSupportPage() {
   ];
 
   return (
-    <div className="bg-background min-h-screen">
+    <div ref={containerRef} className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-bordersubtle/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+      <section className="relative w-full h-[80vh] flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
+        <motion.div 
+          style={{ y: heroY }}
+          className="absolute inset-0 z-0"
+        >
+          <Image 
+            src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=2000"
+            alt="Find Support Hero"
+            className="w-full h-full object-cover opacity-40 grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
+        </motion.div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
+              Help When You <br />
+              <span className="text-secondary italic font-normal">Need</span> It
+            </h1>
+            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+              At the Belleville Food Bank On Wheels, we understand that everyone faces challenges. Whether you need food for your family or help navigating tough situations, we're here to offer support with dignity and care.
+            </p>
+            <motion.div 
+              style={{ opacity }}
+              className="mt-16 flex justify-center"
             >
-              <h1 className="text-5xl md:text-7xl font-heading mb-8">Help When You <span className="text-secondary italic">Need</span> It</h1>
-              <p className="text-xl text-textlight leading-relaxed mb-6">
-                At the Belleville Food Bank On Wheels, we understand that everyone faces challenges. 
-              </p>
-              <p className="text-lg text-textlight/80 mb-10">
-                Whether you need food for your family or help navigating tough situations, we're here to offer support with dignity and care. Through his grace, we can provide.
-              </p>
-              <Button 
-                className="px-10 py-8 text-lg uppercase tracking-widest"
-                onClick={() => document.getElementById('support-form')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Apply for Support
-              </Button>
+              <div className="w-px h-24 bg-gradient-to-b from-secondary to-transparent" />
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -188,8 +211,15 @@ export default function FindSupportPage() {
       </section>
 
       {/* Access Support Today Info */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 bg-primary text-primary-foreground">
+        <div className="absolute inset-0 z-0 opacity-10">
+          <Image 
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2000"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-heading mb-8 opacity-20 uppercase tracking-[0.3em]">Access Support Today</h2>
             <p className="text-xl text-textbody/80 max-w-4xl mx-auto leading-relaxed">

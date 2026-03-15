@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { 
   CheckCircle2, 
   Handshake, 
@@ -9,42 +9,59 @@ import {
   Globe, 
   HeartHandshake,
   ArrowRight,
-  Info
+  Info,
+  Leaf
 } from 'lucide-react';
 import { Button } from '../ui/button';
+import { Image } from '../ui/image';
 
 export default function JoinMissionPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <div className="bg-background min-h-screen">
+    <div ref={containerRef} className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-bordersubtle/20 overflow-hidden">
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,#8A9A5B_0%,transparent_50%)]" />
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+      <section className="relative w-full h-[80vh] flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
+        <motion.div 
+          style={{ y: heroY }}
+          className="absolute inset-0 z-0"
+        >
+          <Image 
+            src="https://images.unsplash.com/photo-1559027615-cd26736f5df6?auto=format&fit=crop&q=80&w=2000"
+            alt="Join Mission Hero"
+            className="w-full h-full object-cover opacity-40 grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
+        </motion.div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
+              Partnerships That <br />
+              Make a <span className="text-secondary italic font-normal">Difference</span>.
+            </h1>
+            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+              Your organization has the power to create meaningful change. Together, we can rescue surplus food, distribute meals, and bring hope to thousands.
+            </p>
+            <motion.div 
+              style={{ opacity }}
+              className="mt-16 flex justify-center"
             >
-              <h1 className="text-5xl md:text-7xl font-heading mb-8 leading-tight">
-                Partnerships That Make a <span className="text-secondary italic">Difference</span>.
-              </h1>
-              <p className="text-xl text-textlight leading-relaxed mb-10">
-                Your organization has the power to create meaningful change in our community. By partnering with the <span className="text-foreground font-semibold">Belleville Food Bank On Wheels</span>, you're not only fighting hunger but also supporting sustainable practices that uplift families and protect the planet.
-              </p>
-              <p className="text-lg text-textlight/80 leading-relaxed mb-12">
-                Together, we can rescue surplus food, distribute meals, and bring hope to thousands of lives each week. Your partnership strengthens the foundation of a healthier, more compassionate community, ensuring that no one is left behind.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button className="px-8 py-6 uppercase tracking-widest" onClick={() => document.getElementById('partner-form')?.scrollIntoView({ behavior: 'smooth' })}>
-                  Become a Partner
-                </Button>
-              </div>
+              <div className="w-px h-24 bg-gradient-to-b from-secondary to-transparent" />
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
