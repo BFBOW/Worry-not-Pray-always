@@ -165,7 +165,7 @@ export default function WhoWeArePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
             {[
-              "In 2022, 18% of Canadian families reported experiencing some level of food insecurity, an increase from 16% in 2021.",
+              "In 2022, 18% of Canadian families reported test experiencing some level of food insecurity, an increase from 16% in 2021.",
               "Approximately 18.7% of Ontario households faced food insecurity, reflecting a growing concern within the province.",
               "In the fiscal year ending June 2024, food bank visits in Toronto surpassed 2.5 million, marking a 51% increase compared to the previous year.",
               "In 2022, 41% of female lone-parent families in Canada experienced food insecurity, underscoring significant disparities."
@@ -212,7 +212,7 @@ export default function WhoWeArePage() {
             <div className="space-y-6">
               <h3 className="text-2xl font-heading text-secondary">Guided by Faith, Empowered by Action</h3>
               <p className="text-textlight leading-relaxed">
-                Our work is inspired by the teachings of Christ and the belief that faith without action is incomplete. At the Belleville Food Bank On Wheels, we turn prayer into purpose and love into service. Every box packed, every meal shared, and every life touched is a testament to God’s calling.
+                Our work is inspired by the teachings of Christ and the belief that faith without action is incomplete. At our Belleville Food Bank On Wheels, we turn prayer into purpose and love into service. Every box packed, every meal shared, and every life touched is a testament to God’s calling.
               </p>
             </div>
             <div className="space-y-6">
@@ -322,7 +322,7 @@ export default function WhoWeArePage() {
           >
             <h2 className="text-4xl md:text-6xl font-heading mb-8">Meet the People Behind the Purpose</h2>
             <p className="text-xl text-textlight max-w-3xl mx-auto leading-relaxed">
-              At the Belleville Food Bank On Wheels, our team is united by a shared passion for service. From our leadership to our volunteers, every member brings dedication, compassion, and faith to their role. Together, we make a difference every day.
+              At our Belleville Food Bank On Wheels, our team is united by a shared passion for service. From our leadership to our volunteers, every member brings dedication, compassion, and faith to their role. Together, we make a difference every day.
             </p>
           </motion.div>
         </div>

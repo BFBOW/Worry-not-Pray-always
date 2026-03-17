@@ -54,7 +54,7 @@ export default function DonatePage() {
               <span className="text-secondary italic font-normal">Change</span> Tomorrow.
             </h1>
             <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
-              Every dollar you give helps us provide nutritious meals and essential support to families in need. With your generosity, we can turn hunger into hope.
+              Every dollar you give, helps us provide nutritious perishable and non-perishable meals and essential support to families and community individuals experiencing homelessness in need. With your generosity, we can turn hunger into hope.
             </p>
             <motion.div 
               style={{ opacity }}
@@ -78,7 +78,7 @@ export default function DonatePage() {
             >
               Stretching Every Dollar
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-heading mb-6">Your contributions have a far-reaching impact</h2>
+            <h2 className="text-4xl md:text-5xl font-heading mb-6">Your contributions and generosity have a far-reaching impact</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -86,17 +86,17 @@ export default function DonatePage() {
               {
                 icon: <TrendingUp className="w-8 h-8" />,
                 title: "$1 = 3 Meals",
-                desc: "$1 can help provide 3 meals to families in need."
+                desc: "$1 can help provide 3 meals to families and community indivduals experiencing homelessness in need."
               },
               {
                 icon: <Leaf className="w-8 h-8" />,
                 title: "Fresh Rescue",
-                desc: "Donations allow us to rescue and purchase fresh, nutritious food."
+                desc: "Your donations allow us to rescue and purchase fresh nutritious perishable and non-perishable food."
               },
               {
                 icon: <Heart className="w-8 h-8" />,
                 title: "Sustainability",
-                desc: "Financial support ensures our programs remain sustainable and impactful."
+                desc: "Your financial support ensures our programs remain sustainable and impactful." 
               },
               {
                 icon: <Users className="w-8 h-8" />,
@@ -136,7 +136,7 @@ export default function DonatePage() {
                 stat: "250,000+",
                 label: "Meals Annually",
                 title: "Provide over 250,000 meals annually",
-                desc: "Each meal represents more than nourishment—it offers comfort, stability, and hope to individuals and families during challenging times. Your generosity ensures no one in our community has to face hunger alone.",
+                desc: "Each meal represents more than nourishment—it offers comfort, stability, a sense of belonging and hope to individuals experiencing homelessness and families during challenging times. Your generosity ensures no one in our community has to face hunger alone.",
                 icon: <Utensils className="w-12 h-12" />
               },
               {
@@ -149,7 +149,7 @@ export default function DonatePage() {
               {
                 stat: "Essential",
                 label: "Resources",
-                title: "Support families with essential resources",
+                title: "Support families and community indivividuals experiencing homelessness with essential resources",
                 desc: "Beyond food, your contributions help fund vital programs that empower individuals, from job training to community support initiatives. Together, we address the root causes of insecurity.",
                 icon: <Users className="w-12 h-12" />
               }
@@ -211,17 +211,17 @@ export default function DonatePage() {
               {
                 icon: <CreditCard className="w-10 h-10" />,
                 title: "One-Time Donation",
-                desc: "Make a powerful and immediate difference today. Every dollar brings hope, nourishment, and dignity to those who need it most."
+                desc: "Make a powerful and immediate difference today. Every dollar brings hope, nourishment, comfort, sense of belonging and dignity to those who need it most."
               },
               {
                 icon: <Calendar className="w-10 h-10" />,
                 title: "Monthly Giving",
-                desc: "Join a dedicated community of donors committed to creating lasting change. With your steady support, we can ensure no family is left behind."
+                desc: "Join a dedicated community of donors committed to creating lasting change. With your ongoing support, we can ensure no family or indididuals experiencing food insecurities and homelessness is left behind."
               },
               {
                 icon: <Building2 className="w-10 h-10" />,
                 title: "Corporate Matching",
-                desc: "Double the impact of your generosity through your employer's matching program, extending your gift to help even more lives."
+                desc: "Double the impact of your generosity through your employer's matching program, extending your gift to help more lives."
               }
             ].map((option, i) => (
               <motion.div
@@ -264,7 +264,7 @@ export default function DonatePage() {
           >
             <h2 className="text-4xl md:text-5xl font-heading mb-8">Want to Make a Difference?</h2>
             <p className="text-xl text-textlight mb-12 leading-relaxed">
-              Your donation helps fill shelves, fridges, and hearts. Whether it's a one-time gift or ongoing support, every dollar plants seeds of hope for a neighbor in need.
+              Your donation helps fill shelves, fridges, plates and hearts. Whether it's a one-time gift or ongoing support, every dollar plants seeds of hope for neighbors in need.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
@@ -290,7 +290,7 @@ export default function DonatePage() {
             </div>
 
             <p className="text-2xl font-heading text-secondary italic">
-              Thank you for helping us feed, teach, and empower — together. 🙏
+              We sincerely apppreciate your support and thank you for helping us feed, teach, and empower our community — together. 🙏
             </p>
           </motion.div>
         </div>

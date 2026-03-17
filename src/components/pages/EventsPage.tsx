@@ -19,22 +19,22 @@ export default function EventsPage() {
       title: 'Weekly Food Distribution',
       date: 'Every Wednesday',
       time: '10:00 AM - 2:00 PM',
-      location: 'Main Community Center',
-      desc: 'Join us for our weekly distribution of fresh produce and pantry staples to the community.'
+      location: 'Main Community Center - New Location TBA',
+      desc: 'Join us for our weekly distribution of fresh produce, perishable, non-perishable and pantry staples to the community. Colossians 1:10 ESV / 5 helpful votes Helpful Not Helpful So as to walk in a manner worthy of the Lord, fully pleasing to him: bearing fruit in every good work and increasing in the knowledge of God; Colossians 1:10'
     },
     {
-      title: 'Community Bible Study',
+      title: 'Community Bible Study - Jesus said unto them, Go ye into all the world, and preach the gospel to every creature. He that believeth and is baptized shall be saved Mark 16:15-16 KJV',
       date: 'Every Tuesday',
       time: '6:30 PM - 8:00 PM',
       location: 'Belleville Food Bank On Wheels Chapel',
-      desc: 'A time of spiritual growth and fellowship as we dive into the scriptures together.'
+      desc: 'Come join us for a time of spiritual growth and fellowship as we dive into the scriptures together. Study to show thyself approved unto God, a workman that has nothing to be ashamed of, rightly dividing the word of truth” (2 Tim. 2:15'
     },
     {
       title: 'Volunteer Orientation',
-      date: 'First Saturday of Month',
+      date: 'First TBA of Month',
       time: '9:00 AM - 11:00 AM',
       location: 'Hub Office',
-      desc: 'New to Belleville Food Bank On Wheels? Come learn how you can make an impact in our community.'
+      desc: 'New to Belleville Food Bank On Wheels? We welcome you to join us and learn how you can make an impact in our community.'
     }
   ];
 
@@ -66,7 +66,7 @@ export default function EventsPage() {
               <span className="text-secondary italic font-normal">Gatherings</span>
             </h1>
             <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
-              Join us for our community events, food distribution programs, and special gatherings. Every event is an opportunity to strengthen our community and share hope.
+              Please join us for our community events, food distribution programs, and special gatherings. Every event is an opportunity to strengthen our community and share hope. God measures the heart by what we give; He that hath pity upon the poor lendeth unto the Lord; and that which he hath given will he pay him again." – Proverbs 19:17 (KJV)
             </p>
             <motion.div 
               style={{ opacity }}

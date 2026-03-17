@@ -53,7 +53,7 @@ export default function JoinMissionPage() {
               Make a <span className="text-secondary italic font-normal">Difference</span>.
             </h1>
             <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
-              Your organization has the power to create meaningful change. Together, we can rescue surplus food, distribute meals, and bring hope to thousands.
+              Your organization has the power to create meaningful change. Together, we can rescue surplus food, distribute meals, and bring hope and a sense of belonging to thousands.
             </p>
             <motion.div 
               style={{ opacity }}
@@ -88,7 +88,7 @@ export default function JoinMissionPage() {
               {
                 icon: <Target className="w-10 h-10" />,
                 title: "Community Impact",
-                desc: "Join us in rescuing over 1.7 million pounds of food annually and supporting more than 3,000 families every month. Your partnership directly impacts local lives and demonstrates your commitment to social responsibility."
+                desc: " Please join us in rescuing over 1.7 million pounds of food annually and supporting more than 3,000 families every month. Your partnership directly impacts local lives and demonstrates your commitment to social responsibility."
               },
               {
                 icon: <Award className="w-10 h-10" />,
@@ -97,7 +97,7 @@ export default function JoinMissionPage() {
               },
               {
                 icon: <Users2 className="w-10 h-10" />,
-                title: "Employee Engagement",
+                title: "We welcome and appreciate Employee Engagement",
                 desc: "Provide your team with meaningful volunteer opportunities. Group volunteer days foster teamwork, boost morale, and inspire a shared sense of purpose within your organization."
               }
             ].map((item, i) => (
@@ -136,7 +136,7 @@ export default function JoinMissionPage() {
                 The <span className="text-foreground font-semibold">Belleville Food Bank On Wheels</span> is proud to collaborate with businesses and organizations that share our vision of a hunger-free community. Together, we've accomplished incredible milestones.
               </p>
               <p className="text-textlight mb-10">
-                Join the growing list of partners making a difference, and be part of a success story that transforms lives and strengthens communities.
+               Please join the growing list of partners making a difference, and be part of a success story that transforms lives and strengthens communities.
               </p>
               <div className="flex items-center gap-4 p-6 bg-secondary/10 rounded-xl border border-secondary/20">
                 <Info className="text-secondary shrink-0" />
@@ -169,7 +169,7 @@ export default function JoinMissionPage() {
         </div>
       </section>
 
-      {/* Ways to Partner */}
+      {/* Ways to Partner, Come Join Us! */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-heading mb-16">Ways to Partner</h2>
@@ -199,7 +199,7 @@ export default function JoinMissionPage() {
               <HeartHandshake className="mx-auto mb-6 text-secondary" size={64} />
               <h2 className="text-4xl font-heading mb-4">Join Our Mission</h2>
               <p className="text-textlight">
-                We offer flexible and impactful ways for your business to partner with us, tailored to fit your goals and strengths. Join us in creating a stronger, healthier, and more compassionate community.
+                We offer flexible and impactful ways for your business to partner with us, tailored to fit your goals and strengths. Pease join us in creating a stronger, healthier, and more compassionate community.
               </p>
             </div>
 

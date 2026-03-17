@@ -131,7 +131,7 @@ export default function HomePage() {
             </h1>
             
             <p className="font-paragraph text-lg text-textbody/80 leading-relaxed mb-12 max-w-md">
-              A sanctuary where faith meets action. We provide essential sustenance, spiritual growth, and a compassionate community for all who seek it.
+              At BFBOW, we're a sanctuary where faith meets action. We provide essential sustenance, spiritual growth, and a compassionate community for all who needs it.
             </p>
 
             <div className="flex flex-wrap gap-6">
@@ -220,7 +220,7 @@ export default function HomePage() {
                   <span className="text-secondary">Whole Person</span>
                 </h2>
                 <h3 className="font-paragraph text-textbody/70 text-lg mb-10 leading-relaxed">
-                  Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of hope and renewal.
+                  Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal.
                 </h3>
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center gap-4 text-textbody/60">
@@ -236,8 +236,8 @@ export default function HomePage() {
           <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
             <ServiceCard 
               index={0}
-              title="Food Assistance Program"
-              description="Ensures no one goes hungry by providing regular access to nutritious and culturally inclusive food."
+              title="Food Assistance Program" 
+              description="Ensures no one goes hungry by providing regular access to nutritious and culturally inclusive food."  
               features={["Weekly distribution", "Tailored dietary options", "Serving 3,000+ families monthly"]}
               icon={<Utensils className="w-8 h-8 text-secondary" />}
               link="/find-support"
@@ -246,7 +246,7 @@ export default function HomePage() {
               index={1}
               title="Emergency Support Program"
               description="Immediate relief for individuals in crisis, providing essentials to get through tough times."
-              features={["Ready-to-eat meals", "Hygiene & baby care packages", "Support for homeless & seniors"]}
+              features={["Ready-to-eat meals", "Hygiene & baby care packages", "Support for individuals eperiencing homelessness & seniors"]}
               icon={<HeartPulse className="w-8 h-8 text-secondary" />}
               link="/find-support"
             />
@@ -278,7 +278,7 @@ export default function HomePage() {
               index={5}
               title="Food for the Spirit"
               description="Nourishing the soul through faith-based resources, community study, and daily encouragement."
-              features={["Daily Devotionals", "Weekly Bible Study", "Prayer Support Network"]}
+              features={["Daily Devotionals", "Weekly Bible Study", "Prayer Support  John 21:15-17 KJV So when they had dined, Jesus saith to Simon Peter, Simon, son of Jonas, lovest thou me more than these? He saith unto him, Yea, Lord; thou knowest that I love thee. He saith unto him, Feed my lambs."]}
               icon={<BookOpen className="w-8 h-8 text-secondary" />}
               link="/spirit"
             />
@@ -286,12 +286,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- FEATURE: FOOD FOR THE SPIRIT (Parallax Background) --- */}
+      {/* --- FEATURE:FOOD FOR THE SPIRIT (Parallax Background) --- */}
       <section className="relative w-full py-32 lg:py-40 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://static.wixstatic.com/media/1560bb_e0ee9499fd6a4d288399e67c05a7b6d9~mv2.png?originWidth=1152&originHeight=576"
-            alt="Open bible on a wooden table"
+            alt="Open bible on a wooden table "
             className="w-full h-full object-cover opacity-20 grayscale mix-blend-overlay"
           />
           <div className="absolute inset-0 bg-primary/80" />
@@ -307,9 +307,10 @@ export default function HomePage() {
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8" />
             <h2 className="font-heading text-4xl md:text-6xl text-primary-foreground mb-8">
               Food for the Spirit
-            </h2>
+             </h2>
             <p className="font-paragraph text-xl text-textbody/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-              "Man shall not live by bread alone." Join our digital ministry to receive daily devotionals, prayer requests, and bible study invitations directly to your phone or inbox.
+              "Man shall not live by bread alone.Matthew 14:16
+'But Jesus said, “They need not go away; you give them something to eat.”' The story of Jesus feeding the 5,000 appears in all four gospels (Mark 6, Luke 9, and John 6)" Join our digital ministry to receive daily devotionals, prayer requests, and bible study invitations directly to your phone or inbox.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-6">
@@ -337,7 +338,7 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-bordersubtle/20 pb-8">
           <div>
             <h2 className="font-heading text-4xl text-primary-foreground mb-4">Community Calendar</h2>
-            <p className="font-paragraph text-textbody/60">Join us at our upcoming gatherings and distributions.</p>
+            <p className="font-paragraph text-textbody/60"> Please Join us at our upcoming gatherings and distributions.</p>
           </div>
           <Link to="/events" className="hidden md:flex items-center text-secondary hover:text-white transition-colors mt-4 md:mt-0">
             View Full Calendar <ArrowRight className="ml-2 w-4 h-4" />
@@ -352,19 +353,19 @@ export default function HomePage() {
             time="10:00 AM - 2:00 PM"
           />
           <EventRow 
-            date="OCT 15"
+            date="OCT Date TBA"
             title="Virtual Bible Study: Hope"
             location="Online (Zoom)"
             time="7:00 PM - 8:30 PM"
           />
           <EventRow 
-            date="NOV 01"
+            date="NOV Date TBA"
             title="Community Thanksgiving Prep"
             location="Volunteer Center"
             time="9:00 AM - 4:00 PM"
           />
           <EventRow 
-            date="NOV 05"
+            date="NOV Date TBA"
             title="Wellness & Health Screening"
             location="Community Center Annex"
             time="11:00 AM - 3:00 PM"
@@ -387,7 +388,7 @@ export default function HomePage() {
                 Stronger Together
               </h2>
               <p className="font-paragraph text-textbody/70 mb-8 leading-relaxed">
-                We are proud to work alongside dedicated organizations that share our vision of a hunger-free community. Through these partnerships, we extend our reach and deepen our impact.
+                We are proud to work alongside dedicated organizations that share our passion, hope and vision of a hunger-free community. Through these partnerships, we extend our reach and deepen our impact.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-6 bg-primary border border-bordersubtle/20 flex items-center justify-center h-32 opacity-70 hover:opacity-100 transition-opacity">
@@ -435,10 +436,10 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-heading text-5xl md:text-7xl text-primary-foreground mb-8">
-              Thanks Be to God
+              Thanks Be To Our God
             </h2>
             <p className="font-paragraph text-xl text-textbody/80 mb-12 max-w-2xl mx-auto">
-              We couldn’t do this work without the grace of God and the unwavering support of our community. Every dollar donated, every hour volunteered, and every meal provided is a testament to His love at work through all of us. We invite you to join this mission of faith and compassion. Together, we can continue to make a difference, one meal and one heart at a time.
+              We couldn’t do this work without the grace of our God and the unwavering support of our community. Every dollar donated, every hour volunteered, and every meal provided is a testament to His love at work through all of us. We invite you to join this mission of faith and compassion. Together, we canand will continue to make a difference, one meal and one heart at a time.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link 

@@ -68,7 +68,7 @@ export default function FindSupportPage() {
   const faqs = [
     {
       question: "Who can access the Belleville Food Bank On Wheels?",
-      answer: "Our doors are open to anyone in need who has been referred to us. This includes individuals and families from various backgrounds, such as schools, social services, survivors of domestic violence, the homeless, and the unemployed."
+      answer: "Our doors are open to anyone in need who has been referred to us. This includes individuals and families from various backgrounds, such as schools, social services, survivors of domestic violence, individuals experiencing homelessness, and the unemployed."
     },
     {
       question: "What should I bring with me when I visit?",
@@ -80,23 +80,23 @@ export default function FindSupportPage() {
     },
     {
       question: "Are there any fees or requirements to receive support?",
-      answer: "There are no fees for our services. We require a completed membership application and we prioritize those with demonstrated need or referrals."
+      answer: "There are no fees for our services to families with food insecurities and individuals experiencing homlessness; however, for Churches and Social Services Cmmunity Groups distributing to their selective teams. We require a completed membership application which include a small mountly fee or dontations and we prioritize those with demonstrated need or referrals."
     },
     {
-      question: "What types of food does the Belleville Food Bank On Wheels provide?",
-      answer: "We provide bi-weekly healthy food boxes filled with local produce, meats, and pantry staples. We also offer specialized options for various dietary restrictions."
+      question: "What types of food does our Belleville Food Bank On Wheels provide?",
+      answer: "We provide bi-weekly healthy food boxes filled with local produce, meats, perishable, non-perishable and pantry staples. We also offer specialized options for various dietary restrictions."
     },
     {
       question: "Are there specific services for people with dietary restrictions?",
-      answer: "Yes! We offer a wide range of options including gluten-free, diabetic-friendly, nut-free, vegan, vegetarian, and halal-based meals. We also cater to specific medical needs like hypertension or celiac disease."
+      answer: "Yes! We offer a wide range of options including gluten-free, diabetic-friendly, nut-free, vegan, vegetarian, and halal-based meals-when available. We also cater to specific medical needs like hypertension or celiac disease."
     },
     {
       question: "Do you provide hygiene products?",
-      answer: "Yes, we provide toiletries and hygiene products, though these are in limited supply. We aim to ensure those in need get access to these items at least once every 5 weeks."
+      answer: "Yes, we provide toiletries and hygiene products, though these are in limited supply. We aim to ensure those in need get access to these items at least once every 5 weeks-when available."
     },
     {
       question: "Do you provide meals for homeless individuals?",
-      answer: "Yes, we strive to provide nourishing and healthy food products to everyone, including those currently experiencing homelessness."
+      answer: "Absolutely! we strive to provide nourishing and healthy perishable and non-perishable food items to everyone, including those of us who are currently experiencing homelessness."
     },
     {
       question: "Are there programs for children?",
@@ -104,7 +104,7 @@ export default function FindSupportPage() {
     },
     {
       question: "Do you support seniors?",
-      answer: "Absolutely. We have specific programming and support needs dedicated to various age groups, including seniors, across our food bank community."
+      answer: "Absolutely! We have specific programming and support needs dedicated to various age groups, including seniors, across our food bank community."
     }
   ];
 
@@ -136,7 +136,7 @@ export default function FindSupportPage() {
               <span className="text-secondary italic font-normal">Need</span> It
             </h1>
             <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
-              At the Belleville Food Bank On Wheels, we understand that everyone faces challenges. Whether you need food for your family or help navigating tough situations, we're here to offer support with dignity and care.
+              At our Belleville Food Bank On Wheels, we understand that everyone faces challenges. Whether you need food for your family or help navigating challenging situations, we're here to offer support with dignity and care.
             </p>
             <motion.div 
               style={{ opacity }}
@@ -162,11 +162,11 @@ export default function FindSupportPage() {
               </div>
               <h2 className="text-4xl font-heading mb-6">Everyone Is Welcome</h2>
               <p className="text-lg text-textlight leading-relaxed mb-8">
-                Our doors are open to anyone in need, regardless of age, background, or circumstance. Whether you're a single parent, a senior, or a newcomer, we provide the resources you need to regain stability and hope.
+                Our doors are open to anyone in need, regardless of age, background, or circumstance. Whether you're a single parent, a senior, or a newcomer, comuunity individuals experiencing homelessness we provide the resources you need to regain stability, a sense of belonging and hope.
               </p>
               <div className="bg-background border border-bordersubtle/30 p-8 rounded-2xl">
                 <div className="text-4xl font-heading text-secondary mb-2">250,000+</div>
-                <p className="text-textlight">Meals provided annually to ensure no one in our community goes hungry.</p>
+                <p className="text-textlight">Meals are provided annually to ensure no one in our community goes hungry.</p>
               </div>
             </motion.div>
             
@@ -223,7 +223,7 @@ export default function FindSupportPage() {
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-heading mb-8 opacity-20 uppercase tracking-[0.3em]">Access Support Today</h2>
             <p className="text-xl text-textbody/80 max-w-4xl mx-auto leading-relaxed">
-              We're thrilled to support you and your family's needs with our bi-weekly healthy food boxes. Each box is filled with nourishing items, including local produce, meats, toiletries, diet-friendly meals, and even pet food.
+              We're thrilled to support you and your family's needs with our bi-weekly healthy food boxes. Each box is filled with nourishing items, including local produce, meats, toiletries, perishable and non-perishable diet-friendly meals, and even pet food.
             </p>
           </div>
 
@@ -234,7 +234,7 @@ export default function FindSupportPage() {
               </div>
               <h3 className="text-2xl font-heading">Compassionate Care</h3>
               <p className="text-textbody/60 text-sm leading-relaxed">
-                At our food bank, we're here to help anyone in need who has been referred to us. Our clients come from various backgrounds, such as schools, social services, survivors of domestic violence, the homeless, and the unemployed.
+                At our food bank, we're here to help anyone in need who has been referred to us. Our clients come from various backgrounds, such as schools, social services, new comers, survivors of domestic violence, individuals experiencing homelessness, and the unemployed.
               </p>
             </div>
             <div className="space-y-6">
@@ -243,7 +243,7 @@ export default function FindSupportPage() {
               </div>
               <h3 className="text-2xl font-heading">Dietary Respect</h3>
               <p className="text-textbody/60 text-sm leading-relaxed">
-                We understand the importance of individual dietary restrictions and respect cultural and social dietary requirements. We offer gluten-free, diabetic-friendly, nut-free, vegan, vegetarian, and halal options.
+                We understand the importance of individual dietary restrictions. We respect cultural and social dietary requirements. We offer gluten-free, diabetic-friendly, nut-free, vegan, vegetarian, perishable, non-perishable and halal options.
               </p>
             </div>
             <div className="space-y-6">
@@ -252,7 +252,7 @@ export default function FindSupportPage() {
               </div>
               <h3 className="text-2xl font-heading">Secure & Private</h3>
               <p className="text-textbody/60 text-sm leading-relaxed">
-                Rest assured that any information you provide will be kept safe and secure, accessible only to authorized senior personnel at BFBOW.
+               Please rest assured that any information you provide will be kept safe and secure and confidential, accessible only to authorized senior personnel at BFBOW.
               </p>
             </div>
           </div>
@@ -267,7 +267,7 @@ export default function FindSupportPage() {
               <UserPlus className="mx-auto mb-6 text-secondary" size={64} />
               <h2 className="text-4xl font-heading mb-4">Signing Up</h2>
               <p className="text-textlight">
-                Please fill out your membership application form to get started. Once submitted, a member of our Belleville Food Bank On Wheels team will review your information and reach out shortly!
+                Please fill out your membership application form to get started. Once submitted, a member of our Belleville Food Bank On Wheels Team will review your information and reach out shortly!
               </p>
             </div>
 
@@ -380,7 +380,7 @@ export default function FindSupportPage() {
                   <Dog size={16} /> Pets and Animals
                 </h3>
                 <p className="text-xs text-textlight leading-relaxed">
-                  Please select the pet you have and the amount so we can provide supplies when on hand.
+                  Please select from the list provided, the type of pet you have and/or own and the amount so, we can provide supplies when pet foods are available.
                 </p>
                 <div className="space-y-4">
                   {['Dog', 'Cat', 'Small Animal (Rabbit, Hamster, etc)'].map((pet) => (
