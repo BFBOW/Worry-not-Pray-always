@@ -54,7 +54,7 @@ export default function WhoWeArePage() {
               Guided by Faith, <br />
               <span className="text-secondary italic font-normal">Nourishing</span> with Love
             </h1>
-            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+            <p className="font-paragraph text-2xl md:text-3xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
               "Let brotherly love continue" — Hebrews 13:1. Our mission has always been about more than food. It’s about restoring dignity, offering hope, and sharing God’s love.
             </p>
             <motion.div 
@@ -179,14 +179,14 @@ export default function WhoWeArePage() {
                 className="bg-white/5 border border-white/10 p-8 rounded-2xl"
               >
                 <TrendingUp className="text-secondary mb-4" />
-                <p className="text-textbody/80 leading-relaxed">{stat}</p>
+                <p className="text-textbody leading-relaxed">{stat}</p>
               </motion.div>
             ))}
           </div>
 
           <div className="text-center max-w-3xl mx-auto">
             <h4 className="text-2xl font-heading text-secondary mb-6">AT BFBOW.</h4>
-            <p className="text-xl text-textbody/70 leading-relaxed">
+            <p className="text-2xl text-textbody leading-relaxed">
               We believe in addressing these challenges with compassion, providing not only meals but also a sense of belonging and care. Every meal shared is a step toward breaking the cycle of poverty.
             </p>
           </div>
@@ -257,7 +257,7 @@ export default function WhoWeArePage() {
             >
               <h3 className="text-sm uppercase tracking-[0.3em] font-bold text-secondary mb-6">Volunteers Making The Difference</h3>
               <h2 className="text-4xl md:text-6xl font-heading mb-8 leading-tight">Powered by Volunteer Spirit</h2>
-              <p className="text-xl text-textbody/70 mb-10 leading-relaxed">
+              <p className="text-2xl text-textbody mb-10 leading-relaxed">
                 Be Apart of Something Bigger. Our volunteers are the backbone of everything we do:
               </p>
               
@@ -268,7 +268,7 @@ export default function WhoWeArePage() {
                   </div>
                   <div>
                     <h4 className="text-xl font-heading text-white mb-2">850+ hours</h4>
-                    <p className="text-textbody/60">Contributed weekly to sorting, packing, and distributing food.</p>
+                    <p className="text-textbody">Contributed weekly to sorting, packing, and distributing food.</p>
                   </div>
                 </div>
                 
@@ -278,7 +278,7 @@ export default function WhoWeArePage() {
                   </div>
                   <div>
                     <h4 className="text-xl font-heading text-white mb-2">3,000+ Families</h4>
-                    <p className="text-textbody/60">Volunteers ensure these families receive the support they need each week.</p>
+                    <p className="text-textbody">Volunteers ensure these families receive the support they need each week.</p>
                   </div>
                 </div>
                 
@@ -288,7 +288,7 @@ export default function WhoWeArePage() {
                   </div>
                   <div>
                     <h4 className="text-xl font-heading text-white mb-2">Strengthening Community</h4>
-                    <p className="text-textbody/60">Every act of service strengthens our community and shares hope with those in need.</p>
+                    <p className="text-textbody">Every act of service strengthens our community and shares hope with those in need.</p>
                   </div>
                 </div>
               </div>

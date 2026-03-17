@@ -56,7 +56,7 @@ const Spirit: React.FC = () => {
               Food for the <br />
               <span className="text-secondary italic font-normal">Spirit</span>
             </h1>
-            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+            <p className="font-paragraph text-2xl md:text-3xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
               "Man shall not live by bread alone, but by every word that proceedeth out of the mouth of God."
               <span className="block mt-4 text-sm not-italic uppercase tracking-widest">— Matthew 4:4</span>
             </p>
@@ -110,7 +110,7 @@ const Spirit: React.FC = () => {
                 A Word for <br />
                 <span className="text-secondary italic">Your Season</span>
               </h2>
-              <p className="font-paragraph text-textbody/70 text-lg mb-12 leading-relaxed max-w-xl">
+              <p className="font-paragraph text-textbody text-xl mb-12 leading-relaxed max-w-xl">
                 Whether you are walking through a valley or standing on a mountaintop, God's Word has a specific promise for you. Enter your current heart-state below.
               </p>
 
@@ -168,7 +168,7 @@ const Spirit: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className="space-y-10 font-paragraph text-textbody/80 leading-relaxed text-lg">
+                    <div className="space-y-10 font-paragraph text-textbody leading-relaxed text-xl">
                       <p className="first-letter:text-5xl first-letter:font-heading first-letter:text-secondary first-letter:mr-3 first-letter:float-left">
                         {devotional.content}
                       </p>
@@ -180,7 +180,7 @@ const Spirit: React.FC = () => {
                       
                       <div className="pt-4">
                         <h4 className="font-heading text-sm uppercase tracking-[0.3em] text-primary-foreground mb-6">A Prayer for You</h4>
-                        <p className="italic text-textbody/70 text-xl border-l-2 border-bordersubtle/30 pl-8">"{devotional.prayer}"</p>
+                        <p className="italic text-textbody text-2xl border-l-2 border-bordersubtle/30 pl-8">"{devotional.prayer}"</p>
                       </div>
                     </div>
 
@@ -204,7 +204,7 @@ const Spirit: React.FC = () => {
                     </div>
                     <Heart className="w-10 h-10 text-secondary mb-8" />
                     <h3 className="font-heading text-2xl text-primary-foreground mb-4">Prayer Warriors</h3>
-                    <p className="font-paragraph text-textbody/60 mb-8 leading-relaxed">Our dedicated team is ready to stand in the gap for you. Submit your requests privately.</p>
+                    <p className="font-paragraph text-textbody mb-8 leading-relaxed">Our dedicated team is ready to stand in the gap for you. Submit your requests privately.</p>
                     <button className="flex items-center text-xs uppercase tracking-widest text-secondary font-bold group-hover:text-primary-foreground transition-colors">
                       Submit Request <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform" />
                     </button>
@@ -219,7 +219,7 @@ const Spirit: React.FC = () => {
                     </div>
                     <Shield className="w-10 h-10 text-secondary mb-8" />
                     <h3 className="font-heading text-2xl text-primary-foreground mb-4">Bible Study</h3>
-                    <p className="font-paragraph text-textbody/60 mb-8 leading-relaxed">Deepen your understanding of the Word through our guided community studies.</p>
+                    <p className="font-paragraph text-textbody mb-8 leading-relaxed">Deepen your understanding of the Word through our guided community studies.</p>
                     <button className="flex items-center text-xs uppercase tracking-widest text-secondary font-bold group-hover:text-primary-foreground transition-colors">
                       View Schedule <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform" />
                     </button>
@@ -242,7 +242,7 @@ const Spirit: React.FC = () => {
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl" />
                 <Mail className="w-12 h-12 text-secondary mb-8" />
                 <h2 className="font-heading text-3xl text-primary-foreground mb-6">Weekly Manna</h2>
-                <p className="font-paragraph text-textbody/70 mb-10 leading-relaxed">
+                <p className="font-paragraph text-textbody mb-10 leading-relaxed">
                   Receive our most uplifting devotionals and community updates directly to your inbox.
                 </p>
                 <SignupForm />
@@ -257,7 +257,7 @@ const Spirit: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/20 to-transparent p-10 flex flex-col justify-end">
                   <span className="text-secondary font-bold uppercase tracking-widest text-xs mb-4">Our Community</span>
                   <h3 className="font-heading text-3xl text-primary-foreground mb-4">Better Together</h3>
-                  <p className="text-textbody/70 text-sm leading-relaxed">
+                  <p className="text-textbody text-sm leading-relaxed">
                     Faith is a journey best shared. Join us in person or online to grow in grace and knowledge.
                   </p>
                 </div>

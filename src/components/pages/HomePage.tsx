@@ -43,14 +43,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, features,
           {icon}
         </div>
         <h3 className="font-heading text-2xl text-primary-foreground mb-4">{title}</h3>
-        <p className="font-paragraph text-textbody/80 leading-relaxed mb-4">
+        <p className="font-paragraph text-textbody leading-relaxed mb-4">
           {description}
         </p>
         
         {features && (
           <ul className="space-y-2 mb-6">
             {features.map((feature, i) => (
-              <li key={i} className="flex items-center text-sm text-textbody/60">
+              <li key={i} className="flex items-center text-sm text-textbody">
                 <span className="w-1.5 h-1.5 rounded-full bg-secondary mr-2 shrink-0" />
                 {feature}
               </li>
@@ -78,11 +78,11 @@ const EventRow: React.FC<EventItemProps> = ({ date, title, location, time }) => 
         <span className="font-heading text-3xl text-secondary w-24">{date}</span>
         <div>
           <h4 className="font-heading text-xl text-primary-foreground group-hover:text-white transition-colors">{title}</h4>
-          <p className="font-paragraph text-sm text-textbody/60 mt-1">{location}</p>
+          <p className="font-paragraph text-sm text-textbody mt-1">{location}</p>
         </div>
       </div>
       <div className="flex items-center justify-between md:justify-end gap-8 w-full md:w-auto">
-        <span className="font-paragraph text-sm text-textbody/80 bg-background/40 px-3 py-1 rounded-full border border-bordersubtle/20">{time}</span>
+        <span className="font-paragraph text-sm text-textbody bg-background/40 px-3 py-1 rounded-full border border-bordersubtle/20">{time}</span>
         <button className="p-2 rounded-full border border-bordersubtle/50 text-primary-foreground hover:bg-secondary hover:text-white hover:border-secondary transition-all">
           <ArrowRight className="w-5 h-5" />
         </button>
@@ -130,7 +130,7 @@ export default function HomePage() {
               <span className="text-secondary italic">Body</span> & Soul
             </h1>
             
-            <p className="font-paragraph text-lg text-textbody/80 leading-relaxed mb-12 max-w-md">
+            <p className="font-paragraph text-xl text-textbody leading-relaxed mb-12 max-w-md">
               At BFBOW, we're a sanctuary where faith meets action. We provide essential sustenance, spiritual growth, and a compassionate community for all who needs it.
             </p>
 
@@ -219,11 +219,11 @@ export default function HomePage() {
                   Serving the <br />
                   <span className="text-secondary">Whole Person</span>
                 </h2>
-                <h3 className="font-paragraph text-textbody/70 text-lg mb-10 leading-relaxed">
+                <h3 className="font-paragraph text-textbody text-xl mb-10 leading-relaxed">
                   Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal.
                 </h3>
                 <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-4 text-textbody/60">
+                  <div className="flex items-center gap-4 text-textbody">
                     <div className="w-12 h-px bg-bordersubtle"></div>
                     <span className="text-sm uppercase tracking-widest">Our Core Pillars</span>
                   </div>
@@ -308,7 +308,7 @@ export default function HomePage() {
             <h2 className="font-heading text-4xl md:text-6xl text-primary-foreground mb-8">
               Food for the Spirit
              </h2>
-            <p className="font-paragraph text-xl text-textbody/80 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="font-paragraph text-2xl text-textbody mb-12 max-w-2xl mx-auto leading-relaxed">
               "Man shall not live by bread alone.Matthew 14:16
 'But Jesus said, “They need not go away; you give them something to eat.”' The story of Jesus feeding the 5,000 appears in all four gospels (Mark 6, Luke 9, and John 6)" Join our digital ministry to receive daily devotionals, prayer requests, and bible study invitations directly to your phone or inbox.
             </p>
@@ -338,7 +338,7 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-bordersubtle/20 pb-8">
           <div>
             <h2 className="font-heading text-4xl text-primary-foreground mb-4">Community Calendar</h2>
-            <p className="font-paragraph text-textbody/60"> Please Join us at our upcoming gatherings and distributions.</p>
+            <p className="font-paragraph text-textbody"> Please Join us at our upcoming gatherings and distributions.</p>
           </div>
           <Link to="/events" className="hidden md:flex items-center text-secondary hover:text-white transition-colors mt-4 md:mt-0">
             View Full Calendar <ArrowRight className="ml-2 w-4 h-4" />
@@ -387,7 +387,7 @@ export default function HomePage() {
               <h2 className="font-heading text-3xl md:text-4xl text-primary-foreground mb-6">
                 Stronger Together
               </h2>
-              <p className="font-paragraph text-textbody/70 mb-8 leading-relaxed">
+              <p className="font-paragraph text-textbody mb-8 leading-relaxed">
                 We are proud to work alongside dedicated organizations that share our passion, hope and vision of a hunger-free community. Through these partnerships, we extend our reach and deepen our impact.
               </p>
               <div className="grid grid-cols-2 gap-4">
@@ -417,7 +417,7 @@ export default function HomePage() {
                   <div className="text-5xl font-heading text-secondary mb-2">1,200+</div>
                   <div className="text-xl text-primary-foreground mb-6">Families Served Monthly</div>
                   <div className="h-px w-16 bg-secondary mb-6"></div>
-                  <p className="text-textbody/80 text-sm">Your donations make this possible. Every dollar contributes directly to purchasing fresh food and supplies.</p>
+                  <p className="text-textbody text-sm">Your donations make this possible. Every dollar contributes directly to purchasing fresh food and supplies.</p>
                 </div>
               </div>
             </div>
@@ -438,7 +438,7 @@ export default function HomePage() {
             <h2 className="font-heading text-5xl md:text-7xl text-primary-foreground mb-8">
               Thanks Be To Our God
             </h2>
-            <p className="font-paragraph text-xl text-textbody/80 mb-12 max-w-2xl mx-auto">
+            <p className="font-paragraph text-2xl text-textbody mb-12 max-w-2xl mx-auto">
               We couldn’t do this work without the grace of our God and the unwavering support of our community. Every dollar donated, every hour volunteered, and every meal provided is a testament to His love at work through all of us. We invite you to join this mission of faith and compassion. Together, we canand will continue to make a difference, one meal and one heart at a time.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-6">

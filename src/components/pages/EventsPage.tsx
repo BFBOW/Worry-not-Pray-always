@@ -65,7 +65,7 @@ export default function EventsPage() {
               Community <br />
               <span className="text-secondary italic font-normal">Gatherings</span>
             </h1>
-            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+            <p className="font-paragraph text-2xl md:text-3xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
               Please join us for our community events, food distribution programs, and special gatherings. Every event is an opportunity to strengthen our community and share hope. God measures the heart by what we give; He that hath pity upon the poor lendeth unto the Lord; and that which he hath given will he pay him again." – Proverbs 19:17 (KJV)
             </p>
             <motion.div 
@@ -97,8 +97,8 @@ export default function EventsPage() {
               
               <div className="flex-grow">
                 <h3 className="text-2xl font-heading mb-4">{event.title}</h3>
-                <p className="text-textlight mb-6">{event.desc}</p>
-                <div className="flex flex-wrap gap-6 text-sm text-textlight">
+                <p className="text-textbody text-lg mb-6">{event.desc}</p>
+                <div className="flex flex-wrap gap-6 text-base text-textbody">
                   <div className="flex items-center gap-2">
                     <Clock size={16} className="text-secondary" />
                     {event.time}

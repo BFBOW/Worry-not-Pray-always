@@ -53,7 +53,7 @@ export default function DonatePage() {
               Give Today, <br />
               <span className="text-secondary italic font-normal">Change</span> Tomorrow.
             </h1>
-            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+            <p className="font-paragraph text-2xl md:text-3xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
               Every dollar you give, helps us provide nutritious perishable and non-perishable meals and essential support to families and community individuals experiencing homelessness in need. With your generosity, we can turn hunger into hope.
             </p>
             <motion.div 
@@ -201,7 +201,7 @@ export default function DonatePage() {
             >
               Donate
             </motion.h2>
-            <p className="text-xl text-textbody/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-2xl text-textbody max-w-3xl mx-auto leading-relaxed">
               We believe giving should be as meaningful as the impact it creates, so we've made it simple for you to support our mission in a way that works for you.
             </p>
           </div>
@@ -236,7 +236,7 @@ export default function DonatePage() {
                   {option.icon}
                 </div>
                 <h3 className="text-2xl font-heading mb-4 text-white">{option.title}</h3>
-                <p className="text-textbody/70 text-sm leading-relaxed mb-8">
+                <p className="text-textbody text-sm leading-relaxed mb-8">
                   {option.desc}
                 </p>
                 <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-primary uppercase tracking-widest">
@@ -247,7 +247,7 @@ export default function DonatePage() {
           </div>
 
           <div className="mt-20 text-center max-w-3xl mx-auto">
-            <p className="text-textbody/60 italic">
+            <p className="text-textbody italic">
               No matter how you choose to give, your contribution is a beacon of hope, transforming lives and strengthening our community. Together, we can create a future where no one faces hunger alone.
             </p>
           </div>

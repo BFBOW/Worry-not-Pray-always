@@ -135,7 +135,7 @@ export default function FindSupportPage() {
               Help When You <br />
               <span className="text-secondary italic font-normal">Need</span> It
             </h1>
-            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+            <p className="font-paragraph text-2xl md:text-3xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
               At our Belleville Food Bank On Wheels, we understand that everyone faces challenges. Whether you need food for your family or help navigating challenging situations, we're here to offer support with dignity and care.
             </p>
             <motion.div 
@@ -161,12 +161,12 @@ export default function FindSupportPage() {
                 <Users size={32} />
               </div>
               <h2 className="text-4xl font-heading mb-6">Everyone Is Welcome</h2>
-              <p className="text-lg text-textlight leading-relaxed mb-8">
+              <p className="text-xl text-textbody leading-relaxed mb-8">
                 Our doors are open to anyone in need, regardless of age, background, or circumstance. Whether you're a single parent, a senior, or a newcomer, comuunity individuals experiencing homelessness we provide the resources you need to regain stability, a sense of belonging and hope.
               </p>
               <div className="bg-background border border-bordersubtle/30 p-8 rounded-2xl">
                 <div className="text-4xl font-heading text-secondary mb-2">250,000+</div>
-                <p className="text-textlight">Meals are provided annually to ensure no one in our community goes hungry.</p>
+                <p className="text-textbody">Meals are provided annually to ensure no one in our community goes hungry.</p>
               </div>
             </motion.div>
             
@@ -222,7 +222,7 @@ export default function FindSupportPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-heading mb-8 opacity-20 uppercase tracking-[0.3em]">Access Support Today</h2>
-            <p className="text-xl text-textbody/80 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-2xl text-textbody max-w-4xl mx-auto leading-relaxed">
               We're thrilled to support you and your family's needs with our bi-weekly healthy food boxes. Each box is filled with nourishing items, including local produce, meats, toiletries, perishable and non-perishable diet-friendly meals, and even pet food.
             </p>
           </div>
@@ -233,7 +233,7 @@ export default function FindSupportPage() {
                 <Heart size={24} />
               </div>
               <h3 className="text-2xl font-heading">Compassionate Care</h3>
-              <p className="text-textbody/60 text-sm leading-relaxed">
+              <p className="text-textbody text-base leading-relaxed">
                 At our food bank, we're here to help anyone in need who has been referred to us. Our clients come from various backgrounds, such as schools, social services, new comers, survivors of domestic violence, individuals experiencing homelessness, and the unemployed.
               </p>
             </div>
@@ -242,7 +242,7 @@ export default function FindSupportPage() {
                 <ShieldCheck size={24} />
               </div>
               <h3 className="text-2xl font-heading">Dietary Respect</h3>
-              <p className="text-textbody/60 text-sm leading-relaxed">
+              <p className="text-textbody text-base leading-relaxed">
                 We understand the importance of individual dietary restrictions. We respect cultural and social dietary requirements. We offer gluten-free, diabetic-friendly, nut-free, vegan, vegetarian, perishable, non-perishable and halal options.
               </p>
             </div>
@@ -251,7 +251,7 @@ export default function FindSupportPage() {
                 <Info size={24} />
               </div>
               <h3 className="text-2xl font-heading">Secure & Private</h3>
-              <p className="text-textbody/60 text-sm leading-relaxed">
+              <p className="text-textbody text-base leading-relaxed">
                Please rest assured that any information you provide will be kept safe and secure and confidential, accessible only to authorized senior personnel at BFBOW.
               </p>
             </div>
@@ -266,7 +266,7 @@ export default function FindSupportPage() {
             <div className="text-center mb-16">
               <UserPlus className="mx-auto mb-6 text-secondary" size={64} />
               <h2 className="text-4xl font-heading mb-4">Signing Up</h2>
-              <p className="text-textlight">
+              <p className="text-textbody">
                 Please fill out your membership application form to get started. Once submitted, a member of our Belleville Food Bank On Wheels Team will review your information and reach out shortly!
               </p>
             </div>

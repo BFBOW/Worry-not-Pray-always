@@ -52,7 +52,7 @@ export default function JoinMissionPage() {
               Partnerships That <br />
               Make a <span className="text-secondary italic font-normal">Difference</span>.
             </h1>
-            <p className="font-paragraph text-xl md:text-2xl text-textbody/80 max-w-2xl mx-auto leading-relaxed italic">
+            <p className="font-paragraph text-2xl md:text-3xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
               Your organization has the power to create meaningful change. Together, we can rescue surplus food, distribute meals, and bring hope and a sense of belonging to thousands.
             </p>
             <motion.div 
@@ -78,7 +78,7 @@ export default function JoinMissionPage() {
               Your Impact Amplified
             </motion.div>
             <h2 className="text-4xl md:text-5xl font-heading mb-6">Creating Real Change Together</h2>
-            <p className="text-textlight max-w-2xl mx-auto text-lg">
+            <p className="text-textbody max-w-2xl mx-auto text-xl">
               When you partner with us, your impact resonates far beyond our walls, amplifying hope and creating real change.
             </p>
           </div>
@@ -113,7 +113,7 @@ export default function JoinMissionPage() {
                   {item.icon}
                 </div>
                 <h3 className="text-2xl font-heading mb-4">{item.title}</h3>
-                <p className="text-textlight leading-relaxed">
+                <p className="text-textbody leading-relaxed">
                   {item.desc}
                 </p>
               </motion.div>
@@ -132,10 +132,10 @@ export default function JoinMissionPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl font-heading mb-8">Partners Making An Impact</h2>
-              <p className="text-lg text-textlight leading-relaxed mb-8">
+              <p className="text-xl text-textbody leading-relaxed mb-8">
                 The <span className="text-foreground font-semibold">Belleville Food Bank On Wheels</span> is proud to collaborate with businesses and organizations that share our vision of a hunger-free community. Together, we've accomplished incredible milestones.
               </p>
-              <p className="text-textlight mb-10">
+              <p className="text-textbody mb-10">
                Please join the growing list of partners making a difference, and be part of a success story that transforms lives and strengthens communities.
               </p>
               <div className="flex items-center gap-4 p-6 bg-secondary/10 rounded-xl border border-secondary/20">
@@ -184,7 +184,7 @@ export default function JoinMissionPage() {
                   <CheckCircle2 size={32} />
                 </div>
                 <h4 className="text-xl font-heading mb-4">{way.title}</h4>
-                <p className="text-textlight text-sm max-w-xs">{way.desc}</p>
+                <p className="text-textbody text-base max-w-xs">{way.desc}</p>
               </div>
             ))}
           </div>
@@ -198,7 +198,7 @@ export default function JoinMissionPage() {
             <div className="text-center mb-16">
               <HeartHandshake className="mx-auto mb-6 text-secondary" size={64} />
               <h2 className="text-4xl font-heading mb-4">Join Our Mission</h2>
-              <p className="text-textlight">
+              <p className="text-textbody">
                 We offer flexible and impactful ways for your business to partner with us, tailored to fit your goals and strengths. Pease join us in creating a stronger, healthier, and more compassionate community.
               </p>
             </div>

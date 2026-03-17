@@ -28,9 +28,11 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground font-paragraph;
+    @apply bg-background text-textbody font-paragraph text-xl leading-relaxed antialiased;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-heading tracking-tight;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   }
 }
