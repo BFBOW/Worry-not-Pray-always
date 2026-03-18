@@ -63,6 +63,14 @@ export default function DonatePage() {
               <div className="w-px h-24 bg-gradient-to-b from-secondary to-transparent" />
             </motion.div>
           </motion.div>
+          <div className="mt-12 text-center">
+            <p className="font-paragraph text-xl text-textbody italic">
+              What does Proverbs 19:17 say?
+            </p>
+            <p className="font-paragraph text-2xl text-secondary italic mt-4">
+              Proverbs 19 vs 17: Whoever is generous to the poor lends to the Lord, and he will repay him for his deed.
+            </p>
+          </div>
         </div>
       </section>
 

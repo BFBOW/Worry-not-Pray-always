@@ -53,7 +53,7 @@ export default function JoinMissionPage() {
               Make a <span className="text-secondary italic font-normal">Difference</span>.
             </h1>
             <p className="font-paragraph text-2xl md:text-3xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
-              Your organization has the power to create meaningful change. Together, we can rescue surplus food, distribute meals, and bring hope and a sense of belonging to thousands.
+              Your organization has the power to create meaningful change. Together, we can rescue surplus food, distribute meals, and bring hope and a sense of belonging to thousands. 
             </p>
             <motion.div 
               style={{ opacity }}

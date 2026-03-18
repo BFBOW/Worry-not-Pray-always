@@ -80,7 +80,7 @@ export default function FindSupportPage() {
     },
     {
       question: "Are there any fees or requirements to receive support?",
-      answer: "There are no fees for our services to families with food insecurities and individuals experiencing homlessness; however, for Churches and Social Services Cmmunity Groups distributing to their selective teams. We require a completed membership application which include a small mountly fee or dontations and we prioritize those with demonstrated need or referrals."
+      answer: "There are no fees for our services to persons,families with food insecurities and individuals experiencing homlessness; however, for Churches and Social Services Cmmunity Groups distributing to their selective teams. We require a completed membership application which include a small mountly fee or dontations and we prioritize those with demonstrated need or referrals."
     },
     {
       question: "What types of food does our Belleville Food Bank On Wheels provide?",
@@ -162,7 +162,7 @@ export default function FindSupportPage() {
               </div>
               <h2 className="text-4xl font-heading mb-6">Everyone Is Welcome</h2>
               <p className="text-xl text-textbody leading-relaxed mb-8">
-                Our doors are open to anyone in need, regardless of age, background, or circumstance. Whether you're a single parent, a senior, or a newcomer, comuunity individuals experiencing homelessness we provide the resources you need to regain stability, a sense of belonging and hope.
+                Our doors are open to anyone in need, regardless of age, background, or circumstance. Whether you're a single parent, a senior, or a newcomer, community individuals experiencing homelessness we provide the resources you need to regain stability, a sense of belonging and hope.
               </p>
               <div className="bg-background border border-bordersubtle/30 p-8 rounded-2xl">
                 <div className="text-4xl font-heading text-secondary mb-2">250,000+</div>
@@ -288,13 +288,24 @@ export default function FindSupportPage() {
                 </div>
               </div>
 
-              {/* DOB Section */}
+              {/* Age Range Section */}
               <div className="space-y-6">
-                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Date of Birth</h3>
-                <p className="text-xs text-textlight leading-relaxed">
-                  Though adding your birthday is not mandatory we strongly recommend adding your D.O.B for our larger distribution partners for additional support needs and programming dedicated to various age groups.
+                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Age Range</h3>
+                <p className="text-xs text-textbody/60 leading-relaxed">
+                  Please select the age range(s) applicable to you. This helps us and our distribution partners tailor support and programming to various age groups in our community.
                 </p>
-                <input type="date" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                  {['0-18', '19-30', '31-50', '51-64', '65+'].map((range) => (
+                    <div key={range} className="flex items-center gap-2">
+                      <input 
+                        type="checkbox" 
+                        id={`age-${range}`}
+                        className="accent-secondary"
+                      />
+                      <label htmlFor={`age-${range}`} className="text-xs text-textbody/60">{range}</label>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Contact Section */}
