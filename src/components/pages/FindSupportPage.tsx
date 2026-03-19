@@ -15,10 +15,12 @@ import {
   Info,
   Dog,
   UserPlus,
-  Leaf
+  Leaf,
+  AlertCircle
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Image } from '../ui/image';
+import { type SupportFormSubmission, type SupportPetSelection } from '../../lib/supportSubmission';
 
 interface FAQItemProps {
   question: string;
@@ -64,6 +66,87 @@ export default function FindSupportPage() {
 
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError(null);
+    setSubmitSuccess(false);
+
+    const formData = new FormData(e.currentTarget);
+    
+    // Collect age ranges
+    const ageRanges: string[] = [];
+    formData.getAll('AGE_RANGES').forEach(val => ageRanges.push(String(val)));
+
+    // Collect dietary prefs
+    const dietaryPrefs: string[] = [];
+    formData.getAll('DIETARY_PREFS').forEach(val => dietaryPrefs.push(String(val)));
+
+    // Collect hygiene prefs
+    const hygienePrefs: string[] = [];
+    formData.getAll('HYGIENE_PREFS').forEach(val => hygienePrefs.push(String(val)));
+
+    // Collect confirmations
+    const confirmations: string[] = [];
+    formData.getAll('CONFIRM_ACK').forEach(val => confirmations.push(String(val)));
+
+    // Collect pets
+    const pets: SupportPetSelection[] = [];
+    const petTypes = ['Dog', 'Cat', 'Small Animal (Rabbit, Hamster, etc)'];
+    petTypes.forEach(pet => {
+      const isSelected = formData.getAll('PET_INFO').includes(pet);
+      const qty = Number(formData.get(`PET_QTY_${pet}`));
+      if (isSelected || qty > 0) {
+        pets.push({ name: pet, quantity: qty || 0 });
+      }
+    });
+
+    const submission: SupportFormSubmission = {
+      firstName: String(formData.get('FIRSTNAME')),
+      lastName: String(formData.get('LASTNAME')),
+      email: String(formData.get('EMAIL')),
+      phone: String(formData.get('SMS')),
+      postalCode: String(formData.get('POSTAL_CODE')),
+      ageRanges,
+      optIn: formData.get('OPT_IN') === 'true',
+      pickupOthers: String(formData.get('PICKUP_OTHERS')),
+      householdCount: formData.get('HOUSEHOLD_COUNT') ? Number(formData.get('HOUSEHOLD_COUNT')) : undefined,
+      dietaryPrefs,
+      dietaryNotes: String(formData.get('DIETARY_NOTES')),
+      hygienePrefs,
+      hygieneNeeds: String(formData.get('HYGIENE_NEEDS')),
+      pets,
+      petDetails: String(formData.get('PET_DETAILS')),
+      additionalInfo: String(formData.get('ADDITIONAL_INFO')),
+      confirmations,
+      contactTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(submission),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || 'Submission failed');
+      }
+
+      setSubmitSuccess(true);
+      if (e.currentTarget) e.currentTarget.reset();
+    } catch (err: any) {
+      setSubmitError(err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const faqs = [
     {
@@ -271,7 +354,8 @@ export default function FindSupportPage() {
               </p>
             </div>
 
-            <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-10" onSubmit={handleSubmit}>
+
               {/* Name Section */}
               <div className="space-y-6">
                 <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Name</h3>
@@ -279,11 +363,11 @@ export default function FindSupportPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest font-bold">First Name <span className="text-destructive">*</span></label>
-                    <input required type="text" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input required name="FIRSTNAME" type="text" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest font-bold">Last Name <span className="text-destructive">*</span></label>
-                    <input required type="text" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input required name="LASTNAME" type="text" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                 </div>
               </div>
@@ -300,6 +384,8 @@ export default function FindSupportPage() {
                       <input 
                         type="checkbox" 
                         id={`age-${range}`}
+                        name="AGE_RANGES"
+                        value={range}
                         className="accent-secondary"
                       />
                       <label htmlFor={`age-${range}`} className="text-xs text-textbody/60">{range}</label>
@@ -314,20 +400,20 @@ export default function FindSupportPage() {
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest font-bold">Email <span className="text-destructive">*</span></label>
-                    <input required type="email" placeholder="jane.doe@email.com" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input required name="EMAIL" type="email" placeholder="jane.doe@email.com" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                     <div className="flex items-center gap-2 mt-2">
-                      <input type="checkbox" id="news" className="accent-secondary" />
+                      <input type="checkbox" id="news" name="OPT_IN" value="true" className="accent-secondary" />
                       <label htmlFor="news" className="text-xs text-textlight">Sign up for news and updates</label>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-xs uppercase tracking-widest font-bold">Phone Number</label>
-                      <input type="tel" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                      <input name="SMS" type="tel" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs uppercase tracking-widest font-bold">Postal Code <span className="text-destructive">*</span></label>
-                      <input required type="text" placeholder="L1E1V8" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors uppercase" />
+                      <input required name="POSTAL_CODE" type="text" placeholder="L1E1V8" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors uppercase" />
                     </div>
                   </div>
                 </div>
@@ -339,15 +425,15 @@ export default function FindSupportPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest font-bold">Picking up for others?</label>
-                    <select className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors appearance-none">
+                    <select name="PICKUP_OTHERS" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors appearance-none">
                       <option value="">Select an option</option>
-                      <option>No, just my household</option>
-                      <option>Yes, another person/household</option>
+                      <option value="No, just my household">No, just my household</option>
+                      <option value="Yes, another person/household">Yes, another person/household</option>
                     </select>
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest font-bold">People in household</label>
-                    <input type="number" min="1" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input name="HOUSEHOLD_COUNT" type="number" min="1" className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                 </div>
               </div>
@@ -361,27 +447,31 @@ export default function FindSupportPage() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {['Gluten-Free', 'Diabetic-Friendly', 'Nut-Free', 'Vegan', 'Vegetarian', 'Halal', 'Hypertension', 'Celiac', 'No Restrictions'].map((diet) => (
                     <div key={diet} className="flex items-center gap-2">
-                      <input type="checkbox" id={diet} className="accent-secondary" />
+                      <input type="checkbox" id={diet} name="DIETARY_PREFS" value={diet} className="accent-secondary" />
                       <label htmlFor={diet} className="text-xs text-textlight">{diet}</label>
                     </div>
                   ))}
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest font-bold">Additional Preferences</label>
-                  <textarea rows={3} className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
+                  <textarea name="DIETARY_NOTES" rows={3} className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
                 </div>
               </div>
 
-              {/* Hygiene Section */}
+              {/* Hygiene & Clothing Section */}
               <div className="space-y-6">
-                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Nurturing & Hygiene Products</h3>
+                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Nurturing, Hygiene & Clothing</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                  {['Soap/Body Wash', 'Shampoo', 'Toothpaste', 'Deodorant', 'Feminine Hygiene', 'Diapers', 'Baby Wipes'].map((item) => (
+                  {['Soap/Body Wash', 'Shampoo', 'Toothpaste', 'Deodorant', 'Feminine Hygiene', 'Diapers', 'Baby Wipes', 'Clothing Items'].map((item) => (
                     <div key={item} className="flex items-center gap-2">
-                      <input type="checkbox" id={item} className="accent-secondary" />
+                      <input type="checkbox" id={item} name="HYGIENE_PREFS" value={item} className="accent-secondary" />
                       <label htmlFor={item} className="text-xs text-textlight">{item}</label>
                     </div>
                   ))}
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest font-bold">Additional Preferences (Hygiene/Clothing)</label>
+                  <textarea name="HYGIENE_NEEDS" rows={2} placeholder="Sizes, specific needs, etc." className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
                 </div>
               </div>
 
@@ -391,18 +481,31 @@ export default function FindSupportPage() {
                   <Dog size={16} /> Pets and Animals
                 </h3>
                 <p className="text-xs text-textlight leading-relaxed">
-                  Please select from the list provided, the type of pet you have and/or own and the amount so, we can provide supplies when pet foods are available.
+                  Please select the pet you have and the amount so we can provide supplies when on hand.
                 </p>
                 <div className="space-y-4">
                   {['Dog', 'Cat', 'Small Animal (Rabbit, Hamster, etc)'].map((pet) => (
                     <div key={pet} className="flex items-center justify-between gap-4 p-4 bg-background border border-bordersubtle/20 rounded-xl">
                       <div className="flex items-center gap-2">
-                        <input type="checkbox" id={pet} className="accent-secondary" />
+                        <input type="checkbox" id={pet} name="PET_INFO" value={pet} className="accent-secondary" />
                         <label htmlFor={pet} className="text-sm">{pet}</label>
                       </div>
-                      <input type="number" placeholder="Qty" className="w-20 bg-secondary/5 border border-bordersubtle/30 rounded px-3 py-1 text-sm outline-none focus:border-secondary" />
+                      <input name={`PET_QTY_${pet}`} type="number" placeholder="Qty" className="w-20 bg-secondary/5 border border-bordersubtle/30 rounded px-3 py-1 text-sm outline-none focus:border-secondary" />
                     </div>
                   ))}
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest font-bold">Pet Details (Types, Ages, Special Needs)</label>
+                  <textarea name="PET_DETAILS" rows={2} placeholder="Please provide more details about your pets..." className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
+                </div>
+              </div>
+
+              {/* Additional Information Section */}
+              <div className="space-y-6">
+                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Additional Information</h3>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest font-bold">Is there anything else we should know?</label>
+                  <textarea name="ADDITIONAL_INFO" rows={3} placeholder="Any other details that might help us support you better..." className="w-full bg-background border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
                 </div>
               </div>
 
@@ -412,21 +515,47 @@ export default function FindSupportPage() {
                 <div className="space-y-4">
                   {[
                     "I confirm that the information provided is accurate to the best of my knowledge.",
-                    "I understand that food and hygiene items are subject to availability.",
+                    "I understand that food, clothing, hygiene and other specialty items are subject to availability.",
                     "I agree to the storage of my data for the purpose of providing support services.",
                     "I acknowledge that BFBOW authorized personnel will handle my information securely."
                   ].map((agreement, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <input required type="checkbox" id={`agree-${i}`} className="mt-1 accent-secondary" />
+                      <input required type="checkbox" id={`agree-${i}`} name="CONFIRM_ACK" value={agreement} className="mt-1 accent-secondary" />
                       <label htmlFor={`agree-${i}`} className="text-xs text-textlight leading-relaxed">{agreement}</label>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <Button className="w-full py-8 text-lg uppercase tracking-[0.2em] font-bold shadow-xl shadow-secondary/20 group">
-                Submit My Form <CheckCircle2 className="ml-2 group-hover:scale-110 transition-transform" />
+              {/* 1. THE SUBMIT BUTTON (Changes text when submitting) */}
+              <Button 
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-8 text-lg uppercase tracking-[0.2em] font-bold shadow-xl shadow-secondary/20 group"
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit My Form'} 
+                {!isSubmitting && <CheckCircle2 className="ml-2 group-hover:scale-110 transition-transform" />}
               </Button>
+
+              {/* 2. UNSUCCESSFUL SUBMISSION MESSAGE */}
+              {submitError && (
+                <div className="mt-6 p-4 rounded-lg bg-destructive/10 border border-destructive text-destructive text-sm">
+                  <div className="flex items-center gap-3">
+                    <AlertCircle size={20} />
+                    <span>{submitError}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* 3. SUCCESSFUL SUBMISSION MESSAGE */}
+              {submitSuccess && (
+                <div className="mt-6 p-4 rounded-lg bg-secondary/10 border border-secondary text-secondary text-sm">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle2 size={20} />
+                    <span>Your support application has been submitted successfully.</span>
+                  </div>
+                </div>
+              )}
             </form>
           </div>
         </div>
