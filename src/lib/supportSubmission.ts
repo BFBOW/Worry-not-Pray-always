@@ -9,7 +9,6 @@ export interface SupportFormSubmission {
   email: string;
   phone?: string;
   postalCode: string;
-  dateOfBirth?: string;
   ageRanges: string[];
   optIn: boolean;
   pickupOthers?: string;
@@ -17,11 +16,11 @@ export interface SupportFormSubmission {
   dietaryPrefs: string[];
   dietaryNotes?: string;
   hygienePrefs: string[];
-  hygieneNeeds?: string;
+  hygieneNotes?: string;
   pets: SupportPetSelection[];
   petDetails?: string;
   additionalInfo?: string;
-  confirmations: string[];
+  confirmAck: boolean;
   contactTimezone?: string;
 }
 
@@ -82,14 +81,12 @@ export function buildBrevoPayload(
   const ageRanges = cleanList(submission.ageRanges);
   const dietaryPrefs = cleanList(submission.dietaryPrefs);
   const hygienePrefs = cleanList(submission.hygienePrefs);
-  const confirmations = cleanList(submission.confirmations);
   const petSummary = buildPetSummary(submission.pets);
   const petCount = submission.pets.reduce((total, pet) => total + Math.max(0, pet.quantity), 0);
   const numericPostalCode = parsePostalCode(submission.postalCode);
 
   const additionalInfoParts = [
     cleanText(submission.additionalInfo),
-    cleanText(submission.dateOfBirth) ? `DOB: ${submission.dateOfBirth}` : undefined,
     numericPostalCode === undefined ? `Postal code: ${submission.postalCode}` : undefined,
   ].filter(Boolean);
 
@@ -97,8 +94,8 @@ export function buildBrevoPayload(
     FIRSTNAME: submission.firstName.trim(),
     LASTNAME: submission.lastName.trim(),
     OPT_IN: submission.optIn,
+    CONFIRM_ACK: submission.confirmAck,
     CONTACT_TIMEZONE: cleanText(submission.contactTimezone) ?? "America/Toronto",
-    CONFIRM_ACK: confirmations.length >= 4,
   };
 
   const formattedPhone = formatPhone(submission.phone);
@@ -112,13 +109,12 @@ export function buildBrevoPayload(
   if (dietaryPrefs.length > 0) attributes.DIETARY_PREFS = dietaryPrefs.join(", ");
   if (cleanText(submission.dietaryNotes)) attributes.DIETARY_NOTES = submission.dietaryNotes!.trim();
   if (hygienePrefs.length > 0) attributes.HYGIENE_PREFS = hygienePrefs.join(", ");
-  if (cleanText(submission.hygieneNeeds)) attributes.HYGIENE_NOTES = submission.hygieneNeeds!.trim();
+  if (cleanText(submission.hygieneNotes)) attributes.HYGIENE_NOTES = submission.hygieneNotes!.trim();
   if (petCount > 0) attributes.PET_COUNT = petCount;
   if (submission.pets.length > 0) attributes.PET_INFO = submission.pets.map((pet) => pet.name).join(", ");
 
   const petDetails = [cleanText(submission.petDetails), petSummary].filter(Boolean).join(" | ");
   if (petDetails) attributes.PET_DETAILS = petDetails;
-
   if (additionalInfoParts.length > 0) attributes.ADDITIONAL_INFO = additionalInfoParts.join(" | ");
 
   const payload: BrevoContactPayload = {

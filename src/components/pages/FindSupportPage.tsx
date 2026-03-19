@@ -91,10 +91,6 @@ export default function FindSupportPage() {
     const hygienePrefs: string[] = [];
     formData.getAll('HYGIENE_PREFS').forEach(val => hygienePrefs.push(String(val)));
 
-    // Collect confirmations
-    const confirmations: string[] = [];
-    formData.getAll('CONFIRM_ACK').forEach(val => confirmations.push(String(val)));
-
     // Collect pets
     const pets: SupportPetSelection[] = [];
     const petTypes = ['Dog', 'Cat', 'Small Animal (Rabbit, Hamster, etc)'];
@@ -119,11 +115,11 @@ export default function FindSupportPage() {
       dietaryPrefs,
       dietaryNotes: String(formData.get('DIETARY_NOTES')),
       hygienePrefs,
-      hygieneNeeds: String(formData.get('HYGIENE_NEEDS')),
+      hygieneNotes: String(formData.get('HYGIENE_NEEDS')),
       pets,
       petDetails: String(formData.get('PET_DETAILS')),
       additionalInfo: String(formData.get('ADDITIONAL_INFO')),
-      confirmations,
+      confirmAck: true, // If form submits, all required checkboxes are checked
       contactTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     };
 
