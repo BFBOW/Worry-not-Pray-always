@@ -102,11 +102,15 @@ export default function FindSupportPage() {
       }
     });
 
+    const phoneCountryCode = String(formData.get('SMS__COUNTRY_CODE') ?? '+1').trim();
+    const rawPhone = String(formData.get('SMS') ?? '').replace(/[^\d]/g, '');
+    const formattedPhone = rawPhone ? `${phoneCountryCode}${rawPhone}` : '';
+
     const submission: SupportFormSubmission = {
       firstName: String(formData.get('FIRSTNAME')),
       lastName: String(formData.get('LASTNAME')),
       email: String(formData.get('EMAIL')),
-      phone: String(formData.get('SMS')),
+      phone: formattedPhone,
       postalCode: String(formData.get('POSTAL_CODE')),
       ageRanges,
       optIn: formData.get('OPT_IN') === 'true',
