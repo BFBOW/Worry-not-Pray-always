@@ -243,7 +243,7 @@ export default function WhoWeArePage() {
       <section className="relative py-24 bg-primary text-primary-foreground">
         <div className="absolute inset-0 z-0 opacity-10">
           <Image 
-            src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=2000"
+            src="/IMG_5076 - Copy.jpg"
             alt="Background"
             className="w-full h-full object-cover"
           />
@@ -298,15 +298,14 @@ export default function WhoWeArePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative rounded-3xl overflow-hidden aspect-square"
+              className="relative rounded-3xl overflow-hidden shadow-2xl"
             >
-              <img 
-                src="https://images.unsplash.com/photo-1593113630400-ea4288922497?auto=format&fit=crop&q=80&w=1000"
+              <Image 
+                src="/vs.png"
                 alt="Volunteers working together"
-                className="w-full h-full object-cover opacity-80"
-                referrerPolicy="no-referrer"
+                className="w-full h-auto block opacity-90"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent pointer-events-none" />
             </motion.div>
           </div>
         </div>
@@ -328,34 +327,32 @@ export default function WhoWeArePage() {
         </div>
       </section>
 
-      {/* Founding Team Section */}
+      {/* Dedicated Team Section */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h3 className="text-sm uppercase tracking-[0.3em] font-bold text-secondary mb-4">The Founding Team</h3>
-            <h2 className="text-4xl font-heading">Meet The Founding Team</h2>
+            <h3 className="text-sm uppercase tracking-[0.3em] font-bold text-secondary mb-4">Our Dedicated Team</h3>
+            <h2 className="text-4xl font-heading">The Hearts Behind the Mission</h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[1, 2, 3].map((item) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: item * 0.1 }}
-                className="group"
-              >
-                <div className="aspect-[3/4] bg-secondary/10 rounded-2xl mb-6 overflow-hidden relative">
-                  <div className="absolute inset-0 flex items-center justify-center text-secondary/20">
-                    <Users size={64} />
-                  </div>
-                </div>
-                <div className="h-8 w-48 bg-bordersubtle/10 rounded mb-2" /> {/* Placeholder for name */}
-                <div className="h-4 w-32 bg-bordersubtle/5 rounded" /> {/* Placeholder for title */}
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <Image 
+                src="/BFBOWTeam.png"
+                alt="The BFBOW Team"
+                className="w-full h-auto block"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent pointer-events-none" />
+            </div>
+            <p className="mt-8 text-center text-textlight italic font-paragraph text-lg">
+              United by faith, driven by compassion, and dedicated to serving our community with love.
+            </p>
+          </motion.div>
         </div>
       </section>
     </div>

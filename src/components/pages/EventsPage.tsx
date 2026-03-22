@@ -47,9 +47,9 @@ export default function EventsPage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2000"
+            src="/ffdf.jpg"
             alt="Events Hero"
-            className="w-full h-full object-cover opacity-40 grayscale"
+            className="w-full h-full object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
         </motion.div>

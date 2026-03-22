@@ -40,9 +40,9 @@ const Spirit: React.FC = () => {
           <Image 
             src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=2070&auto=format&fit=crop"
             alt="Sacred scriptures"
-            className="w-full h-full object-cover opacity-40 grayscale"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-background" />
         </motion.div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
@@ -196,33 +196,67 @@ const Spirit: React.FC = () => {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <motion.div 
-                    whileHover={{ y: -10 }}
-                    className="p-10 border border-bordersubtle/20 glass-panel rounded-sm group relative overflow-hidden"
+                    whileHover={{ y: -12, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="p-10 border border-bordersubtle/20 glass-panel rounded-sm group relative overflow-hidden cursor-pointer"
                   >
-                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <Heart size={80} />
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-secondary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    
+                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-20 group-hover:scale-110 group-hover:rotate-12 transition-all duration-700">
+                      <Heart size={120} />
                     </div>
-                    <Heart className="w-10 h-10 text-secondary mb-8" />
-                    <h3 className="font-heading text-2xl text-primary-foreground mb-4">Prayer Warriors</h3>
-                    <p className="font-paragraph text-textbody mb-8 leading-relaxed">Our dedicated team is ready to stand in the gap for you. Submit your requests privately.</p>
-                    <button className="flex items-center text-xs uppercase tracking-widest text-secondary font-bold group-hover:text-primary-foreground transition-colors">
-                      Submit Request <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                    </button>
+                    
+                    <motion.div 
+                      whileHover={{ scale: 1.1, rotate: [0, -10, 10, 0] }}
+                      className="inline-block"
+                    >
+                      <Heart className="w-12 h-12 text-secondary mb-8 transition-colors group-hover:text-secondary-foreground" />
+                    </motion.div>
+                    
+                    <h3 className="font-heading text-3xl text-primary-foreground mb-4 group-hover:text-secondary transition-colors">Prayer Warriors</h3>
+                    <p className="font-paragraph text-textbody mb-8 leading-relaxed text-lg">Our dedicated team is ready to stand in the gap for you. Submit your requests privately.</p>
+                    
+                    <div className="flex items-center text-sm uppercase tracking-[0.2em] text-secondary font-bold group-hover:text-primary-foreground transition-colors">
+                      <span className="relative">
+                        Submit Request
+                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-secondary group-hover:w-full transition-all duration-300" />
+                      </span>
+                      <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-3 transition-transform duration-300" />
+                    </div>
                   </motion.div>
 
                   <motion.div 
-                    whileHover={{ y: -10 }}
-                    className="p-10 border border-bordersubtle/20 glass-panel rounded-sm group relative overflow-hidden"
+                    whileHover={{ y: -12, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="p-10 border border-bordersubtle/20 glass-panel rounded-sm group relative overflow-hidden cursor-pointer"
                   >
-                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <Shield size={80} />
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-secondary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-20 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700">
+                      <Shield size={120} />
                     </div>
-                    <Shield className="w-10 h-10 text-secondary mb-8" />
-                    <h3 className="font-heading text-2xl text-primary-foreground mb-4">Bible Study</h3>
-                    <p className="font-paragraph text-textbody mb-8 leading-relaxed">Deepen your understanding of the Word through our guided community studies.</p>
-                    <button className="flex items-center text-xs uppercase tracking-widest text-secondary font-bold group-hover:text-primary-foreground transition-colors">
-                      View Schedule <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                    </button>
+                    
+                    <motion.div 
+                      whileHover={{ scale: 1.1, y: [0, -5, 0] }}
+                      className="inline-block"
+                    >
+                      <Shield className="w-12 h-12 text-secondary mb-8 transition-colors group-hover:text-secondary-foreground" />
+                    </motion.div>
+                    
+                    <h3 className="font-heading text-3xl text-primary-foreground mb-4 group-hover:text-secondary transition-colors">Bible Study</h3>
+                    <p className="font-paragraph text-textbody mb-8 leading-relaxed text-lg">Deepen your understanding of the Word through our guided community studies.</p>
+                    
+                    <div className="flex items-center text-sm uppercase tracking-[0.2em] text-secondary font-bold group-hover:text-primary-foreground transition-colors">
+                      <span className="relative">
+                        View Schedule
+                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-secondary group-hover:w-full transition-all duration-300" />
+                      </span>
+                      <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-3 transition-transform duration-300" />
+                    </div>
                   </motion.div>
                 </div>
               )}
@@ -250,7 +284,7 @@ const Spirit: React.FC = () => {
 
               <div className="relative h-[500px] rounded-sm overflow-hidden group">
                 <Image 
-                  src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop"
+                  src="/ffts.jpg"
                   alt="Community fellowship"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                 />
@@ -275,7 +309,7 @@ const Spirit: React.FC = () => {
           <Image 
             src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?q=80&w=2070&auto=format&fit=crop"
             alt="Peaceful horizon"
-            className="w-full h-full object-cover opacity-10 grayscale"
+            className="w-full h-full object-cover opacity-20"
           />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
