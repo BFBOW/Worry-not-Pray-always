@@ -35,11 +35,11 @@ export default function DonatePage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=2000"
-            alt="Donate Hero"
-            className="w-full h-full object-cover opacity-40 grayscale"
+            src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=2000"
+            alt="Biblical Reenactment of Feeding the 5000"
+            className="w-full h-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/30 to-background/80" />
         </motion.div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">

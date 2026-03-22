@@ -143,10 +143,10 @@ export default function WhoWeArePage() {
 
       {/* Why We Serve Section */}
       <section className="relative py-24 bg-primary text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10">
+        <div className="absolute inset-0 z-0 opacity-40">
           <Image 
-            src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=2000"
-            alt="Background"
+            src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=2000"
+            alt="Biblical Reenactment of Feeding the 5000"
             className="w-full h-full object-cover"
           />
         </div>

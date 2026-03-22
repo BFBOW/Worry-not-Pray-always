@@ -91,6 +91,107 @@ const EventRow: React.FC<EventItemProps> = ({ date, title, location, time }) => 
   );
 };
 
+// --- Editorial Components ---
+
+const ParallaxImage: React.FC<{ src: string; alt: string; className?: string }> = ({ src, alt, className }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+  return (
+    <div ref={ref} className={`relative overflow-hidden rounded-sm ${className}`}>
+      <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%]">
+        <Image src={src} alt={alt} className="w-full h-full object-cover" />
+      </motion.div>
+    </div>
+  );
+};
+
+const EditorialBlock: React.FC<{
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  reverse?: boolean;
+  link: string;
+  features?: string[];
+}> = ({ title, subtitle, description, image, reverse, link, features }) => {
+  return (
+    <section className="w-full py-24 lg:py-40 relative overflow-hidden">
+      {/* Atmospheric Background Elements */}
+      <div className={`absolute top-1/2 ${reverse ? 'left-0' : 'right-0'} -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] -z-10`} />
+      
+      <div className="max-w-[120rem] mx-auto px-6 md:px-12 lg:px-24">
+        <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16 lg:gap-32`}>
+          
+          {/* Image Side */}
+          <div className="w-full lg:w-1/2">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ParallaxImage 
+                src={image} 
+                alt={title} 
+                className="aspect-[4/5] md:aspect-[16/10] lg:aspect-[4/5] shadow-2xl" 
+              />
+            </motion.div>
+          </div>
+
+          {/* Content Side */}
+          <div className="w-full lg:w-1/2">
+            <motion.div
+              initial={{ opacity: 0, x: reverse ? -40 : 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <span className="text-secondary font-bold tracking-[0.3em] uppercase text-xs">{subtitle}</span>
+                <div className="h-px w-12 bg-secondary/30" />
+              </div>
+              
+              <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.85] mb-10 text-pop">
+                {title.split(' ').slice(0, -1).join(' ')} <br />
+                <span className="text-secondary italic font-normal">{title.split(' ').slice(-1)}</span>
+              </h2>
+              
+              <p className="font-paragraph text-xl md:text-2xl text-textbody leading-relaxed mb-12 max-w-xl">
+                {description}
+              </p>
+
+              {features && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+                  {features.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="mt-2 w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
+                      <span className="font-paragraph text-lg text-textbody/80">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <Link 
+                to={link}
+                className="group inline-flex items-center gap-4 px-10 py-5 bg-secondary text-white font-paragraph text-lg font-bold uppercase tracking-widest rounded-sm hover:bg-secondary/90 transition-all shadow-xl shadow-secondary/10 hover:-translate-y-1"
+              >
+                Explore Program
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </motion.div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -204,88 +305,73 @@ export default function HomePage() {
         </motion.div>
       </div>
 
-      {/* --- MISSION & SERVICES (Sticky Layout) --- */}
-      <section className="w-full max-w-[120rem] mx-auto px-6 md:px-12 py-24 lg:py-32">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-          
-          {/* Sticky Sidebar */}
-          <div className="lg:w-1/3">
-            <div className="sticky top-32">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="font-heading text-4xl md:text-5xl text-primary-foreground mb-8 leading-tight">
-                  Serving the <br />
-                  <span className="text-secondary">Whole Person</span>
-                </h2>
-                <h3 className="font-paragraph text-textbody text-xl mb-10 leading-relaxed">
-                  Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal.
-                </h3>
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-4 text-textbody">
-                    <div className="w-12 h-px bg-bordersubtle"></div>
-                    <span className="text-sm uppercase tracking-widest">Our Core Pillars</span>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Scrolling Grid */}
-          <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ServiceCard 
-              index={0}
-              title="Food Assistance Program" 
-              description="Ensures no one goes hungry by providing regular access to nutritious and culturally inclusive food."  
-              features={["Weekly distribution", "Tailored dietary options", "Serving 3,000+ families monthly"]}
-              icon={<Utensils className="w-8 h-8 text-secondary" />}
-              link="/find-support"
-            />
-            <ServiceCard 
-              index={1}
-              title="Emergency Support Program"
-              description="Immediate relief for individuals in crisis, providing essentials to get through tough times."
-              features={["Ready-to-eat meals", "Hygiene & baby care packages", "Support for individuals eperiencing homelessness & seniors"]}
-              icon={<HeartPulse className="w-8 h-8 text-secondary" />}
-              link="/find-support"
-            />
-            <ServiceCard 
-              index={2}
-              title="Food Rescue & Sustainability"
-              description="Transforming surplus food into life-saving resources while protecting the environment."
-              features={["1.7M+ lbs rescued annually", "Reduces greenhouse gases", "Keeps food out of landfills"]}
-              icon={<Recycle className="w-8 h-8 text-secondary" />}
-              link="/who-we-are"
-            />
-            <ServiceCard 
-              index={3}
-              title="Educational Programs"
-              description="Providing skills and certifications for confidence and stable employment opportunities."
-              features={["First Aid CPR Training", "Food Handling Certification", "Job Support Resources"]}
-              icon={<GraduationCap className="w-8 h-8 text-secondary" />}
-              link="/events"
-            />
-            <ServiceCard 
-              index={4}
-              title="Community Engagement"
-              description="Bringing people together to fight hunger and build a network of care and support."
-              features={["Food & toy drives", "Local partnerships", "Faith-based excursions & trips"]}
-              icon={<Users className="w-8 h-8 text-secondary" />}
-              link="/events"
-            />
-            <ServiceCard 
-              index={5}
-              title="Food for the Spirit"
-              description="Nourishing the soul through faith-based resources, community study, and daily encouragement."
-              features={["Daily Devotionals", "Weekly Bible Study", "Prayer Support  John 21:15-17 KJV So when they had dined, Jesus saith to Simon Peter, Simon, son of Jonas, lovest thou me more than these? He saith unto him, Yea, Lord; thou knowest that I love thee. He saith unto him, Feed my lambs."]}
-              icon={<BookOpen className="w-8 h-8 text-secondary" />}
-              link="/spirit"
-            />
-          </div>
+      {/* --- EDITORIAL MISSION OVERVIEW --- */}
+      <section className="w-full pt-32 pb-16 text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-heading text-5xl md:text-7xl text-primary-foreground mb-8 leading-tight">
+              Serving the <br />
+              <span className="text-secondary italic font-normal">Whole Person</span>
+            </h2>
+            <p className="font-paragraph text-2xl text-textbody leading-relaxed max-w-2xl mx-auto">
+              Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal.
+            </p>
+          </motion.div>
         </div>
       </section>
+
+      {/* --- EDITORIAL BLOCKS (Z-PATTERN) --- */}
+      
+      <EditorialBlock 
+        subtitle="Sustenance"
+        title="Food Assistance Program"
+        description="Ensures no one goes hungry by providing regular access to nutritious and culturally inclusive food for families in our community."
+        image="https://images.unsplash.com/photo-1488459711635-de8672397f4c?q=80&w=2070&auto=format&fit=crop"
+        link="/find-support"
+        features={["Weekly distribution", "Tailored dietary options", "Serving 3,000+ families"]}
+      />
+
+      <EditorialBlock 
+        subtitle="Crisis Relief"
+        title="Emergency Support Program"
+        description="Immediate relief for individuals in crisis, providing essentials like ready-to-eat meals and hygiene packages to get through tough times."
+        image="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070&auto=format&fit=crop"
+        reverse
+        link="/find-support"
+        features={["Ready-to-eat meals", "Hygiene & baby care", "Homelessness support"]}
+      />
+
+      <EditorialBlock 
+        subtitle="Sustainability"
+        title="Food Rescue & Sustainability"
+        description="Transforming surplus food into life-saving resources while protecting the environment from unnecessary waste and landfill impact."
+        image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop"
+        link="/who-we-are"
+        features={["1.7M+ lbs rescued", "Greenhouse gas reduction", "Zero-waste mission"]}
+      />
+
+      <EditorialBlock 
+        subtitle="Empowerment"
+        title="Educational Programs"
+        description="Providing skills and certifications for confidence and stable employment opportunities in our local community."
+        image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop"
+        reverse
+        link="/events"
+        features={["First Aid CPR Training", "Food Handling Certs", "Job Support Resources"]}
+      />
+
+      <EditorialBlock 
+        subtitle="Connection"
+        title="Community Engagement"
+        description="Bringing people together to fight hunger and build a network of care and support through local partnerships and drives."
+        image="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1949&auto=format&fit=crop"
+        link="/events"
+        features={["Food & toy drives", "Local partnerships", "Faith-based excursions"]}
+      />
 
       {/* --- FEATURE:FOOD FOR THE SPIRIT (Parallax Background) --- */}
       <section className="relative w-full py-32 lg:py-40 overflow-hidden">
@@ -293,9 +379,9 @@ export default function HomePage() {
           <Image 
             src="https://static.wixstatic.com/media/1560bb_e0ee9499fd6a4d288399e67c05a7b6d9~mv2.png?originWidth=1152&originHeight=576"
             alt="Open bible on a wooden table "
-            className="w-full h-full object-cover opacity-20 grayscale mix-blend-overlay"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-primary/80" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">

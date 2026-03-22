@@ -34,11 +34,11 @@ export default function JoinMissionPage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="https://images.unsplash.com/photo-1559027615-cd26736f5df6?auto=format&fit=crop&q=80&w=2000"
+            src="/partner.jpg"
             alt="Join Mission Hero"
-            className="w-full h-full object-cover opacity-40 grayscale"
+            className="w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-background" />
         </motion.div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
@@ -152,8 +152,12 @@ export default function JoinMissionPage() {
               viewport={{ once: true }}
               className="grid grid-cols-2 gap-4"
             >
-              <div className="aspect-square bg-secondary/5 border border-dashed border-bordersubtle rounded-2xl flex items-center justify-center p-8 text-center">
-                <p className="text-xs uppercase tracking-widest opacity-40">Your Logo Here</p>
+              <div className="aspect-square bg-white border border-bordersubtle rounded-2xl flex items-center justify-center p-4 overflow-hidden">
+                <Image 
+                  src="/WSFB+logo+-+Colour+Main.webp"
+                  alt="WSFB Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="aspect-square bg-secondary/5 border border-dashed border-bordersubtle rounded-2xl flex items-center justify-center p-8 text-center">
                 <p className="text-xs uppercase tracking-widest opacity-40">Your Logo Here</p>

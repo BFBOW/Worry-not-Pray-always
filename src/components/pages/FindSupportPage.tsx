@@ -201,11 +201,11 @@ export default function FindSupportPage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&q=80&w=2000"
+            src="/help.webp"
             alt="Find Support Hero"
-            className="w-full h-full object-cover opacity-40 grayscale"
+            className="w-full h-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/60 to-background" />
         </motion.div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
@@ -261,8 +261,8 @@ export default function FindSupportPage() {
               className="rounded-3xl overflow-hidden shadow-2xl aspect-video"
             >
               <img 
-                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=1000"
-                alt="Community support"
+                src="/hwyni.jpeg"
+                alt="Everyone is Welcome"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
