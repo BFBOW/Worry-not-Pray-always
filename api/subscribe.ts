@@ -87,7 +87,8 @@ function buildBrevoPayload(
     CONTACT_TIMEZONE: cleanText(submission.contactTimezone) ?? "America/Toronto",
   };
 
-  if (cleanText(submission.phone)) attributes.SMS = submission.phone!.trim();
+  const phone = cleanText(submission.phone);
+  if (phone) attributes.SMS = phone;
   if (numericPostalCode !== undefined) attributes.POSTAL_CODE = numericPostalCode;
   if (ageRanges.length > 0) attributes.AGE_RANGES = ageRanges.join(", ");
   if (cleanText(submission.pickupOthers)) attributes.PICKUP_OTHERS = submission.pickupOthers!.trim();
@@ -99,7 +100,9 @@ function buildBrevoPayload(
   if (hygienePrefs.length > 0) attributes.HYGIENE_PREFS = hygienePrefs.join(", ");
   if (cleanText(submission.hygieneNotes)) attributes.HYGIENE_NOTES = submission.hygieneNotes!.trim();
   if (petCount > 0) attributes.PET_COUNT = petCount;
-  if (submission.pets.length > 0) attributes.PET_INFO = submission.pets.map((pet) => pet.name).join(", ");
+  if (submission.pets.length > 0) {
+    attributes.PET_INFO = submission.pets.map((pet) => pet.name).join(", ");
+  }
 
   const petDetails = [cleanText(submission.petDetails), petSummary].filter(Boolean).join(" | ");
   if (petDetails) attributes.PET_DETAILS = petDetails;
@@ -118,15 +121,23 @@ function buildBrevoPayload(
   return payload;
 }
 
+function parseBody(body: unknown) {
+  if (typeof body === "string") return JSON.parse(body) as SupportFormSubmission;
+  return (body ?? {}) as SupportFormSubmission;
+}
+
 function validateSubmission(submission: SupportFormSubmission) {
   if (!submission.firstName?.trim()) return "First name is required.";
   if (!submission.lastName?.trim()) return "Last name is required.";
   if (!submission.email?.trim()) return "Email is required.";
   if (!submission.postalCode?.trim()) return "Postal code is required.";
-  if (!submission.confirmAck) {
-    return "All acknowledgments must be selected.";
-  }
   return undefined;
+}
+
+function json(res: any, status: number, body: Record<string, unknown>) {
+  res.status(status);
+  res.setHeader("Content-Type", "application/json");
+  return res.send(JSON.stringify(body));
 }
 
 function parseBrevoText(text: string): { message?: string; code?: string; [key: string]: unknown } {
@@ -138,10 +149,11 @@ function parseBrevoText(text: string): { message?: string; code?: string; [key: 
   }
 }
 
-function looksLikeConflict(status: number, data: { message?: string; code?: string }) {
-  const text = `${data.code ?? ""} ${data.message ?? ""}`.toLowerCase();
+function looksLikeConflict(status: number, payload: { message?: string; code?: string }) {
+  const text = `${payload.code ?? ""} ${payload.message ?? ""}`.toLowerCase();
   return (
     status === 400 ||
+    status === 404 ||
     status === 409 ||
     text.includes("duplicate") ||
     text.includes("already exists") ||
@@ -152,18 +164,16 @@ function looksLikeConflict(status: number, data: { message?: string; code?: stri
 }
 
 function withoutSms(payload: BrevoContactPayload): BrevoContactPayload {
-  const { SMS, ...rest } = payload.attributes;
-  return {
-    ...payload,
-    attributes: rest,
-  };
+  const attributes = { ...payload.attributes };
+  delete attributes.SMS;
+  return { ...payload, attributes };
 }
 
 async function brevoRequest(
-  url: string,
-  method: string,
   apiKey: string,
-  body: unknown
+  method: "POST" | "PUT",
+  url: string,
+  body: Record<string, unknown>,
 ) {
   const response = await fetch(url, {
     method,
@@ -174,114 +184,163 @@ async function brevoRequest(
     },
     body: JSON.stringify(body),
   });
+
   const text = await response.text();
   const data = parseBrevoText(text);
+
   return { response, data };
 }
 
 export default async function handler(req: any, res: any) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    res.setHeader("Allow", "POST");
+    return json(res, 405, {
+      status: "error",
+      error: "Method not allowed.",
+    });
   }
 
   const apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) {
-    return res.status(500).json({ error: "BREVO_API_KEY is not configured." });
+    return json(res, 500, {
+      status: "error",
+      error: "BREVO_API_KEY is not configured in Vercel.",
+    });
   }
 
   try {
-    const submission = req.body as SupportFormSubmission;
+    const submission = parseBody(req.body);
     const validationError = validateSubmission(submission);
+
     if (validationError) {
-      return res.status(400).json({ error: validationError });
+      return json(res, 400, {
+        status: "error",
+        error: validationError,
+      });
     }
 
-    const initialPayload = buildBrevoPayload(submission, readListId());
-    const encodedEmail = encodeURIComponent(submission.email.trim());
+    const payload = buildBrevoPayload(submission, readListId());
+    const email = encodeURIComponent(submission.email.trim());
 
-    // 1. Try POST (Create)
-    let { response, data } = await brevoRequest(
-      "https://api.brevo.com/v3/contacts",
-      "POST",
+    const createAttempt = await brevoRequest(
       apiKey,
-      initialPayload
+      "POST",
+      "https://api.brevo.com/v3/contacts",
+      payload as any,
     );
 
-    // 2. If conflict, try PUT (Update)
-    if (!response.ok && looksLikeConflict(response.status, data)) {
-      console.warn(`[Brevo] Conflict on POST for ${submission.email}, trying PUT...`);
-      const updateResult = await brevoRequest(
-        `https://api.brevo.com/v3/contacts/${encodedEmail}`,
-        "PUT",
-        apiKey,
-        {
-          attributes: initialPayload.attributes,
-          listIds: initialPayload.listIds,
-        }
-      );
-      response = updateResult.response;
-      data = updateResult.data;
+    if (createAttempt.response.ok) {
+      return json(res, 200, {
+        status: "success",
+        message: "Support application submitted.",
+      });
     }
 
-    // 3. If STILL conflict (likely email/phone mismatch), try fallback without SMS
-    if (!response.ok && looksLikeConflict(response.status, data)) {
-      console.warn(`[Brevo] Persistent conflict for ${submission.email}, retrying without SMS...`);
-      const fallbackPayload = withoutSms(initialPayload);
+    const updateAttempt = await brevoRequest(
+      apiKey,
+      "PUT",
+      `https://api.brevo.com/v3/contacts/${email}`,
+      {
+        attributes: payload.attributes,
+        listIds: payload.listIds,
+        emailBlacklisted: false,
+        smsBlacklisted: false,
+      },
+    );
 
-      // Try POST without SMS
-      const fallbackPost = await brevoRequest(
-        "https://api.brevo.com/v3/contacts",
+    if (updateAttempt.response.ok) {
+      return json(res, 200, {
+        status: "success",
+        message: "Support application submitted.",
+      });
+    }
+
+    if (
+      looksLikeConflict(createAttempt.response.status, createAttempt.data) ||
+      looksLikeConflict(updateAttempt.response.status, updateAttempt.data)
+    ) {
+      const payloadNoSms = withoutSms(payload);
+
+      const createNoSmsAttempt = await brevoRequest(
+        apiKey,
         "POST",
-        apiKey,
-        fallbackPayload
+        "https://api.brevo.com/v3/contacts",
+        payloadNoSms as any,
       );
 
-      if (fallbackPost.response.ok) {
-        response = fallbackPost.response;
-        data = fallbackPost.data;
-      } else if (looksLikeConflict(fallbackPost.response.status, fallbackPost.data)) {
-        // Try PUT without SMS
-        const fallbackPut = await brevoRequest(
-          `https://api.brevo.com/v3/contacts/${encodedEmail}`,
-          "PUT",
-          apiKey,
-          {
-            attributes: fallbackPayload.attributes,
-            listIds: fallbackPayload.listIds,
-          }
-        );
-        response = fallbackPut.response;
-        data = fallbackPut.data;
+      if (createNoSmsAttempt.response.ok) {
+        return json(res, 200, {
+          status: "warning",
+          message:
+            "Your application was submitted, but your phone number could not be synced. Our team can still review your request.",
+        });
       }
-    }
 
-    if (response.ok) {
-      console.log(`[Brevo] Success for ${submission.email}`);
-      return res.status(200).json({ message: "Support application submitted." });
-    }
+      const updateNoSmsAttempt = await brevoRequest(
+        apiKey,
+        "PUT",
+        `https://api.brevo.com/v3/contacts/${email}`,
+        {
+          attributes: payloadNoSms.attributes,
+          listIds: payloadNoSms.listIds,
+          emailBlacklisted: false,
+          smsBlacklisted: false,
+        },
+      );
 
-    // Handle specific errors for the user
-    const msg = data.message?.toLowerCase() ?? "";
-    if (response.status === 400 && msg.includes("invalid phone number")) {
-      return res.status(400).json({
-        error: "The phone number provided is invalid. Please use a standard format (e.g., +16135550199).",
+      if (updateNoSmsAttempt.response.ok) {
+        return json(res, 200, {
+          status: "warning",
+          message:
+            "Your application was submitted, but your phone number could not be synced. Our team can still review your request.",
+        });
+      }
+
+      console.error("Brevo conflict remained after SMS fallback:", {
+        create: {
+          status: createAttempt.response.status,
+          data: createAttempt.data,
+        },
+        update: {
+          status: updateAttempt.response.status,
+          data: updateAttempt.data,
+        },
+        createNoSms: {
+          status: createNoSmsAttempt.response.status,
+          data: createNoSmsAttempt.data,
+        },
+        updateNoSms: {
+          status: updateNoSmsAttempt.response.status,
+          data: updateNoSmsAttempt.data,
+        },
+      });
+
+      return json(res, 500, {
+        status: "error",
+        error: "We could not save your application right now. Please review the email and phone number or try again shortly.",
       });
     }
 
-    if (looksLikeConflict(response.status, data)) {
-      return res.status(409).json({
-        message: "Your application was received, but we found a conflict with the email or phone number provided. Please contact our team so we can help complete your application.",
-        conflict: true,
-      });
-    }
-
-    console.error(`[Brevo] Final failure for ${submission.email}:`, response.status, data);
-    return res.status(response.status).json({
-      error: data.message ?? "Brevo rejected the submission.",
+    console.error("Brevo submission failed:", {
+      create: {
+        status: createAttempt.response.status,
+        data: createAttempt.data,
+      },
+      update: {
+        status: updateAttempt.response.status,
+        data: updateAttempt.data,
+      },
     });
 
+    return json(res, 500, {
+      status: "error",
+      error: "We could not save your application right now. Please try again shortly.",
+    });
   } catch (error) {
-    console.error("Brevo support submission failed:", error);
-    return res.status(500).json({ error: "Unable to submit the support application." });
+    console.error("Subscribe API fatal error:", error);
+    return json(res, 500, {
+      status: "error",
+      error: "A server error occurred while submitting your application.",
+    });
   }
 }

@@ -107,13 +107,14 @@ export default function HomePage() {
         
         {/* Left Panel: Content */}
         <div className="w-full lg:w-1/2 bg-primary flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 relative z-10 overflow-hidden">
-          <div className="absolute inset-0 z-0 opacity-10">
+          <div className="absolute inset-0 z-0 opacity-20">
             <Image 
               src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=2000"
               alt="Background"
               className="w-full h-full object-cover"
             />
           </div>
+          <div className="absolute inset-0 hero-gradient z-0" />
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -121,11 +122,11 @@ export default function HomePage() {
             className="max-w-xl relative z-10"
           >
             <div className="flex items-center gap-3 mb-8">
-              <span className="h-px w-12 bg-secondary"></span>
-              <span className="font-paragraph text-sm uppercase tracking-[0.2em] text-secondary">Belleville Food Bank On Wheels</span>
+              <span className="h-px w-12 bg-secondary shadow-[0_0_10px_rgba(212,209,165,0.5)]"></span>
+              <span className="font-paragraph text-sm uppercase tracking-[0.2em] text-secondary font-bold">Belleville Food Bank On Wheels</span>
             </div>
             
-            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.95] mb-8">
+            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.95] mb-8 text-pop">
               Nourishing <br />
               <span className="text-secondary italic">Body</span> & Soul
             </h1>
@@ -172,11 +173,11 @@ export default function HomePage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="absolute bottom-12 left-12 lg:left-12 bg-background/90 backdrop-blur-md p-6 border border-bordersubtle/30 max-w-xs"
+            className="absolute bottom-12 left-12 lg:left-12 glass-panel p-6 max-w-xs"
           >
-            <span className="block font-heading text-secondary text-lg mb-1">Next Distribution</span>
-            <span className="block font-paragraph text-textbody text-sm mb-3">Join us this Saturday for our weekly community meal.</span>
-            <Link to="/events" className="text-xs uppercase tracking-widest text-primary-foreground border-b border-primary-foreground/50 pb-1 hover:text-white hover:border-white transition-colors">
+            <span className="block font-heading text-secondary text-lg mb-1 font-bold">Next Distribution</span>
+            <span className="block font-paragraph text-textbody text-sm mb-3 leading-relaxed">Join us this Saturday for our weekly community meal.</span>
+            <Link to="/events" className="text-xs uppercase tracking-widest text-primary-foreground font-bold border-b-2 border-secondary pb-1 hover:text-white hover:border-white transition-colors">
               Get Details
             </Link>
           </motion.div>
@@ -305,7 +306,7 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
           >
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8" />
-            <h2 className="font-heading text-4xl md:text-6xl text-primary-foreground mb-8">
+            <h2 className="font-heading text-4xl md:text-6xl text-primary-foreground mb-8 text-pop">
               Food for the Spirit
              </h2>
             <p className="font-paragraph text-2xl text-textbody mb-12 max-w-2xl mx-auto leading-relaxed">
@@ -435,7 +436,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-5xl md:text-7xl text-primary-foreground mb-8">
+            <h2 className="font-heading text-5xl md:text-7xl text-primary-foreground mb-8 text-pop">
               Thanks Be To Our God
             </h2>
             <p className="font-paragraph text-2xl text-textbody mb-12 max-w-2xl mx-auto">

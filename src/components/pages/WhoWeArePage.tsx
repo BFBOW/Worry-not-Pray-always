@@ -50,7 +50,7 @@ export default function WhoWeArePage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
-            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter text-pop">
               Guided by Faith, <br />
               <span className="text-secondary italic font-normal">Nourishing</span> with Love
             </h1>
@@ -156,7 +156,7 @@ export default function WhoWeArePage() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-8xl font-heading mb-8 opacity-10 uppercase tracking-[0.5em]"
+              className="text-5xl md:text-8xl font-heading mb-8 opacity-40 uppercase tracking-[0.5em] text-pop"
             >
               Why We Serve
             </motion.h2>

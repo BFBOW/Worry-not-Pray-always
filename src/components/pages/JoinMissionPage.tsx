@@ -48,7 +48,7 @@ export default function JoinMissionPage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
-            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter text-pop">
               Partnerships That <br />
               Make a <span className="text-secondary italic font-normal">Difference</span>.
             </h1>
@@ -194,12 +194,12 @@ export default function JoinMissionPage() {
       {/* Form Section */}
       <section id="partner-form" className="py-24 bg-secondary/5 border-t border-bordersubtle/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-background border border-bordersubtle/30 rounded-3xl p-8 md:p-16 shadow-2xl">
+          <div className="glass-panel rounded-3xl p-8 md:p-16 shadow-2xl">
             <div className="text-center mb-16">
               <HeartHandshake className="mx-auto mb-6 text-secondary" size={64} />
-              <h2 className="text-4xl font-heading mb-4">Join Our Mission</h2>
-              <p className="text-textbody">
-                We offer flexible and impactful ways for your business to partner with us, tailored to fit your goals and strengths. Pease join us in creating a stronger, healthier, and more compassionate community.
+              <h2 className="text-4xl font-heading mb-4 text-pop">Join Our Mission</h2>
+              <p className="text-textbody font-medium">
+                We offer flexible and impactful ways for your business to partner with us, tailored to fit your goals and strengths. Please join us in creating a stronger, healthier, and more compassionate community.
               </p>
             </div>
 

@@ -68,14 +68,12 @@ export default function FindSupportPage() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'warning' | 'error'; text: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitError(null);
-    setSubmitSuccess(false);
+    setSubmitMessage(null);
 
     const formData = new FormData(e.currentTarget);
     
@@ -102,9 +100,8 @@ export default function FindSupportPage() {
       }
     });
 
-    const phoneCountryCode = String(formData.get('SMS__COUNTRY_CODE') ?? '+1').trim();
     const rawPhone = String(formData.get('SMS') ?? '').replace(/[^\d]/g, '');
-    const formattedPhone = rawPhone ? `${phoneCountryCode}${rawPhone}` : '';
+    const formattedPhone = rawPhone ? `+1${rawPhone}` : '';
 
     const submission: SupportFormSubmission = {
       firstName: String(formData.get('FIRSTNAME')),
@@ -123,7 +120,7 @@ export default function FindSupportPage() {
       pets,
       petDetails: String(formData.get('PET_DETAILS')),
       additionalInfo: String(formData.get('ADDITIONAL_INFO')),
-      confirmAck: true, // If form submits, all required checkboxes are checked
+      confirmAck: true,
       contactTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     };
 
@@ -135,14 +132,18 @@ export default function FindSupportPage() {
       });
 
       const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || 'Submission failed');
+      
+      if (result.status === 'success') {
+        setSubmitMessage({ type: 'success', text: result.message || 'Application submitted successfully.' });
+        if (e.currentTarget) e.currentTarget.reset();
+      } else if (result.status === 'warning') {
+        setSubmitMessage({ type: 'warning', text: result.message });
+        if (e.currentTarget) e.currentTarget.reset();
+      } else {
+        setSubmitMessage({ type: 'error', text: result.error || 'Submission failed. Please try again.' });
       }
-
-      setSubmitSuccess(true);
-      if (e.currentTarget) e.currentTarget.reset();
     } catch (err: any) {
-      setSubmitError(err.message);
+      setSubmitMessage({ type: 'error', text: 'A connection error occurred. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -214,7 +215,7 @@ export default function FindSupportPage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
-            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter text-pop">
               Help When You <br />
               <span className="text-secondary italic font-normal">Need</span> It
             </h1>
@@ -232,7 +233,7 @@ export default function FindSupportPage() {
       </section>
 
       {/* Everyone is Welcome */}
-      <section className="py-24 bg-secondary/5">
+      <section className="py-24 bg-secondary/5 border-y border-bordersubtle/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -240,10 +241,10 @@ export default function FindSupportPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex p-3 bg-background rounded-full text-secondary mb-6 shadow-lg">
+              <div className="inline-flex p-3 bg-background rounded-full text-secondary mb-6 shadow-lg border border-bordersubtle/20">
                 <Users size={32} />
               </div>
-              <h2 className="text-4xl font-heading mb-6">Everyone Is Welcome</h2>
+              <h2 className="text-4xl font-heading mb-6 text-pop">Everyone Is Welcome</h2>
               <p className="text-xl text-textbody leading-relaxed mb-8">
                 Our doors are open to anyone in need, regardless of age, background, or circumstance. Whether you're a single parent, a senior, or a newcomer, community individuals experiencing homelessness we provide the resources you need to regain stability, a sense of belonging and hope.
               </p>
@@ -278,11 +279,11 @@ export default function FindSupportPage() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-secondary font-heading text-xl mb-4 opacity-30 uppercase tracking-[0.5em]"
+              className="text-secondary font-heading text-xl mb-4 opacity-50 uppercase tracking-[0.5em] font-bold"
             >
               Learn More About Support
             </motion.div>
-            <h2 className="text-4xl font-heading">Frequently Asked Questions</h2>
+            <h2 className="text-4xl font-heading text-pop">Frequently Asked Questions</h2>
           </div>
           
           <div className="space-y-2">
@@ -304,8 +305,8 @@ export default function FindSupportPage() {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-7xl font-heading mb-8 opacity-20 uppercase tracking-[0.3em]">Access Support Today</h2>
-            <p className="text-2xl text-textbody max-w-4xl mx-auto leading-relaxed">
+            <h2 className="text-5xl md:text-7xl font-heading mb-8 opacity-40 uppercase tracking-[0.3em] text-pop">Access Support Today</h2>
+            <p className="text-2xl text-textbody max-w-4xl mx-auto leading-relaxed font-medium">
               We're thrilled to support you and your family's needs with our bi-weekly healthy food boxes. Each box is filled with nourishing items, including local produce, meats, toiletries, perishable and non-perishable diet-friendly meals, and even pet food.
             </p>
           </div>
@@ -345,11 +346,11 @@ export default function FindSupportPage() {
       {/* Membership Form */}
       <section id="support-form" className="py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-secondary/5 border border-bordersubtle/30 rounded-3xl p-8 md:p-16">
+          <div className="glass-panel rounded-3xl p-8 md:p-16">
             <div className="text-center mb-16">
               <UserPlus className="mx-auto mb-6 text-secondary" size={64} />
-              <h2 className="text-4xl font-heading mb-4">Signing Up</h2>
-              <p className="text-textbody">
+              <h2 className="text-4xl font-heading mb-4 text-pop">Signing Up</h2>
+              <p className="text-textbody font-medium">
                 Please fill out your membership application form to get started. Once submitted, a member of our Belleville Food Bank On Wheels Team will review your information and reach out shortly!
               </p>
             </div>
@@ -537,22 +538,18 @@ export default function FindSupportPage() {
                 {!isSubmitting && <CheckCircle2 className="ml-2 group-hover:scale-110 transition-transform" />}
               </Button>
 
-              {/* 2. UNSUCCESSFUL SUBMISSION MESSAGE */}
-              {submitError && (
-                <div className="mt-6 p-4 rounded-lg bg-destructive/10 border border-destructive text-destructive text-sm">
+              {/* Status Messages */}
+              {submitMessage && (
+                <div className={`mt-6 p-4 rounded-lg border text-sm ${
+                  submitMessage.type === 'success' ? 'bg-secondary/10 border-secondary text-secondary' :
+                  submitMessage.type === 'warning' ? 'bg-amber-500/10 border-amber-500 text-amber-600' :
+                  'bg-destructive/10 border-destructive text-destructive'
+                }`}>
                   <div className="flex items-center gap-3">
-                    <AlertCircle size={20} />
-                    <span>{submitError}</span>
-                  </div>
-                </div>
-              )}
-
-              {/* 3. SUCCESSFUL SUBMISSION MESSAGE */}
-              {submitSuccess && (
-                <div className="mt-6 p-4 rounded-lg bg-secondary/10 border border-secondary text-secondary text-sm">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 size={20} />
-                    <span>Your support application has been submitted successfully.</span>
+                    {submitMessage.type === 'success' && <CheckCircle2 size={20} />}
+                    {submitMessage.type === 'warning' && <AlertCircle size={20} />}
+                    {submitMessage.type === 'error' && <AlertCircle size={20} />}
+                    <span>{submitMessage.text}</span>
                   </div>
                 </div>
               )}

@@ -52,7 +52,7 @@ const Spirit: React.FC = () => {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
-            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter text-pop">
               Food for the <br />
               <span className="text-secondary italic font-normal">Spirit</span>
             </h1>
@@ -106,9 +106,9 @@ const Spirit: React.FC = () => {
                 <span className="text-secondary font-bold tracking-[0.3em] uppercase text-sm">AI Ministry</span>
                 <div className="h-px flex-grow bg-bordersubtle/30" />
               </div>
-              <h2 className="font-heading text-5xl md:text-6xl text-primary-foreground mb-8">
+              <h2 className="font-heading text-5xl md:text-6xl text-primary-foreground mb-8 text-pop">
                 A Word for <br />
-                <span className="text-secondary italic">Your Season</span>
+                <span className="text-secondary italic font-normal">Your Season</span>
               </h2>
               <p className="font-paragraph text-textbody text-xl mb-12 leading-relaxed max-w-xl">
                 Whether you are walking through a valley or standing on a mountaintop, God's Word has a specific promise for you. Enter your current heart-state below.
@@ -148,7 +148,7 @@ const Spirit: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  className="relative p-12 md:p-20 border border-bordersubtle/30 bg-primary/30 rounded-sm backdrop-blur-sm shadow-2xl"
+                  className="relative p-12 md:p-20 border border-bordersubtle/30 glass-panel rounded-sm backdrop-blur-sm shadow-2xl"
                 >
                   <div className="absolute top-0 right-0 p-12 opacity-5 text-secondary">
                     <Leaf size={160} />
@@ -156,11 +156,11 @@ const Spirit: React.FC = () => {
                   
                   <div className="relative z-10">
                     <div className="flex items-center gap-4 mb-8">
-                      <div className="w-12 h-px bg-secondary" />
+                      <div className="w-12 h-px bg-secondary shadow-[0_0_10px_rgba(212,209,165,0.5)]" />
                       <span className="text-secondary font-bold uppercase tracking-widest text-xs">Today's Devotional</span>
                     </div>
                     
-                    <h3 className="font-heading text-4xl md:text-5xl text-primary-foreground mb-8 italic leading-tight">{devotional.title}</h3>
+                    <h3 className="font-heading text-4xl md:text-5xl text-primary-foreground mb-8 italic leading-tight text-pop">{devotional.title}</h3>
                     
                     <div className="mb-12 p-8 bg-background/60 border-l-4 border-secondary rounded-r-sm">
                       <p className="font-paragraph text-xl text-primary-foreground leading-relaxed italic">
@@ -197,7 +197,7 @@ const Spirit: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <motion.div 
                     whileHover={{ y: -10 }}
-                    className="p-10 border border-bordersubtle/20 bg-primary/10 rounded-sm group relative overflow-hidden"
+                    className="p-10 border border-bordersubtle/20 glass-panel rounded-sm group relative overflow-hidden"
                   >
                     <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                       <Heart size={80} />
@@ -212,7 +212,7 @@ const Spirit: React.FC = () => {
 
                   <motion.div 
                     whileHover={{ y: -10 }}
-                    className="p-10 border border-bordersubtle/20 bg-primary/10 rounded-sm group relative overflow-hidden"
+                    className="p-10 border border-bordersubtle/20 glass-panel rounded-sm group relative overflow-hidden"
                   >
                     <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                       <Shield size={80} />
@@ -237,11 +237,11 @@ const Spirit: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="relative p-12 border border-bordersubtle/30 bg-secondary/5 rounded-sm overflow-hidden"
+                className="relative p-12 glass-panel rounded-sm overflow-hidden"
               >
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl" />
                 <Mail className="w-12 h-12 text-secondary mb-8" />
-                <h2 className="font-heading text-3xl text-primary-foreground mb-6">Weekly Manna</h2>
+                <h2 className="font-heading text-3xl text-primary-foreground mb-6 text-pop">Weekly Manna</h2>
                 <p className="font-paragraph text-textbody mb-10 leading-relaxed">
                   Receive our most uplifting devotionals and community updates directly to your inbox.
                 </p>
@@ -285,7 +285,7 @@ const Spirit: React.FC = () => {
             viewport={{ once: true }}
           >
             <span className="text-secondary text-6xl font-heading mb-8 block">"</span>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-primary-foreground mb-12 leading-tight italic">
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-primary-foreground mb-12 leading-tight italic text-pop">
               Your word is a lamp to my feet and a light to my path.
             </h2>
             <div className="h-px w-24 bg-secondary mx-auto mb-6" />

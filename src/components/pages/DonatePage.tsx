@@ -49,7 +49,7 @@ export default function DonatePage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
-            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-9xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter text-pop">
               Give Today, <br />
               <span className="text-secondary italic font-normal">Change</span> Tomorrow.
             </h1>
@@ -205,7 +205,7 @@ export default function DonatePage() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-7xl font-heading mb-8 opacity-20 uppercase tracking-[0.5em]"
+              className="text-5xl md:text-7xl font-heading mb-8 opacity-40 uppercase tracking-[0.5em] text-pop"
             >
               Donate
             </motion.h2>
@@ -238,12 +238,12 @@ export default function DonatePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-background/10 border border-white/10 p-10 rounded-2xl hover:bg-white/5 transition-all group"
+                className="glass-panel p-10 rounded-2xl hover:bg-white/10 transition-all group"
               >
                 <div className="text-secondary mb-8 group-hover:scale-110 transition-transform duration-300">
                   {option.icon}
                 </div>
-                <h3 className="text-2xl font-heading mb-4 text-white">{option.title}</h3>
+                <h3 className="text-2xl font-heading mb-4 text-white text-pop">{option.title}</h3>
                 <p className="text-textbody text-sm leading-relaxed mb-8">
                   {option.desc}
                 </p>
