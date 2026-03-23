@@ -120,57 +120,57 @@ const EditorialBlock: React.FC<{
   features?: string[];
 }> = ({ title, subtitle, description, image, reverse, link, features }) => {
   return (
-    <section className="w-full py-24 lg:py-40 relative overflow-hidden">
+    <section className="w-full py-8 lg:py-10 relative overflow-hidden">
       {/* Atmospheric Background Elements */}
-      <div className={`absolute top-1/2 ${reverse ? 'left-0' : 'right-0'} -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] -z-10`} />
+      <div className={`absolute top-1/2 ${reverse ? 'left-0' : 'right-0'} -translate-y-1/2 w-64 h-64 bg-secondary/5 rounded-full blur-[100px] -z-10`} />
       
-      <div className="max-w-[120rem] mx-auto px-6 md:px-12 lg:px-24">
-        <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16 lg:gap-32`}>
+      <div className="max-w-[80rem] mx-auto px-6 md:px-12 lg:px-24">
+        <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-16`}>
           
           {/* Image Side */}
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-4/12">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               <ParallaxImage 
                 src={image} 
                 alt={title} 
-                className="aspect-[4/5] md:aspect-[16/10] lg:aspect-[4/5] shadow-2xl" 
+                className="aspect-video shadow-lg rounded-sm" 
               />
             </motion.div>
           </div>
 
           {/* Content Side */}
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-8/12">
             <motion.div
-              initial={{ opacity: 0, x: reverse ? -40 : 40 }}
+              initial={{ opacity: 0, x: reverse ? -30 : 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="flex items-center gap-4 mb-8">
-                <span className="text-secondary font-bold tracking-[0.3em] uppercase text-xs">{subtitle}</span>
-                <div className="h-px w-12 bg-secondary/30" />
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-secondary font-bold tracking-[0.2em] uppercase text-[9px]">{subtitle}</span>
+                <div className="h-px w-6 bg-secondary/30" />
               </div>
               
-              <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.85] mb-10 text-pop">
+              <h2 className="font-heading text-2xl md:text-3xl text-primary-foreground leading-tight mb-4 text-pop">
                 {title.split(' ').slice(0, -1).join(' ')} <br />
                 <span className="text-secondary italic font-normal">{title.split(' ').slice(-1)}</span>
               </h2>
               
-              <p className="font-paragraph text-xl md:text-2xl text-textbody leading-relaxed mb-12 max-w-xl">
+              <p className="font-paragraph text-base text-textbody leading-relaxed mb-6 max-w-lg">
                 {description}
               </p>
 
               {features && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                   {features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div className="mt-2 w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
-                      <span className="font-paragraph text-lg text-textbody/80">{feature}</span>
+                    <div key={i} className="flex items-start gap-2">
+                      <div className="mt-1.5 w-1 h-1 rounded-full bg-secondary shrink-0" />
+                      <span className="font-paragraph text-sm text-textbody/80">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -178,10 +178,10 @@ const EditorialBlock: React.FC<{
 
               <Link 
                 to={link}
-                className="group inline-flex items-center gap-4 px-10 py-5 bg-secondary text-white font-paragraph text-lg font-bold uppercase tracking-widest rounded-sm hover:bg-secondary/90 transition-all shadow-xl shadow-secondary/10 hover:-translate-y-1"
+                className="group inline-flex items-center gap-2 px-6 py-2.5 bg-secondary text-white font-paragraph text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-secondary/90 transition-all shadow-md shadow-secondary/10 hover:-translate-y-0.5"
               >
                 Explore Program
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
           </div>
@@ -204,11 +204,11 @@ export default function HomePage() {
   return (
     <div ref={containerRef} className="bg-background overflow-clip selection:bg-secondary selection:text-white">
       {/* --- HERO SECTION --- */}
-      <section className="relative w-full min-h-[90vh] flex flex-col lg:flex-row border-b border-bordersubtle/20">
+      <section className="relative w-full min-h-[80vh] flex flex-col lg:flex-row border-b border-bordersubtle/20">
         
         {/* Left Panel: Content */}
         <div className="w-full lg:w-1/2 bg-primary flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 relative z-10 overflow-hidden">
-          <div className="absolute inset-0 z-0 opacity-20">
+          <div className="absolute inset-0 z-0 opacity-40">
             <Image 
               src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=2000"
               alt="Background"
@@ -306,18 +306,18 @@ export default function HomePage() {
       </div>
 
       {/* --- EDITORIAL MISSION OVERVIEW --- */}
-      <section className="w-full pt-32 pb-16 text-center">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="w-full pt-8 pb-4 text-center">
+        <div className="max-w-2xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-heading text-5xl md:text-7xl text-primary-foreground mb-8 leading-tight">
+            <h2 className="font-heading text-3xl md:text-4xl text-primary-foreground mb-4 leading-tight">
               Serving the <br />
               <span className="text-secondary italic font-normal">Whole Person</span>
             </h2>
-            <p className="font-paragraph text-2xl text-textbody leading-relaxed max-w-2xl mx-auto">
+            <p className="font-paragraph text-lg text-textbody leading-relaxed max-w-xl mx-auto">
               Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal.
             </p>
           </motion.div>
@@ -374,7 +374,7 @@ export default function HomePage() {
       />
 
       {/* --- FEATURE:FOOD FOR THE SPIRIT (Parallax Background) --- */}
-      <section className="relative w-full py-32 lg:py-40 overflow-hidden">
+      <section className="relative w-full py-16 lg:py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://static.wixstatic.com/media/1560bb_e0ee9499fd6a4d288399e67c05a7b6d9~mv2.png?originWidth=1152&originHeight=576"
@@ -391,26 +391,26 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Leaf className="w-12 h-12 text-secondary mx-auto mb-8" />
-            <h2 className="font-heading text-4xl md:text-6xl text-primary-foreground mb-8 text-pop">
+            <Leaf className="w-10 h-10 text-secondary mx-auto mb-6" />
+            <h2 className="font-heading text-3xl md:text-5xl text-primary-foreground mb-6 text-pop">
               Food for the Spirit
              </h2>
-            <p className="font-paragraph text-2xl text-textbody mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="font-paragraph text-xl text-textbody mb-10 max-w-2xl mx-auto leading-relaxed">
               "Man shall not live by bread alone.Matthew 14:16
 'But Jesus said, “They need not go away; you give them something to eat.”' The story of Jesus feeding the 5,000 appears in all four gospels (Mark 6, Luke 9, and John 6)" Join our digital ministry to receive daily devotionals, prayer requests, and bible study invitations directly to your phone or inbox.
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link 
                 to="/spirit"
-                className="inline-flex items-center justify-center px-8 py-4 bg-secondary text-white font-paragraph font-semibold rounded-sm hover:bg-secondary/90 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-3.5 bg-secondary text-white font-paragraph font-semibold rounded-sm hover:bg-secondary/90 transition-colors"
               >
                 <Mail className="w-5 h-5 mr-3" />
                 Subscribe to Devotionals
               </Link>
               <Link 
                 to="/spirit"
-                className="inline-flex items-center justify-center px-8 py-4 border border-bordersubtle text-primary-foreground font-paragraph font-semibold rounded-sm hover:bg-white/5 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-3.5 border border-bordersubtle text-primary-foreground font-paragraph font-semibold rounded-sm hover:bg-white/5 transition-colors"
               >
                 <BookOpen className="w-5 h-5 mr-3" />
                 Join Bible Study
@@ -421,14 +421,14 @@ export default function HomePage() {
       </section>
 
       {/* --- UPCOMING EVENTS (List Layout) --- */}
-      <section className="w-full max-w-[100rem] mx-auto px-6 md:px-12 py-24">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-bordersubtle/20 pb-8">
+      <section className="w-full max-w-[80rem] mx-auto px-6 md:px-12 py-10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-8 border-b border-bordersubtle/20 pb-4">
           <div>
-            <h2 className="font-heading text-4xl text-primary-foreground mb-4">Community Calendar</h2>
-            <p className="font-paragraph text-textbody"> Please Join us at our upcoming gatherings and distributions.</p>
+            <h2 className="font-heading text-2xl text-primary-foreground mb-2">Community Calendar</h2>
+            <p className="font-paragraph text-sm text-textbody"> Join us at our upcoming gatherings and distributions.</p>
           </div>
-          <Link to="/events" className="hidden md:flex items-center text-secondary hover:text-white transition-colors mt-4 md:mt-0">
-            View Full Calendar <ArrowRight className="ml-2 w-4 h-4" />
+          <Link to="/events" className="hidden md:flex items-center text-secondary hover:text-white transition-colors mt-4 md:mt-0 text-sm font-bold uppercase tracking-widest">
+            View Full Calendar <ArrowRight className="ml-2 w-3 h-3" />
           </Link>
         </div>
 
@@ -459,52 +459,52 @@ export default function HomePage() {
           />
         </div>
         
-        <div className="mt-8 md:hidden">
-          <Link to="/events" className="flex items-center justify-center text-secondary hover:text-white transition-colors w-full py-4 border border-bordersubtle/30 rounded-sm">
+        <div className="mt-6 md:hidden">
+          <Link to="/events" className="flex items-center justify-center text-secondary hover:text-white transition-colors w-full py-3 border border-bordersubtle/30 rounded-sm text-sm">
             View Full Calendar <ArrowRight className="ml-2 w-4 h-4" />
           </Link>
         </div>
       </section>
 
       {/* --- PARTNERS & IMPACT (Grid) --- */}
-      <section className="w-full bg-[#2A382A] py-24 border-t border-bordersubtle/10">
-        <div className="max-w-[120rem] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="w-full bg-[#2A382A] py-10 border-t border-bordersubtle/10">
+        <div className="max-w-[100rem] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="font-heading text-3xl md:text-4xl text-primary-foreground mb-6">
+              <h2 className="font-heading text-2xl md:text-3xl text-primary-foreground mb-4">
                 Stronger Together
               </h2>
-              <p className="font-paragraph text-textbody mb-8 leading-relaxed">
-                We are proud to work alongside dedicated organizations that share our passion, hope and vision of a hunger-free community. Through these partnerships, we extend our reach and deepen our impact.
+              <p className="font-paragraph text-sm text-textbody mb-6 leading-relaxed">
+                We are proud to work alongside dedicated organizations that share our passion, hope and vision of a hunger-free community.
               </p>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-6 bg-primary border border-bordersubtle/20 flex items-center justify-center h-32 opacity-70 hover:opacity-100 transition-opacity">
-                  <span className="font-heading text-xl text-center text-primary-foreground">Specialty<br/>Food Bank</span>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity">
+                  <span className="font-heading text-lg text-center text-primary-foreground">Specialty<br/>Food Bank</span>
                 </div>
-                <div className="p-6 bg-primary border border-bordersubtle/20 flex items-center justify-center h-32 opacity-70 hover:opacity-100 transition-opacity">
-                  <span className="font-heading text-xl text-center text-primary-foreground">Local<br/>Farms Co-op</span>
+                <div className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity">
+                  <span className="font-heading text-lg text-center text-primary-foreground">Local<br/>Farms Co-op</span>
                 </div>
-                <div className="p-6 bg-primary border border-bordersubtle/20 flex items-center justify-center h-32 opacity-70 hover:opacity-100 transition-opacity">
-                  <span className="font-heading text-xl text-center text-primary-foreground">Community<br/>Health Alliance</span>
+                <div className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity">
+                  <span className="font-heading text-lg text-center text-primary-foreground">Community<br/>Health Alliance</span>
                 </div>
-                <div className="p-6 bg-primary border border-bordersubtle/20 flex items-center justify-center h-32 opacity-70 hover:opacity-100 transition-opacity">
-                  <span className="font-heading text-xl text-center text-primary-foreground">Belleville<br/>Outreach</span>
+                <div className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity">
+                  <span className="font-heading text-lg text-center text-primary-foreground">Belleville<br/>Outreach</span>
                 </div>
               </div>
             </div>
             
-            <div className="relative h-[500px] w-full overflow-hidden rounded-sm">
+            <div className="relative h-[300px] w-full overflow-hidden rounded-sm">
                <Image 
                 src="https://static.wixstatic.com/media/1560bb_757b469d76bb425496a3a33d50d388f7~mv2.png?originWidth=768&originHeight=448"
                 alt="Volunteers working together"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent flex items-center p-12">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent flex items-center p-8">
                 <div className="max-w-xs">
-                  <div className="text-5xl font-heading text-secondary mb-2">1,200+</div>
-                  <div className="text-xl text-primary-foreground mb-6">Families Served Monthly</div>
-                  <div className="h-px w-16 bg-secondary mb-6"></div>
-                  <p className="text-textbody text-sm">Your donations make this possible. Every dollar contributes directly to purchasing fresh food and supplies.</p>
+                  <div className="text-4xl font-heading text-secondary mb-1">1,200+</div>
+                  <div className="text-lg text-primary-foreground mb-4">Families Served Monthly</div>
+                  <div className="h-px w-12 bg-secondary mb-4"></div>
+                  <p className="text-textbody text-xs">Your donations make this possible. Every dollar contributes directly to purchasing fresh food and supplies.</p>
                 </div>
               </div>
             </div>
@@ -513,31 +513,31 @@ export default function HomePage() {
       </section>
 
       {/* --- CTA SECTION --- */}
-      <section className="w-full py-32 px-6 relative overflow-hidden">
+      <section className="w-full py-12 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-secondary/10" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-3xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-5xl md:text-7xl text-primary-foreground mb-8 text-pop">
+            <h2 className="font-heading text-3xl md:text-5xl text-primary-foreground mb-6 text-pop">
               Thanks Be To Our God
             </h2>
-            <p className="font-paragraph text-2xl text-textbody mb-12 max-w-2xl mx-auto">
-              We couldn’t do this work without the grace of our God and the unwavering support of our community. Every dollar donated, every hour volunteered, and every meal provided is a testament to His love at work through all of us. We invite you to join this mission of faith and compassion. Together, we canand will continue to make a difference, one meal and one heart at a time.
+            <p className="font-paragraph text-lg text-textbody mb-8 max-w-2xl mx-auto">
+              We couldn’t do this work without the grace of our God and the unwavering support of our community. Every dollar donated, every hour volunteered, and every meal provided is a testament to His love at work through all of us.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link 
                 to="/donate"
-                className="px-10 py-5 bg-secondary text-white font-paragraph text-lg font-semibold rounded-sm hover:bg-secondary/90 transition-all shadow-lg shadow-secondary/20 hover:shadow-secondary/40 hover:-translate-y-1"
+                className="px-8 py-3 bg-secondary text-white font-paragraph text-base font-semibold rounded-sm hover:bg-secondary/90 transition-all shadow-md shadow-secondary/20 hover:-translate-y-0.5"
               >
                 Donate Now
               </Link>
               <Link 
                 to="/join-mission"
-                className="px-10 py-5 bg-transparent border-2 border-bordersubtle text-primary-foreground font-paragraph text-lg font-semibold rounded-sm hover:border-primary-foreground hover:text-white transition-all"
+                className="px-8 py-3 bg-transparent border border-bordersubtle text-primary-foreground font-paragraph text-base font-semibold rounded-sm hover:border-primary-foreground hover:text-white transition-all"
               >
                 Volunteer With Us
               </Link>

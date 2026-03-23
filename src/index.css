@@ -45,6 +45,6 @@
     @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl;
   }
   .hero-gradient {
-    background: linear-gradient(to bottom, rgba(47, 62, 47, 0.4), rgba(47, 62, 47, 0.95));
+    background: linear-gradient(to bottom, rgba(47, 62, 47, 0.15), rgba(47, 62, 47, 0.8));
   }
 }
