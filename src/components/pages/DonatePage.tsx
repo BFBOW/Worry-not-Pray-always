@@ -35,8 +35,8 @@ export default function DonatePage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=2000"
-            alt="Biblical Reenactment of Feeding the 5000"
+            src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&q=80&w=2000"
+            alt="Hands reaching into a box of food"
             className="w-full h-full object-cover opacity-50"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/30 to-background/80" />
