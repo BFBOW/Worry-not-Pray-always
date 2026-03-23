@@ -201,7 +201,7 @@ export default function FindSupportPage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="/help.webp"
+            src="/help (1).jpg"
             alt="Find Support Hero"
             className="w-full h-full object-cover opacity-50"
           />
