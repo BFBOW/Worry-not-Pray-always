@@ -36,11 +36,11 @@ export default function WhoWeArePage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="https://images.unsplash.com/photo-1593113630400-ea4288922497?auto=format&fit=crop&q=80&w=2000"
+            src="https://i.ibb.co/8DdJjNZs/jesus.jpg"
             alt="Who We Are Hero"
-            className="w-full h-full object-cover opacity-40 grayscale"
+            className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/40 to-background" />
         </motion.div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
@@ -127,13 +127,12 @@ export default function WhoWeArePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5]"
+              className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5] max-w-md mx-auto lg:ml-auto lg:mr-0"
             >
-              <img 
-                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000"
+              <Image 
+                src="https://i.ibb.co/N6dShX66/seed.jpg"
                 alt="Community history"
                 className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </motion.div>
@@ -145,8 +144,8 @@ export default function WhoWeArePage() {
       <section className="relative py-24 bg-primary text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-40">
           <Image 
-            src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=2000"
-            alt="Biblical Reenactment of Feeding the 5000"
+            src="https://i.ibb.co/235BQRyM/why.png"
+            alt="Why We Serve Background"
             className="w-full h-full object-cover"
           />
         </div>
@@ -243,7 +242,7 @@ export default function WhoWeArePage() {
       <section className="relative py-24 bg-primary text-primary-foreground">
         <div className="absolute inset-0 z-0 opacity-10">
           <Image 
-            src="/IMG_5076 - Copy.jpg"
+            src="https://i.ibb.co/NgRFZ4gn/IMG-5076-Copy.jpg"
             alt="Background"
             className="w-full h-full object-cover"
           />
@@ -301,9 +300,9 @@ export default function WhoWeArePage() {
               className="relative rounded-3xl overflow-hidden shadow-2xl"
             >
               <Image 
-                src="/vs.png"
+                src="https://i.ibb.co/VWpfMp5x/vs.png"
                 alt="Volunteers working together"
-                className="w-full h-auto block opacity-90"
+                className="w-full h-full auto block opacity-90"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent pointer-events-none" />
             </motion.div>
@@ -343,7 +342,7 @@ export default function WhoWeArePage() {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <Image 
-                src="/BFBOWTeam.png"
+                src="https://i.ibb.co/HDnFrzFs/BFBOWTeam.png"
                 alt="The BFBOW Team"
                 className="w-full h-auto block"
               />

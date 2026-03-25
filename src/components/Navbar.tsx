@@ -12,7 +12,13 @@ export function Navbar() {
           <div className="flex items-center justify-between h-20">
             {/* Logo/Brand */}
             <Link to="/" className="flex items-center space-x-3">
-              <div className="font-heading text-2xl lg:text-3xl text-primary-foreground">
+              <img 
+                src="https://i.ibb.co/m5Z6pXvF/WSFB-logo-Colour-Main.webp" 
+                alt="WSFB Logo" 
+                className="h-12 w-auto"
+                referrerPolicy="no-referrer"
+              />
+              <div className="font-heading text-2xl lg:text-3xl text-primary-foreground hidden sm:block">
                 Belleville Food Bank On Wheels
               </div>
             </Link>

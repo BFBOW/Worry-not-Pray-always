@@ -330,7 +330,7 @@ export default function HomePage() {
         subtitle="Sustenance"
         title="Food Assistance Program"
         description="Ensures no one goes hungry by providing regular access to nutritious and culturally inclusive food for families in our community."
-        image="https://images.unsplash.com/photo-1488459711635-de8672397f4c?q=80&w=2070&auto=format&fit=crop"
+        image="https://i.ibb.co/hR99f9Xm/wws.jpg"
         link="/find-support"
         features={["Weekly distribution", "Tailored dietary options", "Serving 3,000+ families"]}
       />
@@ -339,7 +339,7 @@ export default function HomePage() {
         subtitle="Crisis Relief"
         title="Emergency Support Program"
         description="Immediate relief for individuals in crisis, providing essentials like ready-to-eat meals and hygiene packages to get through tough times."
-        image="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070&auto=format&fit=crop"
+        image="https://i.ibb.co/p6pY6W1t/help.webp"
         reverse
         link="/find-support"
         features={["Ready-to-eat meals", "Hygiene & baby care", "Homelessness support"]}
@@ -349,7 +349,7 @@ export default function HomePage() {
         subtitle="Sustainability"
         title="Food Rescue & Sustainability"
         description="Transforming surplus food into life-saving resources while protecting the environment from unnecessary waste and landfill impact."
-        image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop"
+        image="https://i.ibb.co/Xf9Vf6pB/partner.jpg"
         link="/who-we-are"
         features={["1.7M+ lbs rescued", "Greenhouse gas reduction", "Zero-waste mission"]}
       />
@@ -358,7 +358,7 @@ export default function HomePage() {
         subtitle="Empowerment"
         title="Educational Programs"
         description="Providing skills and certifications for confidence and stable employment opportunities in our local community."
-        image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop"
+        image="https://i.ibb.co/YBC7X6y0/images.jpg"
         reverse
         link="/events"
         features={["First Aid CPR Training", "Food Handling Certs", "Job Support Resources"]}
@@ -368,7 +368,7 @@ export default function HomePage() {
         subtitle="Connection"
         title="Community Engagement"
         description="Bringing people together to fight hunger and build a network of care and support through local partnerships and drives."
-        image="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1949&auto=format&fit=crop"
+        image="https://i.ibb.co/214chmJX/ffdf.jpg"
         link="/events"
         features={["Food & toy drives", "Local partnerships", "Faith-based excursions"]}
       />

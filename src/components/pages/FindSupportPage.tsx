@@ -201,7 +201,7 @@ export default function FindSupportPage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="/help (1).jpg"
+            src="https://i.ibb.co/cc2h0D9S/help-1.jpg"
             alt="Find Support Hero"
             className="w-full h-full object-cover opacity-50"
           />
@@ -261,7 +261,7 @@ export default function FindSupportPage() {
               className="rounded-3xl overflow-hidden shadow-2xl aspect-video"
             >
               <img 
-                src="/hwyni.jpeg"
+                src="https://i.ibb.co/qYnRwWFN/hwyni.webp"
                 alt="Everyone is Welcome"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

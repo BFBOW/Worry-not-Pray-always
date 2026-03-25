@@ -36,10 +36,10 @@ export default function DonatePage() {
         >
           <Image 
             src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&q=80&w=2000"
-            alt="Hands reaching into a box of food"
-            className="w-full h-full object-cover opacity-50"
+            alt="Donate Hero"
+            className="w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/30 to-background/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-primary/20 to-background/60" />
         </motion.div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
@@ -54,7 +54,7 @@ export default function DonatePage() {
               <span className="text-secondary italic font-normal">Change</span> Tomorrow.
             </h1>
             <p className="font-paragraph text-xl md:text-2xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
-              Every dollar you give, helps us provide nutritious perishable and non-perishable meals and essential support to families and community individuals experiencing homelessness in need. With your generosity, we can turn hunger into hope.
+              Every dollar you give, helps us provide nutritious perishable and non-perishable meals and essential support to families and community individuals experiencing homelessness in need. With your generosity, we can turn hunger into hope.Jesus has healed ten lepers. Only one, a Samaritan, returns to thank Him and praise God. He recognizes what the Pharisees do not: Jesus performs miracles under the power of God; Jesus is of God (Luke 17:11–18).
             </p>
             <motion.div 
               style={{ opacity }}
@@ -192,7 +192,7 @@ export default function DonatePage() {
 
       {/* Giving Options Section */}
       <section id="giving-options" className="relative py-24 bg-primary text-primary-foreground">
-        <div className="absolute inset-0 z-0 opacity-10">
+        <div className="absolute inset-0 z-0 opacity-40">
           <Image 
             src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&q=80&w=2000"
             alt="Background"

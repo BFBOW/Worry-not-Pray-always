@@ -34,7 +34,7 @@ export default function JoinMissionPage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="/partner2.jpg"
+            src="https://i.ibb.co/hRFMHqqQ/partner2.jpg"
             alt="Join Mission Hero"
             className="w-full h-full object-cover opacity-80"
           />
@@ -154,7 +154,7 @@ export default function JoinMissionPage() {
             >
               <div className="aspect-square bg-white border border-bordersubtle rounded-2xl flex items-center justify-center p-4 overflow-hidden">
                 <Image 
-                  src="/wsfb.jpg"
+                  src="https://i.ibb.co/60SzHczz/wsfb.jpg"
                   alt="WSFB Logo"
                   className="w-full h-full object-contain"
                 />

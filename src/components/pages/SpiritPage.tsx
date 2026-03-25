@@ -284,7 +284,7 @@ const Spirit: React.FC = () => {
 
               <div className="relative h-[500px] rounded-sm overflow-hidden group">
                 <Image 
-                  src="/ffts.jpg"
+                  src="https://i.ibb.co/TDY4F7mm/ffts.jpg"
                   alt="Community fellowship"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                 />

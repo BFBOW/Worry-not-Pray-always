@@ -47,7 +47,7 @@ export default function EventsPage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="/ffdf.jpg"
+            src="https://i.ibb.co/214chmJX/ffdf.jpg"
             alt="Events Hero"
             className="w-full h-full object-cover opacity-40"
           />
