@@ -72,7 +72,11 @@ const EventRow: React.FC<EventItemProps> = ({ date, title, location, time }) => 
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      className="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-bordersubtle/30 group hover:bg-white/5 transition-colors px-4"
+      variants={{
+        hidden: { opacity: 0, x: -20 },
+        show: { opacity: 1, x: 0 }
+      }}
+      className="flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-bordersubtle/30 group hover:bg-white/5 transition-all px-4 hover:translate-x-1"
     >
       <div className="flex items-start md:items-center gap-6 mb-4 md:mb-0">
         <span className="font-heading text-3xl text-secondary w-24">{date}</span>
@@ -102,8 +106,11 @@ const ParallaxImage: React.FC<{ src: string; alt: string; className?: string }> 
   const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
-    <div ref={ref} className={`relative overflow-hidden rounded-sm ${className}`}>
-      <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%]">
+    <div ref={ref} className={`relative overflow-hidden rounded-sm group/parallax ${className}`}>
+      <motion.div 
+        style={{ y }} 
+        className="absolute inset-0 w-full h-[120%] transition-transform duration-700 ease-out group-hover/parallax:scale-105"
+      >
         <Image src={src} alt={alt} className="w-full h-full object-cover" />
       </motion.div>
     </div>
@@ -152,7 +159,19 @@ const EditorialBlock: React.FC<{
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-secondary font-bold tracking-[0.2em] uppercase text-[9px]">{subtitle}</span>
+                <motion.span 
+                  animate={{ 
+                    opacity: [0.6, 1, 0.6],
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="text-secondary font-bold tracking-[0.2em] uppercase text-[9px]"
+                >
+                  {subtitle}
+                </motion.span>
                 <div className="h-px w-6 bg-secondary/30" />
               </div>
               
@@ -166,14 +185,35 @@ const EditorialBlock: React.FC<{
               </p>
 
               {features && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                <motion.div 
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  variants={{
+                    hidden: { opacity: 0 },
+                    show: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.1
+                      }
+                    }
+                  }}
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6"
+                >
                   {features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-2">
+                    <motion.div 
+                      key={i} 
+                      variants={{
+                        hidden: { opacity: 0, x: -10 },
+                        show: { opacity: 1, x: 0 }
+                      }}
+                      className="flex items-start gap-2"
+                    >
                       <div className="mt-1.5 w-1 h-1 rounded-full bg-secondary shrink-0" />
                       <span className="font-paragraph text-sm text-textbody/80">{feature}</span>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               )}
 
               <Link 
@@ -204,23 +244,29 @@ export default function HomePage() {
   return (
     <div ref={containerRef} className="bg-background overflow-clip selection:bg-secondary selection:text-white">
       {/* --- HERO SECTION --- */}
-      <section className="relative w-full min-h-[80vh] flex flex-col lg:flex-row border-b border-bordersubtle/20">
+      <section className="relative w-full min-h-[90vh] flex items-center border-b border-bordersubtle/20 overflow-hidden">
         
-        {/* Left Panel: Content */}
-        <div className="w-full lg:w-1/2 bg-primary flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 relative z-10 overflow-hidden">
-          <div className="absolute inset-0 z-0 opacity-40">
-            <Image 
-              src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=2000"
-              alt="Background"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="absolute inset-0 hero-gradient z-0" />
+        {/* Full Background Image with Parallax */}
+        <motion.div 
+          style={{ y }}
+          className="absolute inset-0 w-full h-[120%] z-0"
+        >
+          <Image 
+            src="https://i.ibb.co/8DdJjNZs/jesus.jpg"
+            alt="Nourishing Body and Soul"
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay for readability: Darker on the left where text is */}
+          <div className="absolute inset-0 bg-black/40 lg:bg-gradient-to-r lg:from-primary/90 lg:via-primary/40 lg:to-transparent" />
+        </motion.div>
+
+        {/* Content Container */}
+        <div className="relative z-10 w-full max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24 py-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-xl relative z-10"
+            className="max-w-xl"
           >
             <div className="flex items-center gap-3 mb-8">
               <span className="h-px w-12 bg-secondary shadow-[0_0_10px_rgba(212,209,165,0.5)]"></span>
@@ -241,6 +287,18 @@ export default function HomePage() {
                 to="/find-support"
                 className="group relative px-8 py-4 bg-buttonbackground text-buttonforeground font-paragraph text-sm uppercase tracking-widest overflow-hidden"
               >
+                <motion.div
+                  animate={{ 
+                    opacity: [0.5, 1, 0.5],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="absolute inset-0 bg-secondary/20 pointer-events-none"
+                />
                 <span className="relative z-10 group-hover:text-white transition-colors">Find Support</span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               </Link>
@@ -255,34 +313,31 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* Right Panel: Image */}
-        <div className="w-full lg:w-1/2 relative min-h-[50vh] lg:min-h-auto overflow-hidden bg-[#3A4A3A]">
-          <motion.div 
-            style={{ y }}
-            className="absolute inset-0 w-full h-[120%]"
-          >
-            <Image 
-              src="https://static.wixstatic.com/media/1560bb_7b29c69f0f9246ae8c7c3d647226d2aa~mv2.png?originWidth=1280&originHeight=704"
-              alt="Fresh produce and community gathering"
-              className="w-full h-full object-cover opacity-90"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:to-primary/20" />
-          </motion.div>
-
-          {/* Floating Badge */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="absolute bottom-12 left-12 lg:left-12 glass-panel p-6 max-w-xs"
-          >
-            <span className="block font-heading text-secondary text-lg mb-1 font-bold">Next Distribution</span>
-            <span className="block font-paragraph text-textbody text-sm mb-3 leading-relaxed">Join us this Saturday for our weekly community meal.</span>
-            <Link to="/events" className="text-xs uppercase tracking-widest text-primary-foreground font-bold border-b-2 border-secondary pb-1 hover:text-white hover:border-white transition-colors">
-              Get Details
-            </Link>
-          </motion.div>
-        </div>
+        {/* Floating Badge - Repositioned for full background layout */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ 
+            opacity: 1, 
+            scale: 1, 
+            y: [0, -10, 0],
+          }}
+          transition={{ 
+            opacity: { duration: 0.8, delay: 0.5 },
+            scale: { duration: 0.8, delay: 0.5 },
+            y: { 
+              duration: 4, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }
+          }}
+          className="absolute bottom-12 right-12 glass-panel p-6 max-w-xs z-20"
+        >
+          <span className="block font-heading text-secondary text-lg mb-1 font-bold">Next Distribution</span>
+          <span className="block font-paragraph text-textbody text-sm mb-3 leading-relaxed">Join us this Saturday for our weekly community meal.</span>
+          <Link to="/events" className="text-xs uppercase tracking-widest text-primary-foreground font-bold border-b-2 border-secondary pb-1 hover:text-white hover:border-white transition-colors">
+            Get Details
+          </Link>
+        </motion.div>
       </section>
 
       {/* --- MARQUEE SEPARATOR --- */}
@@ -306,18 +361,39 @@ export default function HomePage() {
       </div>
 
       {/* --- EDITORIAL MISSION OVERVIEW --- */}
-      <section className="w-full pt-8 pb-4 text-center">
-        <div className="max-w-2xl mx-auto px-6">
+      <section className="w-full pt-20 pb-10 text-center relative overflow-hidden">
+        {/* Decorative background elements */}
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 0],
+            opacity: [0.3, 0.6, 0.3]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -z-10"
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            rotate: [0, -90, 0],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-24 -right-24 w-[30rem] h-[30rem] bg-secondary/5 rounded-full blur-3xl -z-10"
+        />
+        
+        <div className="max-w-4xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="font-heading text-3xl md:text-4xl text-primary-foreground mb-4 leading-tight">
+            <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl text-primary-foreground mb-8 leading-[0.9] tracking-tighter">
               Serving the <br />
               <span className="text-secondary italic font-normal">Whole Person</span>
             </h2>
-            <p className="font-paragraph text-lg text-textbody leading-relaxed max-w-xl mx-auto">
+            <p className="font-paragraph text-xl text-textbody leading-relaxed max-w-2xl mx-auto opacity-80">
               Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal.
             </p>
           </motion.div>
@@ -327,31 +403,21 @@ export default function HomePage() {
       {/* --- EDITORIAL BLOCKS (Z-PATTERN) --- */}
       
       <EditorialBlock 
-        subtitle="Sustenance"
-        title="Food Assistance Program"
-        description="Ensures no one goes hungry by providing regular access to nutritious and culturally inclusive food for families in our community."
-        image="https://i.ibb.co/hR99f9Xm/wws.jpg"
+        subtitle="Sustenance & Crisis Relief"
+        title="Food Assistance & Emergency Support"
+        description="Ensuring no one goes hungry by providing regular access to nutritious food for families, while offering immediate relief for individuals in crisis with essentials like ready-to-eat meals and hygiene packages."
+        image="https://i.ibb.co/PGcNVvXM/delivery.jpg"
         link="/find-support"
-        features={["Weekly distribution", "Tailored dietary options", "Serving 3,000+ families"]}
+        features={["Weekly distribution", "Tailored dietary options", "Ready-to-eat meals", "Hygiene & baby care", "Homelessness support"]}
       />
 
       <EditorialBlock 
-        subtitle="Crisis Relief"
-        title="Emergency Support Program"
-        description="Immediate relief for individuals in crisis, providing essentials like ready-to-eat meals and hygiene packages to get through tough times."
-        image="https://i.ibb.co/p6pY6W1t/help.webp"
-        reverse
-        link="/find-support"
-        features={["Ready-to-eat meals", "Hygiene & baby care", "Homelessness support"]}
-      />
-
-      <EditorialBlock 
-        subtitle="Sustainability"
-        title="Food Rescue & Sustainability"
-        description="Transforming surplus food into life-saving resources while protecting the environment from unnecessary waste and landfill impact."
-        image="https://i.ibb.co/Xf9Vf6pB/partner.jpg"
-        link="/who-we-are"
-        features={["1.7M+ lbs rescued", "Greenhouse gas reduction", "Zero-waste mission"]}
+        subtitle="Spiritual Care"
+        title="Faith-Based Counseling"
+        description="We offer individual and family counseling rooted in biblical principles. Our compassionate counselors provide a safe space to navigate life's challenges, find spiritual clarity, and experience emotional healing through the grace of God."
+        image="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=2000"
+        link="/spirit"
+        features={["Individual Spiritual Guidance", "Family & Marriage Support", "Grief & Loss Counseling", "Youth Mentorship"]}
       />
 
       <EditorialBlock 
@@ -366,21 +432,28 @@ export default function HomePage() {
 
       <EditorialBlock 
         subtitle="Connection"
-        title="Community Engagement"
-        description="Bringing people together to fight hunger and build a network of care and support through local partnerships and drives."
-        image="https://i.ibb.co/214chmJX/ffdf.jpg"
-        link="/events"
-        features={["Food & toy drives", "Local partnerships", "Faith-based excursions"]}
+        title="Visitation Ministry"
+        description="No one should feel forgotten. Our visitation team brings the ministry to those who are shut-in, sick, or hospitalized. We provide prayer, companionship, and a tangible connection to the community for those unable to attend in person."
+        image="https://images.unsplash.com/photo-1581578731522-745505146317?auto=format&fit=crop&q=80&w=2000"
+        link="/join-mission"
+        features={["Hospital Bedside Visits", "Home Visits for Shut-ins", "Nursing Home Outreach", "Phone Call Ministry"]}
       />
 
       {/* --- FEATURE:FOOD FOR THE SPIRIT (Parallax Background) --- */}
       <section className="relative w-full py-16 lg:py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://static.wixstatic.com/media/1560bb_e0ee9499fd6a4d288399e67c05a7b6d9~mv2.png?originWidth=1152&originHeight=576"
-            alt="Open bible on a wooden table "
-            className="w-full h-full object-cover opacity-30"
-          />
+          <motion.div
+            initial={{ scale: 1.1 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 1.5 }}
+            className="w-full h-full"
+          >
+            <Image 
+              src="https://static.wixstatic.com/media/1560bb_e0ee9499fd6a4d288399e67c05a7b6d9~mv2.png?originWidth=1152&originHeight=576"
+              alt="Open bible on a wooden table "
+              className="w-full h-full object-cover opacity-30"
+            />
+          </motion.div>
           <div className="absolute inset-0 bg-black/60" />
         </div>
 
@@ -391,7 +464,12 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Leaf className="w-10 h-10 text-secondary mx-auto mb-6" />
+            <motion.div
+              animate={{ rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Leaf className="w-10 h-10 text-secondary mx-auto mb-6" />
+            </motion.div>
             <h2 className="font-heading text-3xl md:text-5xl text-primary-foreground mb-6 text-pop">
               Food for the Spirit
              </h2>
@@ -433,30 +511,45 @@ export default function HomePage() {
         </div>
 
         <div className="flex flex-col">
-          <EventRow 
-            date="OCT 12"
-            title="Fall Harvest Distribution"
-            location="Belleville Church Hall"
-            time="10:00 AM - 2:00 PM"
-          />
-          <EventRow 
-            date="OCT Date TBA"
-            title="Virtual Bible Study: Hope"
-            location="Online (Zoom)"
-            time="7:00 PM - 8:30 PM"
-          />
-          <EventRow 
-            date="NOV Date TBA"
-            title="Community Thanksgiving Prep"
-            location="Volunteer Center"
-            time="9:00 AM - 4:00 PM"
-          />
-          <EventRow 
-            date="NOV Date TBA"
-            title="Wellness & Health Screening"
-            location="Community Center Annex"
-            time="11:00 AM - 3:00 PM"
-          />
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.15
+                }
+              }
+            }}
+          >
+            <EventRow 
+              date="OCT 12"
+              title="Fall Harvest Distribution"
+              location="Belleville Church Hall"
+              time="10:00 AM - 2:00 PM"
+            />
+            <EventRow 
+              date="OCT Date TBA"
+              title="Virtual Bible Study: Hope"
+              location="Online (Zoom)"
+              time="7:00 PM - 8:30 PM"
+            />
+            <EventRow 
+              date="NOV Date TBA"
+              title="Community Thanksgiving Prep"
+              location="Volunteer Center"
+              time="9:00 AM - 4:00 PM"
+            />
+            <EventRow 
+              date="NOV Date TBA"
+              title="Wellness & Health Screening"
+              location="Community Center Annex"
+              time="11:00 AM - 3:00 PM"
+            />
+          </motion.div>
         </div>
         
         <div className="mt-6 md:hidden">
@@ -478,18 +571,30 @@ export default function HomePage() {
                 We are proud to work alongside dedicated organizations that share our passion, hope and vision of a hunger-free community.
               </p>
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity">
-                  <span className="font-heading text-lg text-center text-primary-foreground">Specialty<br/>Food Bank</span>
-                </div>
-                <div className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity">
-                  <span className="font-heading text-lg text-center text-primary-foreground">Local<br/>Farms Co-op</span>
-                </div>
-                <div className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity">
-                  <span className="font-heading text-lg text-center text-primary-foreground">Community<br/>Health Alliance</span>
-                </div>
-                <div className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity">
-                  <span className="font-heading text-lg text-center text-primary-foreground">Belleville<br/>Outreach</span>
-                </div>
+                {[
+                  { name: "Specialty\nFood Bank" },
+                  { name: "Local\nFarms Co-op" },
+                  { name: "Community\nHealth Alliance" },
+                  { name: "Belleville\nOutreach" }
+                ].map((partner, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity"
+                  >
+                    <span className="font-heading text-lg text-center text-primary-foreground">
+                      {partner.name.split('\n').map((line, j) => (
+                        <React.Fragment key={j}>
+                          {line}
+                          {j === 0 && <br/>}
+                        </React.Fragment>
+                      ))}
+                    </span>
+                  </motion.div>
+                ))}
               </div>
             </div>
             
