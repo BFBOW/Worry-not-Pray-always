@@ -346,7 +346,7 @@ export default function FindSupportPage() {
       {/* Membership Form */}
       <section id="support-form" className="py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="glass-panel rounded-3xl p-8 md:p-16">
+          <div className="bg-background border border-bordersubtle/30 rounded-3xl p-8 md:p-16 shadow-2xl">
             <div className="text-center mb-16">
               <UserPlus className="mx-auto mb-6 text-secondary" size={64} />
               <h2 className="text-4xl font-heading mb-4 text-pop">Signing Up</h2>

@@ -187,7 +187,6 @@ const Spirit: React.FC = () => {
                     className="group cursor-pointer relative"
                   >
                     <div className="flex flex-col md:flex-row md:items-center gap-8 py-10 border-b border-bordersubtle/20 group-hover:border-secondary transition-all duration-500">
-                      <span className="font-heading text-5xl md:text-6xl text-secondary/20 group-hover:text-secondary transition-colors duration-500 italic shrink-0">01</span>
                       <div className="flex-grow">
                         <h3 className="font-heading text-3xl md:text-4xl text-primary-foreground mb-3 group-hover:text-secondary transition-colors duration-500">Prayer Warriors</h3>
                         <p className="font-paragraph text-textbody text-lg leading-relaxed max-w-xl">Our dedicated team is ready to stand in the gap for you. Submit your requests privately and join our circle of intercession.</p>
@@ -207,7 +206,6 @@ const Spirit: React.FC = () => {
                     className="group cursor-pointer relative"
                   >
                     <div className="flex flex-col md:flex-row md:items-center gap-8 py-10 border-b border-bordersubtle/20 group-hover:border-secondary transition-all duration-500">
-                      <span className="font-heading text-5xl md:text-6xl text-secondary/20 group-hover:text-secondary transition-colors duration-500 italic shrink-0">02</span>
                       <div className="flex-grow">
                         <h3 className="font-heading text-3xl md:text-4xl text-primary-foreground mb-3 group-hover:text-secondary transition-colors duration-500">Bible Study</h3>
                         <p className="font-paragraph text-textbody text-lg leading-relaxed max-w-xl">Deepen your understanding of the Word through our guided community studies. Explore the scriptures in a supportive, faith-filled environment.</p>

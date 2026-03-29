@@ -10,6 +10,7 @@ import DonatePage from './components/pages/DonatePage';
 import SpiritPage from './components/pages/SpiritPage';
 import FindSupportPage from './components/pages/FindSupportPage';
 import JoinMissionPage from './components/pages/JoinMissionPage';
+import TypographyPage from './components/pages/TypographyPage';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/who-we-are" element={<WhoWeArePage />} />
             <Route path="/join-mission" element={<JoinMissionPage />} />
             <Route path="/donate" element={<DonatePage />} />
+            <Route path="/typography" element={<TypographyPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

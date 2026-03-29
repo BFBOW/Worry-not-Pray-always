@@ -127,14 +127,26 @@ const EditorialBlock: React.FC<{
   features?: string[];
 }> = ({ title, subtitle, description, image, reverse, link, features }) => {
   return (
-    <section className="w-full py-4 relative overflow-hidden border-b border-bordersubtle/5 last:border-b-0">
+    <section className="w-full py-0 relative overflow-hidden">
       {/* Atmospheric Background Elements */}
       <div className={`absolute top-1/2 ${reverse ? 'left-0' : 'right-0'} -translate-y-1/2 w-64 h-64 bg-secondary/5 rounded-full blur-[100px] -z-10`} />
       
+      {/* Subtle Section Separator */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-secondary/10 to-transparent" />
+      
       <div className="max-w-[85rem] mx-auto px-6">
-        <div className={`p-6 md:p-8 flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-12 relative group`}>
-          {/* Pseudo-border: Vertical accent line */}
-          <div className={`absolute top-8 bottom-8 w-1.5 bg-secondary/30 ${reverse ? 'right-0' : 'left-0'} hidden lg:block rounded-full group-hover:bg-secondary/60 transition-colors duration-500`} />
+        <div className={`py-2 md:py-4 flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-12 relative group`}>
+          {/* Decorative Tapering Border - Top Corner */}
+          <div className={`absolute -top-4 ${reverse ? '-right-4' : '-left-4'} w-64 h-64 pointer-events-none hidden lg:block z-0`}>
+            <div className={`absolute top-0 ${reverse ? 'right-0' : 'left-0'} w-full h-px bg-gradient-to-${reverse ? 'l' : 'r'} from-secondary/50 via-secondary/10 to-transparent`} />
+            <div className={`absolute top-0 ${reverse ? 'right-0' : 'left-0'} w-px h-full bg-gradient-to-b from-secondary/50 via-secondary/10 to-transparent`} />
+          </div>
+
+          {/* Decorative Tapering Border - Bottom Corner */}
+          <div className={`absolute -bottom-4 ${reverse ? '-left-4' : '-right-4'} w-64 h-64 pointer-events-none hidden lg:block z-0`}>
+            <div className={`absolute bottom-0 ${reverse ? 'left-0' : 'right-0'} w-full h-px bg-gradient-to-${reverse ? 'r' : 'l'} from-secondary/50 via-secondary/10 to-transparent`} />
+            <div className={`absolute bottom-0 ${reverse ? 'left-0' : 'right-0'} w-px h-full bg-gradient-to-t from-secondary/50 via-secondary/10 to-transparent`} />
+          </div>
           
           {/* Image Side */}
           <div className="w-full lg:w-4/12">
@@ -351,11 +363,11 @@ export default function HomePage() {
         >
           {[...Array(8)].map((_, i) => (
             <div key={i} className="flex items-center gap-12">
-              <span className="font-heading text-2xl text-secondary-foreground/90">Faith in Action</span>
+              <span className="font-cinzel text-2xl text-secondary-foreground/90">Faith in Action</span>
               <span className="w-2 h-2 rounded-full bg-secondary-foreground/50" />
-              <span className="font-heading text-2xl text-secondary-foreground/90">Community Service</span>
+              <span className="font-cinzel text-2xl text-secondary-foreground/90">Community Service</span>
               <span className="w-2 h-2 rounded-full bg-secondary-foreground/50" />
-              <span className="font-heading text-2xl text-secondary-foreground/90">Spiritual Growth</span>
+              <span className="font-cinzel text-2xl text-secondary-foreground/90">Spiritual Growth</span>
               <span className="w-2 h-2 rounded-full bg-secondary-foreground/50" />
             </div>
           ))}
@@ -399,6 +411,11 @@ export default function HomePage() {
               Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal. <span className="text-secondary italic">3 John 1:2</span> — "Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well." God cares about your total well-being—body, mind, and spirit.
             </p>
           </motion.div>
+        </div>
+        
+        {/* Decorative Tapering Line */}
+        <div className="mt-8 flex justify-center">
+          <div className="w-px h-24 bg-gradient-to-b from-secondary/40 to-transparent" />
         </div>
       </section>
 

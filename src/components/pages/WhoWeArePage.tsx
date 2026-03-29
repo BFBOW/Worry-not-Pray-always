@@ -29,7 +29,7 @@ export default function WhoWeArePage() {
   return (
     <div ref={containerRef} className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[450px] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
+      <section className="relative w-full min-h-[500px] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
         <motion.div 
           style={{ y: heroY }}
           className="absolute inset-0 z-0"
@@ -39,7 +39,7 @@ export default function WhoWeArePage() {
             alt="Who We Are Hero"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/40 to-background" />
+          <div className="absolute inset-0 bg-black/30" />
         </motion.div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
@@ -49,7 +49,7 @@ export default function WhoWeArePage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
-            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl text-primary-foreground leading-[0.9] mb-8 uppercase tracking-tighter text-pop">
+            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.9] mb-8 uppercase tracking-tighter text-pop">
               Guided by Faith, <br />
               <span className="text-secondary italic font-normal">Nourishing</span> with Love
             </h1>

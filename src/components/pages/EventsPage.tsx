@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { Calendar, MapPin, Clock, Leaf } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Image } from '../ui/image';
+import { ImageMarquee } from '../ui/ImageMarquee';
 
 export default function EventsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,6 +11,49 @@ export default function EventsPage() {
     target: containerRef,
     offset: ["start start", "end start"]
   });
+
+  const marqueeImages = [
+    "https://i.ibb.co/FkDtD1Wc/IMG-5436.jpg",
+    "https://i.ibb.co/sdBkSxhH/IMG-4988-Copy.jpg",
+    "https://i.ibb.co/9ksZy1mY/IMG-5011-Copy.jpg",
+    "https://i.ibb.co/9m2zRqRP/IMG-5022-Copy.jpg",
+    "https://i.ibb.co/XfH2t4Y2/IMG-5033-Copy.jpg",
+    "https://i.ibb.co/HD7SjpW1/IMG-5034-Copy.jpg",
+    "https://i.ibb.co/HfWLZPxm/IMG-5037-Copy.jpg",
+    "https://i.ibb.co/chFkkt3y/IMG-5040-Copy.jpg",
+    "https://i.ibb.co/m5H71QzC/IMG-5042-Copy.jpg",
+    "https://i.ibb.co/LDF35d5B/IMG-5050-Copy.jpg",
+    "https://i.ibb.co/zhDndNDk/IMG-5051-Copy.jpg",
+    "https://i.ibb.co/DHySzsdv/IMG-5057-Copy.jpg",
+    "https://i.ibb.co/GQ3x7R7t/IMG-5090-Copy.jpg",
+    "https://i.ibb.co/X0dBFXb/IMG-5117-Copy.jpg",
+    "https://i.ibb.co/HD64vbLT/IMG-5121-Copy.jpg",
+    "https://i.ibb.co/kVs1fmTT/IMG-5123-Copy.jpg",
+    "https://i.ibb.co/bj4TZtmK/IMG-5157-Copy.jpg",
+    "https://i.ibb.co/G49Rw5rz/IMG-5161.jpg",
+    "https://i.ibb.co/r2nW8pbc/IMG-5176-Copy.jpg",
+    "https://i.ibb.co/LzK0wBkv/IMG-5182.jpg",
+    "https://i.ibb.co/bjjY54SZ/IMG-5191.jpg",
+    "https://i.ibb.co/8gckZkJb/IMG-5211.jpg",
+    "https://i.ibb.co/yF08knzR/IMG-5238-Copy.jpg",
+    "https://i.ibb.co/wh25pMdk/IMG-5260.jpg",
+    "https://i.ibb.co/svp76Znw/IMG-5318-Copy.jpg",
+    "https://i.ibb.co/zT8Lmbb8/IMG-5319.jpg",
+    "https://i.ibb.co/JF29jnGP/IMG-5321-Copy.jpg"
+  ];
+
+  const eventMarqueeImages = [
+    "https://i.ibb.co/QjJtftTH/10daysfly.jpg",
+    "https://i.ibb.co/5X8V0Xyj/commmuniy.jpg",
+    "https://i.ibb.co/JFkCPJWT/event.jpg",
+    "https://i.ibb.co/jkLZzXr8/eventfly.jpg",
+    "https://i.ibb.co/zWnhP443/ffdf.jpg",
+    "https://i.ibb.co/vvw9J2wz/flyer.jpg",
+    "https://i.ibb.co/cSvnS1FY/journey.jpg",
+    "https://i.ibb.co/FksBVjC6/penta.jpg",
+    "https://i.ibb.co/mrx4qpNP/prayer.jpg",
+    "https://i.ibb.co/BH6Nv488/summer-camp.jpg"
+  ];
 
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -41,38 +85,45 @@ export default function EventsPage() {
   return (
     <div ref={containerRef} className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[70vh] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
-        <motion.div 
-          style={{ y: heroY }}
-          className="absolute inset-0 z-0"
-        >
-          <Image 
-            src="https://i.ibb.co/214chmJX/ffdf.jpg"
-            alt="Events Hero"
-            className="w-full h-full object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/80 to-background" />
-        </motion.div>
-
-        <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
+      <section className="relative w-full py-4 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
+        <div className="relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center"
           >
-            <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
-            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter">
-              Community <br />
-              <span className="text-secondary italic font-normal">Gatherings</span>
-            </h1>
-            <p className="font-paragraph text-xl md:text-2xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
-              Please join us for our community events, food distribution programs, and special gatherings. Every event is an opportunity to strengthen our community and share hope. God measures the heart by what we give; He that hath pity upon the poor lendeth unto the Lord; and that which he hath given will he pay him again." – Proverbs 19:17 (KJV)
-            </p>
+            <div className="w-full mb-4">
+              <ImageMarquee images={marqueeImages} speed={70} />
+            </div>
+
+            <div className="relative w-full py-6 flex items-center justify-center overflow-hidden">
+              {/* Background Marquee */}
+              <div className="absolute inset-0 z-0 opacity-20 pointer-events-none flex items-center">
+                <ImageMarquee images={eventMarqueeImages} speed={35} reverse />
+              </div>
+
+              <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
+                <Leaf className="w-8 h-8 text-secondary mx-auto mb-4 animate-pulse" />
+                <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.85] mb-4 uppercase tracking-tighter">
+                  Community <br />
+                  <span className="text-secondary italic font-normal">Gatherings</span>
+                </h1>
+                <p className="font-paragraph text-base md:text-lg text-textbody max-w-2xl mx-auto leading-relaxed italic">
+                  Please join us for our community events, food distribution programs, and special gatherings. Every event is an opportunity to strengthen our community and share hope. God measures the heart by what we give; He that hath pity upon the poor lendeth unto the Lord; and that which he hath given will he pay him again." – Proverbs 19:17 (KJV)
+                </p>
+              </div>
+            </div>
+
+            <div className="w-full mt-4">
+              <ImageMarquee images={marqueeImages} speed={70} />
+            </div>
+
             <motion.div 
               style={{ opacity }}
-              className="mt-16 flex justify-center"
+              className="mt-4 flex justify-center"
             >
-              <div className="w-px h-24 bg-gradient-to-b from-secondary to-transparent" />
+              <div className="w-px h-12 bg-gradient-to-b from-secondary to-transparent" />
             </motion.div>
           </motion.div>
         </div>

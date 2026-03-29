@@ -71,58 +71,114 @@ export default function JoinMissionPage() {
         </div>
       </section>
 
-      {/* Service Callings Section */}
-      <section className="py-24 bg-secondary/5">
+      {/* Service Callings Section - Editorial Split Layout */}
+      <section className="py-24 bg-secondary/5 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative z-10"
+            >
+              <div className="inline-block px-4 py-1 border border-secondary/30 rounded-full text-secondary text-[10px] uppercase tracking-[0.3em] mb-8 font-bold">
+                Individual Callings
+              </div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading mb-8 leading-[0.85] tracking-tighter">
+                Answering the <br />
+                <span className="text-secondary italic font-normal">Call to Serve</span>
+              </h2>
+              <p className="text-textbody/90 max-w-xl text-xl leading-relaxed mb-10 font-paragraph italic">
+                Ministry is about more than just resources—it's about a collective mission to serve our community. Discover how your unique gifts and strengths can make a lasting impact.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 items-start">
+                <Button className="px-8 py-6 text-sm uppercase tracking-widest font-bold group bg-secondary hover:bg-secondary/80 text-primary">
+                  Explore Opportunities <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                </Button>
+                <div className="flex items-center gap-3 py-3">
+                  <div className="w-10 h-px bg-secondary/40" />
+                  <span className="text-[10px] uppercase tracking-widest text-secondary/60 font-bold">Join the Movement</span>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="inline-block px-4 py-1 border border-secondary/30 rounded-full text-secondary text-xs uppercase tracking-[0.2em] mb-6"
+              className="relative"
             >
-              Individual Callings
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-bordersubtle/30 bg-background group">
+                <Image 
+                  src="https://i.ibb.co/60SzHczz/wsfb.jpg"
+                  alt="Service Calling"
+                  className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent pointer-events-none" />
+                
+                {/* Decorative corner borders */}
+                <div className="absolute top-6 left-6 w-12 h-12 border-t-2 border-l-2 border-secondary/50 rounded-tl-lg" />
+                <div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-secondary/50 rounded-br-lg" />
+              </div>
+              
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 glass-panel p-6 rounded-xl border border-secondary/20 shadow-xl max-w-[200px]">
+                <p className="text-xs italic text-secondary leading-relaxed">
+                  "As every man hath received the gift, even so minister the same one to another."
+                </p>
+                <p className="text-[10px] uppercase tracking-widest mt-2 font-bold opacity-60">— 1 Peter 4:10</p>
+              </div>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-heading mb-6">Answering the Call to Serve</h2>
-            <p className="text-textbody max-w-2xl mx-auto text-xl">
-              Ministry is about more than just resources—it's about a collective mission to serve our community. Discover how your unique gifts and strengths can make a lasting impact.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Impact Section (Partnerships) */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="inline-block px-4 py-1 border border-secondary/30 rounded-full text-secondary text-xs uppercase tracking-[0.2em] mb-6"
-            >
+      {/* Impact Section (Partnerships) - Full-Bleed Editorial Block */}
+      <section className="relative py-32 bg-primary overflow-hidden">
+        {/* Background Decorative Numbers */}
+        
+        <div className="absolute inset-0 z-0 opacity-20">
+          <Image 
+            src="https://i.ibb.co/hRFMHqqQ/partner2.jpg"
+            alt="Impact Background"
+            className="w-full h-full object-cover grayscale"
+          />
+          <div className="absolute inset-0 bg-primary/80" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-24"
+          >
+            <div className="inline-block px-4 py-1 border border-secondary/30 rounded-full text-secondary text-[10px] uppercase tracking-[0.3em] mb-8 font-bold">
               Organizational Impact
-            </motion.div>
-            <h2 className="text-4xl md:text-5xl font-heading mb-6">Partnerships for the Greater Good</h2>
-            <p className="text-textbody max-w-2xl mx-auto text-xl">
+            </div>
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-heading mb-8 leading-[0.8] tracking-tighter text-pop">
+              Partnerships for the <br />
+              <span className="text-secondary italic font-normal">Greater Good</span>
+            </h2>
+            <p className="text-textbody/80 max-w-3xl mx-auto text-xl leading-relaxed italic font-paragraph">
               When organizations partner with us, their impact resonates far beyond our walls, amplifying hope and creating systemic change.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Target className="w-12 h-12" />,
+                icon: <Target className="w-10 h-10" />,
                 title: "Strategic Impact",
                 desc: "Join us in rescuing over 1.7 million pounds of food annually. Your partnership directly impacts local lives and demonstrates your commitment to social responsibility."
               },
               {
-                icon: <Award className="w-12 h-12" />,
+                icon: <Award className="w-10 h-10" />,
                 title: "Brand Recognition",
                 desc: "Showcase your organization as a leader in community care. Your involvement will be highlighted through our events and campaigns, strengthening your reputation."
               },
               {
-                icon: <Handshake className="w-12 h-12" />,
+                icon: <Handshake className="w-10 h-10" />,
                 title: "Employee Engagement",
                 desc: "Provide your team with meaningful volunteer opportunities. Group volunteer days foster teamwork and inspire a shared sense of purpose."
               }
@@ -133,14 +189,16 @@ export default function JoinMissionPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="space-y-6"
+                className="glass-panel p-10 rounded-2xl text-left border border-white/5 hover:border-secondary/30 transition-all group"
               >
-                <div className="text-secondary">
-                  {item.icon}
+                <div className="flex justify-between items-start mb-8">
+                  <div className="text-secondary group-hover:scale-110 transition-transform">
+                    {item.icon}
+                  </div>
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-heading tracking-tight">{item.title}</h3>
-                  <p className="text-textbody leading-relaxed opacity-80">
+                  <h3 className="text-2xl font-heading tracking-tight leading-tight">{item.title}</h3>
+                  <p className="text-textbody/70 text-base leading-relaxed font-paragraph italic">
                     {item.desc}
                   </p>
                 </div>
@@ -150,25 +208,37 @@ export default function JoinMissionPage() {
         </div>
       </section>
 
-      {/* Partners Section (General Statement as requested to exclude names) */}
-      <section className="py-24 border-b border-bordersubtle/20">
+      {/* Partners Section - Editorial Split Layout */}
+      <section className="py-32 border-b border-bordersubtle/20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-heading mb-8">Partners Making An Impact</h2>
-              <p className="text-xl text-textbody leading-relaxed mb-8">
-                The <span className="text-foreground font-semibold">Belleville Food Bank On Wheels</span> is proud to collaborate with businesses and organizations that share our vision of a hunger-free community. Together, we've accomplished incredible milestones.
-              </p>
-              <p className="text-textbody mb-10">
-               Please join the growing list of partners making a difference, and be part of a success story that transforms lives and strengthens communities.
-              </p>
-              <div className="flex items-center gap-4 p-6 bg-secondary/10 rounded-xl border border-secondary/20">
-                <Info className="text-secondary shrink-0" />
-                <p className="text-sm italic text-textlight">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-8 h-px bg-secondary" />
+                <span className="text-[10px] uppercase tracking-[0.4em] text-secondary font-bold">Collaborators</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-heading mb-8 leading-[0.9] tracking-tighter">
+                Partners Making <br />
+                <span className="text-secondary italic font-normal">An Impact</span>
+              </h2>
+              <div className="space-y-6 mb-12">
+                <p className="text-xl text-textbody/90 leading-relaxed font-paragraph italic">
+                  The <span className="text-secondary font-semibold">Belleville Food Bank On Wheels</span> is proud to collaborate with businesses and organizations that share our vision of a hunger-free community.
+                </p>
+                <div className="p-8 bg-secondary/5 border-l-4 border-secondary rounded-r-xl">
+                  <p className="text-base text-textbody/80 leading-relaxed italic">
+                    "Please join the growing list of partners making a difference, and be part of a success story that transforms lives and strengthens communities."
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4 p-6 glass-panel rounded-xl border border-secondary/20">
+                <Info className="text-secondary shrink-0" size={20} />
+                <p className="text-xs italic text-textlight leading-relaxed">
                   We are currently updating our partner showcase. Your organization could be featured here soon!
                 </p>
               </div>
@@ -178,47 +248,77 @@ export default function JoinMissionPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-2 gap-6"
             >
-              <div className="aspect-square bg-white border border-bordersubtle rounded-2xl flex items-center justify-center p-4 overflow-hidden">
-                <Image 
-                  src="https://i.ibb.co/60SzHczz/wsfb.jpg"
-                  alt="WSFB Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="aspect-square bg-secondary/5 border border-dashed border-bordersubtle rounded-2xl flex items-center justify-center p-8 text-center">
-                <p className="text-xs uppercase tracking-widest opacity-40">Your Logo Here</p>
-              </div>
-              <div className="aspect-square bg-secondary/5 border border-dashed border-bordersubtle rounded-2xl flex items-center justify-center p-8 text-center">
-                <p className="text-xs uppercase tracking-widest opacity-40">Your Logo Here</p>
-              </div>
-              <div className="aspect-square bg-secondary/5 border border-dashed border-bordersubtle rounded-2xl flex items-center justify-center p-8 text-center">
-                <p className="text-xs uppercase tracking-widest opacity-40">Your Logo Here</p>
-              </div>
+              {[
+                { src: "https://i.ibb.co/60SzHczz/wsfb.jpg", alt: "WSFB Logo" },
+                { placeholder: true },
+                { placeholder: true },
+                { placeholder: true }
+              ].map((logo, i) => (
+                <div 
+                  key={i} 
+                  className="aspect-square bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center p-8 overflow-hidden group hover:bg-white/10 hover:border-secondary/40 transition-all duration-500 shadow-xl hover:shadow-secondary/5"
+                >
+                  {logo.src ? (
+                    <Image 
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  ) : (
+                    <div className="text-center space-y-2 opacity-20 group-hover:opacity-40 transition-opacity">
+                      <div className="w-12 h-12 border-2 border-dashed border-white rounded-full mx-auto flex items-center justify-center">
+                        <Handshake size={20} />
+                      </div>
+                      <p className="text-[10px] uppercase tracking-widest font-bold">Your Logo</p>
+                    </div>
+                  )}
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Ways to Serve & Partner */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-heading mb-16">Ways to Get Involved</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      {/* Ways to Serve & Partner - Systematic Numbered Grid */}
+      <section className="py-32 bg-secondary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-24">
+            <h2 className="text-5xl md:text-6xl font-heading mb-6 tracking-tighter leading-[0.9]">Ways to Get Involved</h2>
+            <div className="w-24 h-1 bg-secondary mx-auto rounded-full" />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-bordersubtle/20 rounded-3xl overflow-hidden shadow-2xl bg-background">
             {[
-              { title: "Individual Service", desc: "Direct ministry through visits, teaching, and distribution." },
-              { title: "Sponsorships", desc: "Financial support for specific programs or events." },
-              { title: "Food Donations", desc: "Corporate food drives or surplus food rescue." },
-              { title: "Volunteer Days", desc: "Team building through community service." }
+              { title: "Individual Service", desc: "Direct ministry through visits, teaching, and distribution.", num: "01" },
+              { title: "Sponsorships", desc: "Financial support for specific programs or events.", num: "02" },
+              { title: "Food Donations", desc: "Corporate food drives or surplus food rescue.", num: "03" },
+              { title: "Volunteer Days", desc: "Team building through community service.", num: "04" }
             ].map((way, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center text-secondary mb-6">
-                  <CheckCircle2 size={32} />
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative p-12 border-r border-b border-bordersubtle/20 last:border-r-0 group hover:bg-secondary/5 transition-colors"
+              >
+                {/* Large Background Number */}
+                <div className="absolute top-4 right-6 text-7xl font-heading font-black text-secondary/5 select-none group-hover:text-secondary/10 transition-colors">
+                  {way.num}
                 </div>
-                <h4 className="text-xl font-heading mb-4">{way.title}</h4>
-                <p className="text-textbody text-base max-w-xs">{way.desc}</p>
-              </div>
+                
+                <div className="relative z-10 space-y-6">
+                  <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-primary transition-all duration-500">
+                    <CheckCircle2 size={24} />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-heading mb-4 tracking-tight leading-tight">{way.title}</h4>
+                    <p className="text-textbody/70 text-sm leading-relaxed font-paragraph italic">{way.desc}</p>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
