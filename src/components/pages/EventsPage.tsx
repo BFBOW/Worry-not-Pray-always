@@ -34,7 +34,7 @@ export default function EventsPage() {
       date: 'First TBA of Month',
       time: '9:00 AM - 11:00 AM',
       location: 'Hub Office',
-      desc: 'New to Belleville Food Bank On Wheels? We welcome you to join us and learn how you can make an impact in our community.'
+      desc: "New to Belleville Food Bank On Wheels? We welcome you to join us and learn how you can make an impact in our community. Isaiah 58:10 — 'And if thou draw out thy soul to the hungry, and satisfy the afflicted soul; then shall thy light rise in obscurity, and thy darkness be as the noon day.' 2 Corinthians 9:7-8 — 'Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver. And God is able to bless you abundantly, so that in all things at all times, having all that you need, you will abound in every good work.'"
     }
   ];
 

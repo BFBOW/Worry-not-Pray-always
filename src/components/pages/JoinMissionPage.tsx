@@ -10,7 +10,13 @@ import {
   HeartHandshake,
   ArrowRight,
   Info,
-  Leaf
+  Leaf,
+  BookOpen,
+  Footprints,
+  Lock,
+  HeartPulse,
+  Package,
+  Megaphone
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Image } from '../ui/image';
@@ -22,16 +28,16 @@ export default function JoinMissionPage() {
     offset: ["start start", "end start"]
   });
 
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <div ref={containerRef} className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[70vh] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
+      <section className="relative w-full min-h-[50vh] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
         <motion.div 
           style={{ y: heroY }}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 h-[120%]"
         >
           <Image 
             src="https://i.ibb.co/hRFMHqqQ/partner2.jpg"
@@ -53,7 +59,7 @@ export default function JoinMissionPage() {
               Make a <span className="text-secondary italic font-normal">Difference</span>.
             </h1>
             <p className="font-paragraph text-xl md:text-2xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
-              Your organization has the power to create meaningful change. Together, we can rescue surplus food, distribute meals, and bring hope and a sense of belonging to thousands. 
+              Every heart and every hand has the power to create meaningful change. Together, we can rescue surplus food, distribute meals, and bring hope and a sense of belonging to thousands. 
             </p>
             <motion.div 
               style={{ opacity }}
@@ -65,7 +71,7 @@ export default function JoinMissionPage() {
         </div>
       </section>
 
-      {/* Impact Section */}
+      {/* Service Callings Section */}
       <section className="py-24 bg-secondary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
@@ -75,47 +81,69 @@ export default function JoinMissionPage() {
               viewport={{ once: true }}
               className="inline-block px-4 py-1 border border-secondary/30 rounded-full text-secondary text-xs uppercase tracking-[0.2em] mb-6"
             >
-              Your Impact Amplified
+              Individual Callings
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-heading mb-6">Creating Real Change Together</h2>
+            <h2 className="text-4xl md:text-5xl font-heading mb-6">Answering the Call to Serve</h2>
             <p className="text-textbody max-w-2xl mx-auto text-xl">
-              When you partner with us, your impact resonates far beyond our walls, amplifying hope and creating real change.
+              Ministry is about more than just resources—it's about a collective mission to serve our community. Discover how your unique gifts and strengths can make a lasting impact.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact Section (Partnerships) */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-block px-4 py-1 border border-secondary/30 rounded-full text-secondary text-xs uppercase tracking-[0.2em] mb-6"
+            >
+              Organizational Impact
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-heading mb-6">Partnerships for the Greater Good</h2>
+            <p className="text-textbody max-w-2xl mx-auto text-xl">
+              When organizations partner with us, their impact resonates far beyond our walls, amplifying hope and creating systemic change.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
               {
-                icon: <Target className="w-10 h-10" />,
-                title: "Community Impact",
-                desc: " Please join us in rescuing over 1.7 million pounds of food annually and supporting more than 3,000 families every month. Your partnership directly impacts local lives and demonstrates your commitment to social responsibility."
+                icon: <Target className="w-12 h-12" />,
+                title: "Strategic Impact",
+                desc: "Join us in rescuing over 1.7 million pounds of food annually. Your partnership directly impacts local lives and demonstrates your commitment to social responsibility."
               },
               {
-                icon: <Award className="w-10 h-10" />,
+                icon: <Award className="w-12 h-12" />,
                 title: "Brand Recognition",
-                desc: "Showcase your organization as a leader in community care and sustainability. Your involvement will be highlighted through our events, social media, and campaigns, strengthening your brand's reputation as a force for good."
+                desc: "Showcase your organization as a leader in community care. Your involvement will be highlighted through our events and campaigns, strengthening your reputation."
               },
               {
-                icon: <Users2 className="w-10 h-10" />,
-                title: "We welcome and appreciate Employee Engagement",
-                desc: "Provide your team with meaningful volunteer opportunities. Group volunteer days foster teamwork, boost morale, and inspire a shared sense of purpose within your organization."
+                icon: <Handshake className="w-12 h-12" />,
+                title: "Employee Engagement",
+                desc: "Provide your team with meaningful volunteer opportunities. Group volunteer days foster teamwork and inspire a shared sense of purpose."
               }
             ].map((item, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-background p-10 border border-bordersubtle/30 rounded-2xl hover:border-secondary transition-colors group"
+                className="space-y-6"
               >
-                <div className="text-secondary mb-8 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-secondary">
                   {item.icon}
                 </div>
-                <h3 className="text-2xl font-heading mb-4">{item.title}</h3>
-                <p className="text-textbody leading-relaxed">
-                  {item.desc}
-                </p>
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-heading tracking-tight">{item.title}</h3>
+                  <p className="text-textbody leading-relaxed opacity-80">
+                    {item.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -173,12 +201,13 @@ export default function JoinMissionPage() {
         </div>
       </section>
 
-      {/* Ways to Partner, Come Join Us! */}
+      {/* Ways to Serve & Partner */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-heading mb-16">Ways to Partner</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <h2 className="text-4xl font-heading mb-16">Ways to Get Involved</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {[
+              { title: "Individual Service", desc: "Direct ministry through visits, teaching, and distribution." },
               { title: "Sponsorships", desc: "Financial support for specific programs or events." },
               { title: "Food Donations", desc: "Corporate food drives or surplus food rescue." },
               { title: "Volunteer Days", desc: "Team building through community service." }
@@ -203,7 +232,7 @@ export default function JoinMissionPage() {
               <HeartHandshake className="mx-auto mb-6 text-secondary" size={64} />
               <h2 className="text-4xl font-heading mb-4 text-pop">Join Our Mission</h2>
               <p className="text-textbody font-medium">
-                We offer flexible and impactful ways for your business to partner with us, tailored to fit your goals and strengths. Please join us in creating a stronger, healthier, and more compassionate community.
+                Whether you are an individual answering a calling or an organization looking to make an impact, we welcome you. Please join us in creating a stronger, healthier, and more compassionate community.
               </p>
             </div>
 
@@ -246,21 +275,43 @@ export default function JoinMissionPage() {
                 </div>
               </div>
 
+              {/* Ministry Interest Section */}
+              <div className="space-y-6">
+                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Ministry Interests</h3>
+                <p className="text-xs text-textbody/60 italic">Select all areas where you feel called to serve:</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    "Food Bank Distribution",
+                    "Prison Ministry",
+                    "Sick & Shut-in Visits",
+                    "Bible Studies",
+                    "Street Evangelism",
+                    "Logistical Support",
+                    "General Volunteering"
+                  ].map((interest) => (
+                    <label key={interest} className="flex items-center gap-3 p-4 bg-secondary/5 border border-bordersubtle/20 rounded-xl cursor-pointer hover:border-secondary transition-colors">
+                      <input type="checkbox" className="w-5 h-5 accent-secondary" />
+                      <span className="text-sm font-medium">{interest}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
               {/* Organization Section */}
               <div className="space-y-6">
-                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Organization Details</h3>
+                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Organization Details (Optional)</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
-                      Organization Name <span className="text-destructive">*</span>
+                      Organization Name
                     </label>
-                    <input required type="text" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input type="text" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
-                      Role / Affiliation <span className="text-destructive">*</span>
+                      Role / Affiliation
                     </label>
-                    <input required type="text" placeholder="Ex: Owner, C-Level, Manager, etc" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input type="text" placeholder="Ex: Owner, C-Level, Manager, etc" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -272,54 +323,102 @@ export default function JoinMissionPage() {
                 </div>
               </div>
 
+              {/* Availability Section */}
+              <div className="space-y-6">
+                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Availability Schedule</h3>
+                <p className="text-xs text-muted-foreground italic">Please specify your available hours for each day (e.g., 9:00 AM - 12:00 PM)</p>
+                <div className="space-y-3">
+                  {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day) => (
+                    <div key={day} className="grid grid-cols-1 sm:grid-cols-[120px_1fr] items-center gap-4 p-3 bg-secondary/5 border border-bordersubtle/20 rounded-xl">
+                      <label className="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" className="w-4 h-4 accent-secondary" />
+                        <span className="text-sm font-bold">{day}</span>
+                      </label>
+                      <input 
+                        type="text" 
+                        placeholder="Specify times (e.g. 10am - 2pm)" 
+                        className="bg-transparent border-b border-bordersubtle/30 px-2 py-1 text-sm focus:border-secondary outline-none transition-colors w-full"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* How You Can Help Section */}
+              <div className="space-y-6">
+                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">How You Can Help</h3>
+                <p className="text-xs text-muted-foreground">Please select the ways you or your organization would like to support our mission:</p>
+                <div className="flex flex-wrap gap-3">
+                  {[
+                    "FINANCIAL SUPPORT",
+                    "FOOD & RESOURCE DONATIONS",
+                    "VOLUNTEER SERVICES (INDIVIDUAL OR TEAM)",
+                    "LOGISTICAL & TRANSPORT ASSISTANCE",
+                    "EVENT HOSTING & SUPPORT",
+                    "OTHER"
+                  ].map((option) => (
+                    <label key={option} className="flex items-center gap-2 px-4 py-2 bg-secondary/5 border border-bordersubtle/30 rounded-full cursor-pointer hover:border-secondary transition-all has-[:checked]:bg-secondary has-[:checked]:text-white has-[:checked]:border-secondary">
+                      <input type="checkbox" className="hidden" />
+                      <span className="text-[10px] font-bold tracking-wider">{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
               {/* Partnership Section */}
               <div className="space-y-6">
-                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Partnership Preferences</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
-                      Partnership Type <span className="text-destructive">*</span>
-                    </label>
-                    <select required className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors appearance-none">
-                      <option value="">Select an option</option>
-                      <option>Sponsorship</option>
-                      <option>Food Donation</option>
-                      <option>Volunteer Program</option>
-                      <option>Logistical Support</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold">Preferred Level of Involvement</label>
-                    <select className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors appearance-none">
-                      <option value="">Select an option</option>
-                      <option>One-time project</option>
-                      <option>Ongoing monthly support</option>
-                      <option>Annual partnership</option>
-                      <option>Event-based</option>
-                    </select>
+                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Involvement Details</h3>
+                
+                <div className="space-y-4">
+                  <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
+                    Involvement Type <span className="text-destructive">*</span>
+                  </label>
+                  <p className="text-[10px] text-muted-foreground italic">How would you like to be identified in our mission?</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      "Individual Volunteer",
+                      "Corporate Partner / Sponsor",
+                      "Food Rescue Partner",
+                      "Church or Ministry Partner",
+                      "Logistical Support Provider",
+                      "Other"
+                    ].map((type) => (
+                      <label key={type} className="flex items-center gap-3 p-3 bg-secondary/5 border border-bordersubtle/20 rounded-xl cursor-pointer hover:border-secondary transition-colors">
+                        <input type="checkbox" className="w-4 h-4 accent-secondary" />
+                        <span className="text-sm">{type}</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold">Estimated Resources</label>
-                    <input type="text" placeholder="What can you estimate donating?" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold">Contribution Focus</label>
-                    <input type="text" placeholder="How do you foresee contributing?" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+
+                <div className="space-y-4 pt-4">
+                  <label className="text-xs uppercase tracking-widest font-bold">Preferred Frequency</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      "One-time project",
+                      "Weekly commitment",
+                      "Bi-weekly support",
+                      "Monthly support",
+                      "Event-based only",
+                      "Flexible / As needed"
+                    ].map((freq) => (
+                      <label key={freq} className="flex items-center gap-3 p-3 bg-secondary/5 border border-bordersubtle/20 rounded-xl cursor-pointer hover:border-secondary transition-colors">
+                        <input type="checkbox" className="w-4 h-4 accent-secondary" />
+                        <span className="text-sm">{freq}</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
               </div>
 
               {/* Message Section */}
               <div className="space-y-6">
-                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Additional Information</h3>
+                <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Tell Us More About Yourself or Your Organization</h3>
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
-                    About Your Organization <span className="text-destructive">*</span>
+                    Briefly describe your background, mission, or any relevant information <span className="text-destructive">*</span>
                   </label>
-                  <textarea required rows={4} placeholder="Briefly describe your organization's mission..." className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
+                  <textarea required rows={4} placeholder="Tell us about your heart for service..." className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest font-bold">Comments or Questions</label>

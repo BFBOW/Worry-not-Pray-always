@@ -152,7 +152,7 @@ export default function FindSupportPage() {
   const faqs = [
     {
       question: "Who can access the Belleville Food Bank On Wheels?",
-      answer: "Our doors are open to anyone in need who has been referred to us. This includes individuals and families from various backgrounds, such as schools, social services, survivors of domestic violence, individuals experiencing homelessness, and the unemployed."
+      answer: "Our doors are open to anyone in need who has been referred to us. This includes individuals and families from various backgrounds, such as schools, social services, survivors of domestic violence, individuals experiencing homelessness, and the unemployed. Revelation 7:16-17 — 'They shall hunger no more, neither thirst any more; neither shall the sun light on them, nor any heat. For the Lamb which is in the midst of the throne shall feed them, and shall lead them unto living fountains of waters: and God shall wipe away all tears from their eyes.'"
     },
     {
       question: "What should I bring with me when I visit?",
@@ -246,7 +246,7 @@ export default function FindSupportPage() {
               </div>
               <h2 className="text-4xl font-heading mb-6 text-pop">Everyone Is Welcome</h2>
               <p className="text-xl text-textbody leading-relaxed mb-8">
-                Our doors are open to anyone in need, regardless of age, background, or circumstance. Whether you're a single parent, a senior, or a newcomer, community individuals experiencing homelessness we provide the resources you need to regain stability, a sense of belonging and hope.
+                Our doors are open to anyone in need, regardless of age, background, or circumstance. "He answereth and saith unto them, He that hath two coats, let him impart to him that hath none; and he that hath meat, let him do likewise." — Luke 3:11. Whether you're a single parent, a senior, or a newcomer, we provide the resources you need to regain stability, a sense of belonging and hope.
               </p>
               <div className="bg-background border border-bordersubtle/30 p-8 rounded-2xl">
                 <div className="text-4xl font-heading text-secondary mb-2">250,000+</div>

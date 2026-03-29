@@ -32,10 +32,10 @@ const Spirit: React.FC = () => {
     <div ref={containerRef} className="bg-background min-h-screen selection:bg-secondary selection:text-white overflow-hidden">
       
       {/* --- UNIQUE FULL-WIDTH HERO --- */}
-      <section className="relative w-full min-h-[70vh] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
+      <section className="relative w-full min-h-[50vh] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
         <motion.div 
           style={{ y: heroY }}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 h-[130%]"
         >
           <Image 
             src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=2070&auto=format&fit=crop"
@@ -69,26 +69,6 @@ const Spirit: React.FC = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* --- DYNAMIC MARQUEE --- */}
-      <div className="w-full bg-secondary py-6 overflow-hidden flex items-center border-y border-bordersubtle/20 relative z-20">
-        <motion.div 
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
-          className="flex whitespace-nowrap gap-16 px-8"
-        >
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="flex items-center gap-16">
-              <span className="font-heading text-3xl text-secondary-foreground/90 italic">Daily Bread</span>
-              <span className="w-3 h-3 rotate-45 bg-secondary-foreground/30" />
-              <span className="font-heading text-3xl text-secondary-foreground/90 italic">Spiritual Growth</span>
-              <span className="w-3 h-3 rotate-45 bg-secondary-foreground/30" />
-              <span className="font-heading text-3xl text-secondary-foreground/90 italic">Divine Guidance</span>
-              <span className="w-3 h-3 rotate-45 bg-secondary-foreground/30" />
-            </div>
-          ))}
-        </motion.div>
-      </div>
 
       {/* --- MAIN INTERACTIVE GRID --- */}
       <section className="w-full max-w-[120rem] mx-auto px-8 md:px-16 lg:px-24 py-24 lg:py-40">
@@ -194,68 +174,48 @@ const Spirit: React.FC = () => {
                   </div>
                 </motion.div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-12 mt-12">
+                  <div className="flex items-center gap-4 mb-8">
+                    <span className="text-secondary font-bold tracking-[0.3em] uppercase text-xs">Pathways to Peace</span>
+                    <div className="h-px flex-grow bg-bordersubtle/20" />
+                  </div>
+
                   <motion.div 
-                    whileHover={{ y: -12, scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="p-10 border border-bordersubtle/20 glass-panel rounded-sm group relative overflow-hidden cursor-pointer"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="group cursor-pointer relative"
                   >
-                    {/* Hover Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-secondary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    
-                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-20 group-hover:scale-110 group-hover:rotate-12 transition-all duration-700">
-                      <Heart size={120} />
-                    </div>
-                    
-                    <motion.div 
-                      whileHover={{ scale: 1.1, rotate: [0, -10, 10, 0] }}
-                      className="inline-block"
-                    >
-                      <Heart className="w-12 h-12 text-secondary mb-8 transition-colors group-hover:text-secondary-foreground" />
-                    </motion.div>
-                    
-                    <h3 className="font-heading text-3xl text-primary-foreground mb-4 group-hover:text-secondary transition-colors">Prayer Warriors</h3>
-                    <p className="font-paragraph text-textbody mb-8 leading-relaxed text-lg">Our dedicated team is ready to stand in the gap for you. Submit your requests privately.</p>
-                    
-                    <div className="flex items-center text-sm uppercase tracking-[0.2em] text-secondary font-bold group-hover:text-primary-foreground transition-colors">
-                      <span className="relative">
-                        Submit Request
-                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-secondary group-hover:w-full transition-all duration-300" />
-                      </span>
-                      <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-3 transition-transform duration-300" />
+                    <div className="flex flex-col md:flex-row md:items-center gap-8 py-10 border-b border-bordersubtle/20 group-hover:border-secondary transition-all duration-500">
+                      <span className="font-heading text-5xl md:text-6xl text-secondary/20 group-hover:text-secondary transition-colors duration-500 italic shrink-0">01</span>
+                      <div className="flex-grow">
+                        <h3 className="font-heading text-3xl md:text-4xl text-primary-foreground mb-3 group-hover:text-secondary transition-colors duration-500">Prayer Warriors</h3>
+                        <p className="font-paragraph text-textbody text-lg leading-relaxed max-w-xl">Our dedicated team is ready to stand in the gap for you. Submit your requests privately and join our circle of intercession.</p>
+                      </div>
+                      <div className="flex items-center gap-4 text-secondary font-bold uppercase tracking-widest text-xs opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
+                        <span>Submit Request</span>
+                        <ArrowRight className="w-5 h-5" />
+                      </div>
                     </div>
                   </motion.div>
 
                   <motion.div 
-                    whileHover={{ y: -12, scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="p-10 border border-bordersubtle/20 glass-panel rounded-sm group relative overflow-hidden cursor-pointer"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="group cursor-pointer relative"
                   >
-                    {/* Hover Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-secondary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                    <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-20 group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700">
-                      <Shield size={120} />
-                    </div>
-                    
-                    <motion.div 
-                      whileHover={{ scale: 1.1, y: [0, -5, 0] }}
-                      className="inline-block"
-                    >
-                      <Shield className="w-12 h-12 text-secondary mb-8 transition-colors group-hover:text-secondary-foreground" />
-                    </motion.div>
-                    
-                    <h3 className="font-heading text-3xl text-primary-foreground mb-4 group-hover:text-secondary transition-colors">Bible Study</h3>
-                    <p className="font-paragraph text-textbody mb-8 leading-relaxed text-lg">Deepen your understanding of the Word through our guided community studies.</p>
-                    
-                    <div className="flex items-center text-sm uppercase tracking-[0.2em] text-secondary font-bold group-hover:text-primary-foreground transition-colors">
-                      <span className="relative">
-                        View Schedule
-                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-secondary group-hover:w-full transition-all duration-300" />
-                      </span>
-                      <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-3 transition-transform duration-300" />
+                    <div className="flex flex-col md:flex-row md:items-center gap-8 py-10 border-b border-bordersubtle/20 group-hover:border-secondary transition-all duration-500">
+                      <span className="font-heading text-5xl md:text-6xl text-secondary/20 group-hover:text-secondary transition-colors duration-500 italic shrink-0">02</span>
+                      <div className="flex-grow">
+                        <h3 className="font-heading text-3xl md:text-4xl text-primary-foreground mb-3 group-hover:text-secondary transition-colors duration-500">Bible Study</h3>
+                        <p className="font-paragraph text-textbody text-lg leading-relaxed max-w-xl">Deepen your understanding of the Word through our guided community studies. Explore the scriptures in a supportive, faith-filled environment.</p>
+                      </div>
+                      <div className="flex items-center gap-4 text-secondary font-bold uppercase tracking-widest text-xs opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
+                        <span>View Schedule</span>
+                        <ArrowRight className="w-5 h-5" />
+                      </div>
                     </div>
                   </motion.div>
                 </div>
@@ -268,15 +228,16 @@ const Spirit: React.FC = () => {
             <div className="sticky top-32 space-y-12">
               
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="relative p-12 glass-panel rounded-sm overflow-hidden"
+                className="relative py-12 border-b border-bordersubtle/20"
               >
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl" />
-                <Mail className="w-12 h-12 text-secondary mb-8" />
-                <h2 className="font-heading text-3xl text-primary-foreground mb-6 text-pop">Weekly Manna</h2>
-                <p className="font-paragraph text-textbody mb-10 leading-relaxed">
+                <div className="flex items-center gap-4 mb-8">
+                  <Mail className="w-6 h-6 text-secondary" />
+                  <h2 className="font-heading text-3xl text-primary-foreground text-pop">Weekly Manna</h2>
+                </div>
+                <p className="font-paragraph text-textbody mb-10 leading-relaxed text-lg">
                   Receive our most uplifting devotionals and community updates directly to your inbox.
                 </p>
                 <SignupForm />

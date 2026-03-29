@@ -339,7 +339,7 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     app.use(express.static("dist"));
-    app.get("*", (_req, res) => {
+    app.get("*all", (_req, res) => {
       res.sendFile("dist/index.html", { root: "." });
     });
   }

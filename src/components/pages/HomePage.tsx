@@ -127,12 +127,14 @@ const EditorialBlock: React.FC<{
   features?: string[];
 }> = ({ title, subtitle, description, image, reverse, link, features }) => {
   return (
-    <section className="w-full py-8 lg:py-10 relative overflow-hidden">
+    <section className="w-full py-4 relative overflow-hidden border-b border-bordersubtle/5 last:border-b-0">
       {/* Atmospheric Background Elements */}
       <div className={`absolute top-1/2 ${reverse ? 'left-0' : 'right-0'} -translate-y-1/2 w-64 h-64 bg-secondary/5 rounded-full blur-[100px] -z-10`} />
       
-      <div className="max-w-[80rem] mx-auto px-6 md:px-12 lg:px-24">
-        <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-16`}>
+      <div className="max-w-[85rem] mx-auto px-6">
+        <div className={`p-6 md:p-8 flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-12 relative group`}>
+          {/* Pseudo-border: Vertical accent line */}
+          <div className={`absolute top-8 bottom-8 w-1.5 bg-secondary/30 ${reverse ? 'right-0' : 'left-0'} hidden lg:block rounded-full group-hover:bg-secondary/60 transition-colors duration-500`} />
           
           {/* Image Side */}
           <div className="w-full lg:w-4/12">
@@ -279,7 +281,7 @@ export default function HomePage() {
             </h1>
             
             <p className="font-paragraph text-xl text-textbody leading-relaxed mb-12 max-w-md">
-              At BFBOW, we're a sanctuary where faith meets action. We provide essential sustenance, spiritual growth, and a compassionate community for all who needs it.
+              At BFBOW, we're a sanctuary where faith meets action. We provide essential sustenance, spiritual growth, and a compassionate community for all who needs it. <span className="text-secondary italic">Proverbs 19:17</span> says "Whoever is kind to the poor lends to the Lord, and he will reward them for what they have done."
             </p>
 
             <div className="flex flex-wrap gap-6">
@@ -394,7 +396,7 @@ export default function HomePage() {
               <span className="text-secondary italic font-normal">Whole Person</span>
             </h2>
             <p className="font-paragraph text-xl text-textbody leading-relaxed max-w-2xl mx-auto opacity-80">
-              Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal.
+              Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal. <span className="text-secondary italic">3 John 1:2</span> — "Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well." God cares about your total well-being—body, mind, and spirit.
             </p>
           </motion.div>
         </div>
@@ -405,7 +407,7 @@ export default function HomePage() {
       <EditorialBlock 
         subtitle="Sustenance & Crisis Relief"
         title="Food Assistance & Emergency Support"
-        description="Ensuring no one goes hungry by providing regular access to nutritious food for families, while offering immediate relief for individuals in crisis with essentials like ready-to-eat meals and hygiene packages."
+        description="Ensuring no one goes hungry by providing regular access to nutritious food for families, while offering immediate relief for individuals in crisis. Revelation 7:16-17 — 'They shall hunger no more, neither thirst any more... for the Lamb which is in the midst of the throne shall feed them.'"
         image="https://i.ibb.co/PGcNVvXM/delivery.jpg"
         link="/find-support"
         features={["Weekly distribution", "Tailored dietary options", "Ready-to-eat meals", "Hygiene & baby care", "Homelessness support"]}
@@ -415,7 +417,8 @@ export default function HomePage() {
         subtitle="Spiritual Care"
         title="Faith-Based Counseling"
         description="We offer individual and family counseling rooted in biblical principles. Our compassionate counselors provide a safe space to navigate life's challenges, find spiritual clarity, and experience emotional healing through the grace of God."
-        image="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=2000"
+        image="https://i.ibb.co/ZzdQbF3q/photo-realistic-image-40-year-260nw-2615233105.webp"
+        reverse
         link="/spirit"
         features={["Individual Spiritual Guidance", "Family & Marriage Support", "Grief & Loss Counseling", "Youth Mentorship"]}
       />
@@ -424,8 +427,7 @@ export default function HomePage() {
         subtitle="Empowerment"
         title="Educational Programs"
         description="Providing skills and certifications for confidence and stable employment opportunities in our local community."
-        image="https://i.ibb.co/YBC7X6y0/images.jpg"
-        reverse
+        image="https://i.ibb.co/gZD52fZy/food-cert.jpg"
         link="/events"
         features={["First Aid CPR Training", "Food Handling Certs", "Job Support Resources"]}
       />
@@ -434,9 +436,29 @@ export default function HomePage() {
         subtitle="Connection"
         title="Visitation Ministry"
         description="No one should feel forgotten. Our visitation team brings the ministry to those who are shut-in, sick, or hospitalized. We provide prayer, companionship, and a tangible connection to the community for those unable to attend in person."
-        image="https://images.unsplash.com/photo-1581578731522-745505146317?auto=format&fit=crop&q=80&w=2000"
+        image="https://i.ibb.co/998Qc5Hk/sickpray.jpg"
+        reverse
         link="/join-mission"
         features={["Hospital Bedside Visits", "Home Visits for Shut-ins", "Nursing Home Outreach", "Phone Call Ministry"]}
+      />
+
+      <EditorialBlock 
+        subtitle="Restoration & Hope"
+        title="Prison Ministry"
+        description="Visiting those in correctional facilities to share the message of redemption and hope. Matthew 25:36 — 'I was in prison and you came to visit me.' We provide spiritual support, mentorship, and resources for successful reintegration."
+        image="https://i.ibb.co/8nSvRByM/prisonministry.jpg"
+        link="/join-mission"
+        features={["Facility Visitations", "Spiritual Mentorship", "Re-entry Support", "Family Connection"]}
+      />
+
+      <EditorialBlock 
+        subtitle="Spiritual Growth"
+        title="Bible Study & Evangelism"
+        description="Deepening our faith through the study of God's Word and sharing the Good News with our community. Matthew 28:19 — 'Go therefore and make disciples of all nations.' We offer group studies and outreach programs designed to strengthen your spiritual foundation."
+        image="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&q=80&w=2000"
+        reverse
+        link="/spirit"
+        features={["Weekly Group Studies", "Community Outreach", "Discipleship Training", "Evangelism Workshops"]}
       />
 
       {/* --- FEATURE:FOOD FOR THE SPIRIT (Parallax Background) --- */}

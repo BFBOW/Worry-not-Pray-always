@@ -29,7 +29,7 @@ export function Footer() {
             <ul className="space-y-4 text-textbody">
               <li>123 Faith Lane</li>
               <li>Community City, ST 12345</li>
-              <li>info@bellevillefoodbankonwheels.org</li>
+              <li>info@bellevillefoodbankonwheels.ca</li>
               <li>(555) 123-4567</li>
             </ul>
           </div>

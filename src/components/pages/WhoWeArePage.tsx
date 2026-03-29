@@ -24,21 +24,20 @@ export default function WhoWeArePage() {
     offset: ["start start", "end start"]
   });
 
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
 
   return (
     <div ref={containerRef} className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[70vh] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
+      <section className="relative w-full min-h-[450px] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
         <motion.div 
           style={{ y: heroY }}
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="https://i.ibb.co/8DdJjNZs/jesus.jpg"
+            src="https://i.ibb.co/cS994Lj2/jesusgiveswho.jpg"
             alt="Who We Are Hero"
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/40 to-background" />
         </motion.div>
@@ -50,19 +49,16 @@ export default function WhoWeArePage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
-            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter text-pop">
+            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl text-primary-foreground leading-[0.9] mb-8 uppercase tracking-tighter text-pop">
               Guided by Faith, <br />
               <span className="text-secondary italic font-normal">Nourishing</span> with Love
             </h1>
             <p className="font-paragraph text-xl md:text-2xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
               "Let brotherly love continue" — Hebrews 13:1. Our mission has always been about more than food. It’s about restoring dignity, offering hope, and sharing God’s love.
             </p>
-            <motion.div 
-              style={{ opacity }}
-              className="mt-16 flex justify-center"
-            >
-              <div className="w-px h-24 bg-gradient-to-b from-secondary to-transparent" />
-            </motion.div>
+            <p className="mt-4 font-paragraph text-lg text-secondary italic max-w-xl mx-auto">
+              "Then he took the five loaves and the two fishes, and looking up to heaven, he blessed them, and brake, and gave to the disciples to set before the multitude. And they did eat, and were all filled: and there was taken up of fragments that remained to them twelve baskets." — Luke 9:16-17
+            </p>
           </motion.div>
         </div>
       </section>
@@ -118,6 +114,9 @@ export default function WhoWeArePage() {
                   </div>
                 ))}
               </div>
+              <p className="mt-12 text-sm italic text-secondary/70 border-l-2 border-secondary/30 pl-4">
+                "Then he took the five loaves and the two fishes, and looking up to heaven, he blessed them, and brake, and gave to the disciples to set before the multitude. And they did eat, and were all filled: and there was taken up of fragments that remained to them twelve baskets." — Luke 9:16-17
+              </p>
               <p className="mt-12 text-xl font-heading italic text-secondary">
                 Through each step, our focus has remained on serving with dignity and love.
               </p>
@@ -186,6 +185,9 @@ export default function WhoWeArePage() {
             <h4 className="text-2xl font-heading text-secondary mb-6">AT BFBOW.</h4>
             <p className="text-2xl text-textbody leading-relaxed">
               We believe in addressing these challenges with compassion, providing not only meals but also a sense of belonging and care. Every meal shared is a step toward breaking the cycle of poverty.
+            </p>
+            <p className="mt-6 text-xl italic text-secondary/80 font-heading">
+              "Because I delivered the poor that cried, and the fatherless, and him that had none to help him. The blessing of him that was ready to perish came upon me: and I caused the widow's heart to sing for joy." — Job 29:12-13
             </p>
           </div>
         </div>
