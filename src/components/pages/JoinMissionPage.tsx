@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { 
   CheckCircle2, 
@@ -16,12 +16,21 @@ import {
   Lock,
   HeartPulse,
   Package,
-  Megaphone
+  Megaphone,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Image } from '../ui/image';
+import { PartnerFormSubmission } from '../../lib/partnerSubmission';
 
 export default function JoinMissionPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{
+    type: 'success' | 'error' | 'warning';
+    text: string;
+  } | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -30,6 +39,80 @@ export default function JoinMissionPage() {
 
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage(null);
+
+    const formData = new FormData(e.currentTarget);
+    
+    // Combine availability
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    const availabilityParts: string[] = [];
+    for (const day of days) {
+      const enabled = formData.get(`availability_${day}_enabled`) === "on";
+      const time = formData.get(`availability_${day}_time`)?.toString().trim();
+      if (enabled && time) {
+        const capitalizedDay = day.charAt(0).toUpperCase() + day.slice(1);
+        availabilityParts.push(`${capitalizedDay}: ${time}`);
+      }
+    }
+
+    const submission: PartnerFormSubmission = {
+      firstName: formData.get("firstName")?.toString() || "",
+      lastName: formData.get("lastName")?.toString() || "",
+      email: formData.get("email")?.toString() || "",
+      phone: formData.get("phone")?.toString() || "",
+      organizationName: formData.get("organizationName")?.toString(),
+      role: formData.get("role")?.toString(),
+      country: formData.get("country")?.toString() || "Canada",
+      ministryInterests: formData.getAll("ministryInterests") as string[],
+      availability: availabilityParts.join("; "),
+      helpTypes: formData.getAll("helpTypes") as string[],
+      involvementType: formData.get("involvementType")?.toString() || "",
+      frequency: formData.get("frequency")?.toString() || "",
+      backgroundInfo: formData.get("backgroundInfo")?.toString() || "",
+      comments: formData.get("comments")?.toString(),
+    };
+
+    try {
+      const response = await fetch('/api/partner', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(submission),
+      });
+
+      const text = await response.text();
+      let result: any = {};
+
+      try {
+        result = text ? JSON.parse(text) : {};
+      } catch {
+        result = { status: 'error', error: 'Invalid server response.' };
+      }
+
+      if (result.status === 'success' || result.status === 'warning') {
+        setSubmitMessage({
+          type: result.status,
+          text: result.message || 'Partnership form submitted successfully.'
+        });
+        formRef.current?.reset();
+      } else {
+        setSubmitMessage({
+          type: 'error',
+          text: result.error || 'Something went wrong. Please try again.'
+        });
+      }
+    } catch (err) {
+      setSubmitMessage({
+        type: 'error',
+        text: 'A network error occurred. Please check your connection and try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div ref={containerRef} className="bg-background min-h-screen">
@@ -106,13 +189,13 @@ export default function JoinMissionPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative max-w-lg lg:ml-auto"
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-bordersubtle/30 bg-background group">
                 <Image 
-                  src="https://i.ibb.co/60SzHczz/wsfb.jpg"
+                  src="https://i.ibb.co/Z6ZK7fR6/crosss.jpg"
                   alt="Service Calling"
-                  className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent pointer-events-none" />
                 
@@ -122,7 +205,7 @@ export default function JoinMissionPage() {
               </div>
               
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -left-6 glass-panel p-6 rounded-xl border border-secondary/20 shadow-xl max-w-[200px]">
+              <div className="absolute -bottom-6 -right-6 glass-panel p-6 rounded-xl border border-secondary/20 shadow-xl max-w-[200px] z-20">
                 <p className="text-xs italic text-secondary leading-relaxed">
                   "As every man hath received the gift, even so minister the same one to another."
                 </p>
@@ -251,8 +334,8 @@ export default function JoinMissionPage() {
               className="grid grid-cols-2 gap-6"
             >
               {[
-                { src: "https://i.ibb.co/60SzHczz/wsfb.jpg", alt: "WSFB Logo" },
-                { placeholder: true },
+                { src: "https://i.ibb.co/C3K7tkQn/bsdac.jpg", alt: "Partner Logo 1" },
+                { src: "https://i.ibb.co/84MPnGPs/where.png", alt: "Partner Logo 2" },
                 { placeholder: true },
                 { placeholder: true }
               ].map((logo, i) => (
@@ -264,7 +347,7 @@ export default function JoinMissionPage() {
                     <Image 
                       src={logo.src}
                       alt={logo.alt}
-                      className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                      className="w-full h-full object-contain transition-all duration-500"
                     />
                   ) : (
                     <div className="text-center space-y-2 opacity-20 group-hover:opacity-40 transition-opacity">
@@ -336,40 +419,40 @@ export default function JoinMissionPage() {
               </p>
             </div>
 
-            <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
+            <form ref={formRef} className="space-y-10" onSubmit={handleSubmit}>
               {/* Name Section */}
               <div className="space-y-6">
                 <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Personal Information</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
+                    <label htmlFor="firstName" className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
                       First Name <span className="text-destructive">*</span>
                     </label>
-                    <input required type="text" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input id="firstName" name="firstName" required type="text" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
+                    <label htmlFor="lastName" className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
                       Last Name <span className="text-destructive">*</span>
                     </label>
-                    <input required type="text" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input id="lastName" name="lastName" required type="text" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
+                    <label htmlFor="email" className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
                       Email <span className="text-destructive">*</span>
                     </label>
-                    <input required type="email" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input id="email" name="email" required type="email" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
+                    <label htmlFor="phone" className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
                       Phone <span className="text-destructive">*</span>
                     </label>
                     <div className="flex gap-2">
                       <div className="w-20 bg-secondary/10 border border-bordersubtle/30 rounded-lg px-3 py-3 text-center text-sm flex items-center justify-center">
                         +1
                       </div>
-                      <input required type="tel" className="flex-grow bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                      <input id="phone" name="phone" required type="tel" className="flex-grow bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                     </div>
                   </div>
                 </div>
@@ -390,7 +473,7 @@ export default function JoinMissionPage() {
                     "General Volunteering"
                   ].map((interest) => (
                     <label key={interest} className="flex items-center gap-3 p-4 bg-secondary/5 border border-bordersubtle/20 rounded-xl cursor-pointer hover:border-secondary transition-colors">
-                      <input type="checkbox" className="w-5 h-5 accent-secondary" />
+                      <input type="checkbox" name="ministryInterests" value={interest} className="w-5 h-5 accent-secondary" />
                       <span className="text-sm font-medium">{interest}</span>
                     </label>
                   ))}
@@ -402,22 +485,23 @@ export default function JoinMissionPage() {
                 <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Organization Details (Optional)</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
+                    <label htmlFor="organizationName" className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
                       Organization Name
                     </label>
-                    <input type="text" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input id="organizationName" name="organizationName" type="text" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
+                    <label htmlFor="role" className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
                       Role / Affiliation
                     </label>
-                    <input type="text" placeholder="Ex: Owner, C-Level, Manager, etc" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
+                    <input id="role" name="role" type="text" placeholder="Ex: Owner, C-Level, Manager, etc" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold">Country</label>
+                  <label htmlFor="country" className="text-xs uppercase tracking-widest font-bold">Country</label>
                   <div className="w-full bg-secondary/10 border border-bordersubtle/30 rounded-lg px-4 py-3 flex items-center gap-2">
                     <Globe size={16} className="text-secondary" />
+                    <input id="country" name="country" type="hidden" value="Canada" />
                     <span>Canada</span>
                   </div>
                 </div>
@@ -431,11 +515,12 @@ export default function JoinMissionPage() {
                   {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day) => (
                     <div key={day} className="grid grid-cols-1 sm:grid-cols-[120px_1fr] items-center gap-4 p-3 bg-secondary/5 border border-bordersubtle/20 rounded-xl">
                       <label className="flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" className="w-4 h-4 accent-secondary" />
+                        <input type="checkbox" name={`availability_${day.toLowerCase()}_enabled`} className="w-4 h-4 accent-secondary" />
                         <span className="text-sm font-bold">{day}</span>
                       </label>
                       <input 
                         type="text" 
+                        name={`availability_${day.toLowerCase()}_time`}
                         placeholder="Specify times (e.g. 10am - 2pm)" 
                         className="bg-transparent border-b border-bordersubtle/30 px-2 py-1 text-sm focus:border-secondary outline-none transition-colors w-full"
                       />
@@ -458,7 +543,7 @@ export default function JoinMissionPage() {
                     "OTHER"
                   ].map((option) => (
                     <label key={option} className="flex items-center gap-2 px-4 py-2 bg-secondary/5 border border-bordersubtle/30 rounded-full cursor-pointer hover:border-secondary transition-all has-[:checked]:bg-secondary has-[:checked]:text-white has-[:checked]:border-secondary">
-                      <input type="checkbox" className="hidden" />
+                      <input type="checkbox" name="helpTypes" value={option} className="hidden" />
                       <span className="text-[10px] font-bold tracking-wider">{option}</span>
                     </label>
                   ))}
@@ -484,7 +569,7 @@ export default function JoinMissionPage() {
                       "Other"
                     ].map((type) => (
                       <label key={type} className="flex items-center gap-3 p-3 bg-secondary/5 border border-bordersubtle/20 rounded-xl cursor-pointer hover:border-secondary transition-colors">
-                        <input type="checkbox" className="w-4 h-4 accent-secondary" />
+                        <input type="radio" name="involvementType" value={type} required className="w-4 h-4 accent-secondary" />
                         <span className="text-sm">{type}</span>
                       </label>
                     ))}
@@ -503,7 +588,7 @@ export default function JoinMissionPage() {
                       "Flexible / As needed"
                     ].map((freq) => (
                       <label key={freq} className="flex items-center gap-3 p-3 bg-secondary/5 border border-bordersubtle/20 rounded-xl cursor-pointer hover:border-secondary transition-colors">
-                        <input type="checkbox" className="w-4 h-4 accent-secondary" />
+                        <input type="radio" name="frequency" value={freq} className="w-4 h-4 accent-secondary" />
                         <span className="text-sm">{freq}</span>
                       </label>
                     ))}
@@ -515,19 +600,42 @@ export default function JoinMissionPage() {
               <div className="space-y-6">
                 <h3 className="text-sm uppercase tracking-widest font-bold text-secondary border-b border-secondary/20 pb-2">Tell Us More About Yourself or Your Organization</h3>
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
+                  <label htmlFor="backgroundInfo" className="text-xs uppercase tracking-widest font-bold flex items-center gap-1">
                     Briefly describe your background, mission, or any relevant information <span className="text-destructive">*</span>
                   </label>
-                  <textarea required rows={4} placeholder="Tell us about your heart for service..." className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
+                  <textarea id="backgroundInfo" name="backgroundInfo" required rows={4} placeholder="Tell us about your heart for service..." className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold">Comments or Questions</label>
-                  <textarea rows={3} placeholder="Anything else you'd like to share?" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
+                  <label htmlFor="comments" className="text-xs uppercase tracking-widest font-bold">Comments or Questions</label>
+                  <textarea id="comments" name="comments" rows={3} placeholder="Anything else you'd like to share?" className="w-full bg-secondary/5 border border-bordersubtle/30 rounded-lg px-4 py-3 focus:border-secondary outline-none transition-colors"></textarea>
                 </div>
               </div>
 
-              <Button className="w-full py-8 text-lg uppercase tracking-[0.2em] font-bold shadow-xl shadow-secondary/20 group">
-                Ready to Join <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+              {submitMessage && (
+                <div className={`p-4 rounded-lg flex items-start gap-3 ${
+                  submitMessage.type === 'success' ? 'bg-green-500/10 border border-green-500/20 text-green-500' :
+                  submitMessage.type === 'warning' ? 'bg-amber-500/10 border border-amber-500/20 text-amber-500' :
+                  'bg-destructive/10 border border-destructive/20 text-destructive'
+                }`}>
+                  {submitMessage.type === 'success' ? <CheckCircle2 className="mt-0.5 shrink-0" size={18} /> :
+                   submitMessage.type === 'warning' ? <AlertCircle className="mt-0.5 shrink-0" size={18} /> :
+                   <Info className="mt-0.5 shrink-0" size={18} />}
+                  <p className="text-sm">{submitMessage.text}</p>
+                </div>
+              )}
+
+              <Button 
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-8 text-lg uppercase tracking-[0.2em] font-bold shadow-xl shadow-secondary/20 group"
+              >
+                {isSubmitting ? (
+                  <Loader2 className="w-6 h-6 animate-spin" />
+                ) : (
+                  <>
+                    Ready to Join <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+                  </>
+                )}
               </Button>
             </form>
           </div>

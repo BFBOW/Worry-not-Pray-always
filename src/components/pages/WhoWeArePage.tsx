@@ -126,13 +126,14 @@ export default function WhoWeArePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="relative rounded-3xl overflow-hidden shadow-2xl max-w-2xl mx-auto lg:ml-auto lg:mr-0"
+              className="relative rounded-3xl overflow-hidden shadow-2xl w-full"
             >
               <Image 
-                src="https://i.ibb.co/N6dShX66/seed.jpg"
+                src="https://i.ibb.co/BVwBgYxx/crosss.jpg"
                 alt="Community history"
-                className="w-full h-auto object-contain"
+                className="w-full h-[500px] object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent pointer-events-none" />
             </motion.div>
           </div>
         </div>
