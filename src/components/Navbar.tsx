@@ -13,8 +13,8 @@ export function Navbar() {
             {/* Logo/Brand */}
             <Link to="/" className="flex items-center space-x-3">
               <img 
-                src="https://i.ibb.co/m5Z6pXvF/WSFB-logo-Colour-Main.webp" 
-                alt="WSFB Logo" 
+                src="https://i.ibb.co/JFr2RG02/logwithfiler50.png" 
+                alt="Belleville Food Bank Logo" 
                 className="h-12 w-auto"
                 referrerPolicy="no-referrer"
               />
