@@ -154,9 +154,15 @@ export default function JoinMissionPage() {
         </div>
       </section>
 
-      {/* Service Callings Section - Editorial Split Layout */}
-      <section className="py-24 bg-secondary/5 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Service Callings Section - Editorial Split Layout with Slanted Background */}
+      <section 
+        className="relative py-32 overflow-hidden"
+        style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
+      >
+        {/* Soft Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -167,7 +173,7 @@ export default function JoinMissionPage() {
               <div className="inline-block px-4 py-1 border border-secondary/30 rounded-full text-secondary text-[10px] uppercase tracking-[0.3em] mb-8 font-bold">
                 Individual Callings
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading mb-8 leading-[0.85] tracking-tighter">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading mb-8 leading-[0.85] tracking-tighter text-pop">
                 Answering the <br />
                 <span className="text-secondary italic font-normal">Call to Serve</span>
               </h2>
@@ -186,16 +192,16 @@ export default function JoinMissionPage() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.95, x: 20 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative max-w-lg lg:ml-auto"
+              className="relative max-w-lg lg:ml-auto lg:-mr-12"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-bordersubtle/30 bg-background group">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-background group">
                 <Image 
                   src="https://i.ibb.co/Z6ZK7fR6/crosss.jpg"
                   alt="Service Calling"
-                  className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent pointer-events-none" />
                 
@@ -205,18 +211,21 @@ export default function JoinMissionPage() {
               </div>
               
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -right-6 glass-panel p-6 rounded-xl border border-secondary/20 shadow-xl max-w-[200px] z-20">
+              <div className="absolute -bottom-6 -left-6 glass-panel p-6 rounded-xl border border-secondary/20 shadow-xl max-w-[200px] z-20">
                 <p className="text-xs italic text-secondary leading-relaxed">
                   "As every man hath received the gift, even so minister the same one to another."
                 </p>
                 <p className="text-[10px] uppercase tracking-widest mt-2 font-bold opacity-60">— 1 Peter 4:10</p>
               </div>
+              
+              {/* Soft Glow behind image */}
+              <div className="absolute inset-0 bg-secondary/5 blur-3xl -z-10 scale-110" />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Impact Section (Partnerships) - Full-Bleed Editorial Block */}
+      {/* Impact Section (Partnerships) - Full-Bleed Editorial Block with Glows */}
       <section className="relative py-32 bg-primary overflow-hidden">
         {/* Background Decorative Numbers */}
         
@@ -228,6 +237,10 @@ export default function JoinMissionPage() {
           />
           <div className="absolute inset-0 bg-primary/80" />
         </div>
+
+        {/* Soft Halo Glows */}
+        <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[150px] -z-10 -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10 translate-x-1/4 translate-y-1/4" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div

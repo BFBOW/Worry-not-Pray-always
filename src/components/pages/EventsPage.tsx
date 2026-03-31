@@ -129,8 +129,15 @@ export default function EventsPage() {
         </div>
       </section>
 
-      <div className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section 
+        className="relative py-24 overflow-hidden"
+        style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
+      >
+        {/* Soft Halo Glows */}
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[150px] -z-10" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 gap-8">
           {events.map((event, i) => (
             <motion.div
@@ -139,16 +146,16 @@ export default function EventsPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-secondary/5 border border-bordersubtle rounded-2xl p-8 flex flex-col md:flex-row gap-8 items-center hover:border-secondary transition-colors"
+              className="glass-panel border border-white/5 rounded-2xl p-8 flex flex-col md:flex-row gap-8 items-center hover:border-secondary transition-all group"
             >
-              <div className="bg-secondary text-secondary-foreground p-6 rounded-xl text-center min-w-[140px]">
+              <div className="bg-secondary text-secondary-foreground p-6 rounded-xl text-center min-w-[140px] shadow-lg">
                 <div className="text-sm uppercase tracking-widest opacity-80 mb-1">Schedule</div>
                 <div className="text-lg font-bold leading-tight">{event.date}</div>
               </div>
               
               <div className="flex-grow">
-                <h3 className="text-2xl font-heading mb-4">{event.title}</h3>
-                <p className="text-textbody text-lg mb-6">{event.desc}</p>
+                <h3 className="text-2xl font-heading mb-4 text-pop group-hover:text-secondary transition-colors">{event.title}</h3>
+                <p className="text-textbody text-lg mb-6 leading-relaxed italic font-paragraph">{event.desc}</p>
                 <div className="flex flex-wrap gap-6 text-base text-textbody">
                   <div className="flex items-center gap-2">
                     <Clock size={16} className="text-secondary" />
@@ -162,7 +169,7 @@ export default function EventsPage() {
               </div>
               
               <div className="w-full md:w-auto">
-                <Button variant="outline" className="w-full md:w-auto uppercase tracking-widest">
+                <Button variant="outline" className="w-full md:w-auto uppercase tracking-widest border-secondary/30 hover:bg-secondary hover:text-primary transition-all">
                   Register
                 </Button>
               </div>
@@ -170,7 +177,7 @@ export default function EventsPage() {
           ))}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

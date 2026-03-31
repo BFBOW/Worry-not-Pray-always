@@ -83,19 +83,20 @@ export default function WhoWeArePage() {
         </div>
       </section>
 
-      {/* History Section */}
-      <section className="py-24">
+      {/* History Section with Image Overlap */}
+      <section className="py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              className="relative z-10"
             >
               <div className="inline-flex p-3 bg-secondary/10 rounded-full text-secondary mb-6">
                 <History size={32} />
               </div>
-              <h2 className="text-4xl md:text-5xl font-heading mb-8">Changing by Faith.</h2>
+              <h2 className="text-4xl md:text-5xl font-heading mb-8 text-pop">Changing by Faith.</h2>
               <p className="text-lg text-textlight leading-relaxed mb-8">
                 TBD
               </p>
@@ -123,17 +124,21 @@ export default function WhoWeArePage() {
             </motion.div>
             
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.95, x: 20 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative rounded-3xl overflow-hidden shadow-2xl w-full"
+              className="relative z-20 lg:-mr-20"
             >
-              <Image 
-                src="https://i.ibb.co/BVwBgYxx/crosss.jpg"
-                alt="Community history"
-                className="w-full h-[500px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent pointer-events-none" />
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+                <Image 
+                  src="https://i.ibb.co/BVwBgYxx/crosss.jpg"
+                  alt="Community history"
+                  className="w-full h-[600px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent pointer-events-none" />
+              </div>
+              {/* Soft Glow behind image */}
+              <div className="absolute inset-0 bg-secondary/5 blur-3xl -z-10 scale-110" />
             </motion.div>
           </div>
         </div>
@@ -194,30 +199,36 @@ export default function WhoWeArePage() {
         </div>
       </section>
 
-      {/* Faith Section */}
-      <section className="py-24 border-b border-bordersubtle/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Faith Section with Slanted Split */}
+      <section 
+        className="relative py-32 overflow-hidden"
+        style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
+      >
+        {/* Soft Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-secondary font-heading text-xl mb-8 opacity-40 uppercase tracking-[0.2em]"
+              className="text-secondary font-heading text-xl mb-8 opacity-60 uppercase tracking-[0.2em]"
             >
               Hebrews 13:16 "And do not forget to do good and to share with others, for with such sacrifices God is pleased"
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-heading mb-8">Faith That Moves Us</h2>
+            <h2 className="text-4xl md:text-6xl font-heading mb-8 text-pop">Faith That Moves Us</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="space-y-6">
-              <h3 className="text-2xl font-heading text-secondary">Guided by Faith, Empowered by Action</h3>
+              <h3 className="text-2xl font-heading text-secondary italic">Guided by Faith, Empowered by Action</h3>
               <p className="text-textlight leading-relaxed">
                 Our work is inspired by the teachings of Christ and the belief that faith without action is incomplete. At our Belleville Food Bank On Wheels, we turn prayer into purpose and love into service. Every box packed, every meal shared, and every life touched is a testament to God’s calling.
               </p>
             </div>
             <div className="space-y-6">
-              <h3 className="text-2xl font-heading text-secondary">Faith in Action, Love in Every Meal</h3>
+              <h3 className="text-2xl font-heading text-secondary italic">Faith in Action, Love in Every Meal</h3>
               <p className="text-textlight leading-relaxed">
                 We believe that true faith is demonstrated through serving others. That’s why our programs are rooted in compassion and inclusivity, offering:
               </p>
@@ -228,7 +239,7 @@ export default function WhoWeArePage() {
               </ul>
             </div>
             <div className="space-y-6">
-              <h3 className="text-2xl font-heading text-secondary">Welcoming Everyone With Open Hearts</h3>
+              <h3 className="text-2xl font-heading text-secondary italic">Welcoming Everyone With Open Hearts</h3>
               <p className="text-textlight leading-relaxed">
                 Inspired by Proverbs 19:17 “Whoever is kind to the poor lends to the Lord, and he will reward them for what they have done.”—we serve all people, regardless of background, faith, or circumstance.
               </p>

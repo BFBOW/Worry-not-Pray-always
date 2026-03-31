@@ -148,24 +148,27 @@ const EditorialBlock: React.FC<{
             <div className={`absolute bottom-0 ${reverse ? 'left-0' : 'right-0'} w-px h-full bg-gradient-to-t from-secondary/50 via-secondary/10 to-transparent`} />
           </div>
           
-          {/* Image Side */}
-          <div className="w-full lg:w-4/12">
+          {/* Image Side with Overlap Effect */}
+          <div className="w-full lg:w-5/12 relative">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-20 lg:-mt-12 lg:-mb-12"
             >
               <ParallaxImage 
                 src={image} 
                 alt={title} 
-                className="aspect-video shadow-lg rounded-sm" 
+                className="aspect-[4/3] shadow-2xl rounded-sm border border-white/5" 
               />
+              {/* Subtle shadow/glow behind image */}
+              <div className="absolute inset-0 bg-secondary/5 blur-2xl -z-10 scale-110" />
             </motion.div>
           </div>
 
           {/* Content Side */}
-          <div className="w-full lg:w-8/12">
+          <div className="w-full lg:w-7/12 py-12">
             <motion.div
               initial={{ opacity: 0, x: reverse ? -30 : 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -253,7 +256,7 @@ export default function HomePage() {
     offset: ["start start", "end end"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-16.6%", "3.4%"]);
 
   return (
     <div ref={containerRef} className="bg-background overflow-clip selection:bg-secondary selection:text-white">
@@ -268,7 +271,7 @@ export default function HomePage() {
           <Image 
             src="https://i.ibb.co/8DdJjNZs/jesus.jpg"
             alt="Nourishing Body and Soul"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-bottom"
           />
           {/* Overlay for readability: Darker on the left where text is */}
           <div className="absolute inset-0 bg-black/40 lg:bg-gradient-to-r lg:from-primary/90 lg:via-primary/40 lg:to-transparent" />
@@ -374,48 +377,44 @@ export default function HomePage() {
         </motion.div>
       </div>
 
-      {/* --- EDITORIAL MISSION OVERVIEW --- */}
-      <section className="w-full pt-20 pb-10 text-center relative overflow-hidden">
-        {/* Decorative background elements */}
+      {/* --- EDITORIAL MISSION OVERVIEW with Slanted Split --- */}
+      <section 
+        className="w-full py-24 md:py-32 text-center relative overflow-hidden"
+        style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
+      >
+        {/* Atmospheric Background Elements - Soft glows to add depth */}
         <motion.div 
           animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-24 -left-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl -z-10"
-        />
-        <motion.div 
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            rotate: [0, -90, 0],
+            scale: [1, 1.1, 1],
             opacity: [0.2, 0.4, 0.2]
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-24 -right-24 w-[30rem] h-[30rem] bg-secondary/5 rounded-full blur-3xl -z-10"
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-secondary/10 rounded-full blur-[120px] -z-10"
         />
         
-        <div className="max-w-4xl mx-auto px-6">
+        {/* Central Glow behind text */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
+        
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl text-primary-foreground mb-8 leading-[0.9] tracking-tighter">
+            <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl text-primary-foreground mb-8 leading-[0.9] tracking-tighter text-pop">
               Serving the <br />
               <span className="text-secondary italic font-normal">Whole Person</span>
             </h2>
-            <p className="font-paragraph text-xl text-textbody leading-relaxed max-w-2xl mx-auto opacity-80">
-              Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal. <span className="text-secondary italic">3 John 1:2</span> — "Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well." God cares about your total well-being—body, mind, and spirit.
+            <p className="font-paragraph text-xl text-textbody leading-relaxed max-w-2xl mx-auto opacity-90">
+              Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal. <span className="text-secondary italic font-medium">3 John 1:2</span> — "Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well." God cares about your total well-being—body, mind, and spirit.
             </p>
           </motion.div>
         </div>
         
         {/* Decorative Tapering Line */}
-        <div className="mt-8 flex justify-center">
-          <div className="w-px h-24 bg-gradient-to-b from-secondary/40 to-transparent" />
+        <div className="mt-16 flex justify-center relative z-10">
+          <div className="w-px h-40 bg-gradient-to-b from-secondary/40 via-secondary/10 to-transparent" />
         </div>
       </section>
 

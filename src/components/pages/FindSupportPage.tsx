@@ -232,40 +232,51 @@ export default function FindSupportPage() {
         </div>
       </section>
 
-      {/* Everyone is Welcome */}
-      <section className="py-24 bg-secondary/5 border-y border-bordersubtle/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Everyone is Welcome with Slanted Split */}
+      <section 
+        className="relative py-32 overflow-hidden"
+        style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
+      >
+        {/* Soft Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              className="relative z-10"
             >
               <div className="inline-flex p-3 bg-background rounded-full text-secondary mb-6 shadow-lg border border-bordersubtle/20">
                 <Users size={32} />
               </div>
               <h2 className="text-4xl font-heading mb-6 text-pop">Everyone Is Welcome</h2>
-              <p className="text-xl text-textbody leading-relaxed mb-8">
+              <p className="text-xl text-textbody leading-relaxed mb-8 italic font-paragraph">
                 Our doors are open to anyone in need, regardless of age, background, or circumstance. "He answereth and saith unto them, He that hath two coats, let him impart to him that hath none; and he that hath meat, let him do likewise." — Luke 3:11. Whether you're a single parent, a senior, or a newcomer, we provide the resources you need to regain stability, a sense of belonging and hope.
               </p>
-              <div className="bg-background border border-bordersubtle/30 p-8 rounded-2xl">
+              <div className="bg-background/50 backdrop-blur-sm border border-white/5 p-8 rounded-2xl">
                 <div className="text-4xl font-heading text-secondary mb-2">250,000+</div>
                 <p className="text-textbody">Meals are provided annually to ensure no one in our community goes hungry.</p>
               </div>
             </motion.div>
             
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.95, x: 20 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
-              className="rounded-3xl overflow-hidden shadow-2xl aspect-video"
+              className="relative z-20 lg:-mr-20"
             >
-              <img 
-                src="https://i.ibb.co/qYnRwWFN/hwyni.webp"
-                alt="Everyone is Welcome"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
+              <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video border border-white/5">
+                <img 
+                  src="https://i.ibb.co/qYnRwWFN/hwyni.webp"
+                  alt="Everyone is Welcome"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              {/* Soft Glow behind image */}
+              <div className="absolute inset-0 bg-secondary/5 blur-3xl -z-10 scale-110" />
             </motion.div>
           </div>
         </div>
@@ -294,8 +305,8 @@ export default function FindSupportPage() {
         </div>
       </section>
 
-      {/* Access Support Today Info */}
-      <section className="relative py-24 bg-primary text-primary-foreground">
+      {/* Access Support Today Info with Glows */}
+      <section className="relative py-32 bg-primary text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10">
           <Image 
             src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2000"
@@ -303,10 +314,15 @@ export default function FindSupportPage() {
             className="w-full h-full object-cover"
           />
         </div>
+
+        {/* Soft Halo Glows */}
+        <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[150px] -z-10 -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10 translate-x-1/4 translate-y-1/4" />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-heading mb-8 opacity-40 uppercase tracking-[0.3em] text-pop">Access Support Today</h2>
-            <p className="text-2xl text-textbody max-w-4xl mx-auto leading-relaxed font-medium">
+            <p className="text-2xl text-textbody max-w-4xl mx-auto leading-relaxed font-medium italic font-paragraph">
               We're thrilled to support you and your family's needs with our bi-weekly healthy food boxes. Each box is filled with nourishing items, including local produce, meats, toiletries, perishable and non-perishable diet-friendly meals, and even pet food.
             </p>
           </div>
@@ -317,7 +333,7 @@ export default function FindSupportPage() {
                 <Heart size={24} />
               </div>
               <h3 className="text-2xl font-heading">Compassionate Care</h3>
-              <p className="text-textbody text-base leading-relaxed">
+              <p className="text-textbody text-base leading-relaxed italic font-paragraph">
                 At our food bank, we're here to help anyone in need who has been referred to us. Our clients come from various backgrounds, such as schools, social services, new comers, survivors of domestic violence, individuals experiencing homelessness, and the unemployed.
               </p>
             </div>
@@ -326,7 +342,7 @@ export default function FindSupportPage() {
                 <ShieldCheck size={24} />
               </div>
               <h3 className="text-2xl font-heading">Dietary Respect</h3>
-              <p className="text-textbody text-base leading-relaxed">
+              <p className="text-textbody text-base leading-relaxed italic font-paragraph">
                 We understand the importance of individual dietary restrictions. We respect cultural and social dietary requirements. We offer gluten-free, diabetic-friendly, nut-free, vegan, vegetarian, perishable, non-perishable and halal options.
               </p>
             </div>
@@ -335,7 +351,7 @@ export default function FindSupportPage() {
                 <Info size={24} />
               </div>
               <h3 className="text-2xl font-heading">Secure & Private</h3>
-              <p className="text-textbody text-base leading-relaxed">
+              <p className="text-textbody text-base leading-relaxed italic font-paragraph">
                Please rest assured that any information you provide will be kept safe and secure and confidential, accessible only to authorized senior personnel at BFBOW.
               </p>
             </div>
