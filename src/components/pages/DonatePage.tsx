@@ -13,8 +13,8 @@ import {
   Mail,
   MapPin
 } from 'lucide-react';
+import { Button } from '../ui/button';
 import { Image } from '../ui/image';
-import { MagneticButton } from '../ui/MagneticButton';
 
 export default function DonatePage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,9 +27,9 @@ export default function DonatePage() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <div ref={containerRef} className="bg-background min-h-screen selection:bg-secondary selection:text-primary">
+    <div ref={containerRef} className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[70vh] py-20 flex items-center justify-center overflow-hidden border-b border-secondary/10">
+      <section className="relative w-full min-h-[70vh] py-20 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
         <motion.div 
           style={{ y: heroY }}
           className="absolute inset-0 z-0"
@@ -37,9 +37,9 @@ export default function DonatePage() {
           <Image 
             src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&q=80&w=2000"
             alt="Donate Hero"
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/40 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-primary/20 to-background/60" />
         </motion.div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
@@ -49,12 +49,12 @@ export default function DonatePage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Leaf className="w-12 h-12 text-secondary mx-auto mb-8 animate-pulse" />
-            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.85] mb-8 italic tracking-tighter">
+            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter text-pop">
               Give Today, <br />
               <span className="text-secondary italic font-normal">Change</span> Tomorrow.
             </h1>
             <p className="font-paragraph text-xl md:text-2xl text-textbody max-w-2xl mx-auto leading-relaxed italic">
-              Every dollar you give, helps us provide nutritious meals and essential support to families and community individuals experiencing homelessness in need.
+              Every dollar you give, helps us provide nutritious perishable and non-perishable meals and essential support to families and community individuals experiencing homelessness in need. With your generosity, we can turn hunger into hope.Jesus has healed ten lepers. Only one, a Samaritan, returns to thank Him and praise God. He recognizes what the Pharisees do not: Jesus performs miracles under the power of God; Jesus is of God (Luke 17:11–18).
             </p>
             <motion.div 
               style={{ opacity }}
@@ -63,30 +63,30 @@ export default function DonatePage() {
               <div className="w-px h-24 bg-gradient-to-b from-secondary to-transparent" />
             </motion.div>
           </motion.div>
-          <div className="mt-12 text-center max-w-3xl mx-auto">
+          <div className="mt-12 text-center">
             <p className="font-paragraph text-xl text-textbody italic">
-              "Whoever is generous to the poor lends to the Lord, and he will repay him for his deed."
+              What does Proverbs 19:17 say?
             </p>
-            <p className="font-paragraph text-sm text-secondary italic mt-2 uppercase tracking-widest opacity-60">
-              Proverbs 19:17
+            <p className="font-paragraph text-2xl text-secondary italic mt-4">
+              Proverbs 19 vs 17: Whoever is generous to the poor lends to the Lord, and he will repay him for his deed.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Stretching Every Dollar */}
-      <section className="py-32 bg-secondary/5">
+      {/* Stretching Every Dollar Section */}
+      <section className="py-24 bg-secondary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-block px-4 py-1 border border-secondary/30 rounded-full text-secondary text-[10px] uppercase tracking-[0.3em] mb-6 font-bold"
+              className="inline-block px-4 py-1 border border-secondary/30 rounded-full text-secondary text-xs uppercase tracking-[0.2em] mb-6"
             >
               Stretching Every Dollar
             </motion.div>
-            <h2 className="text-4xl md:text-6xl font-heading italic text-primary-foreground">Your contributions have a far-reaching impact</h2>
+            <h2 className="text-4xl md:text-5xl font-heading mb-6">Your contributions and generosity have a far-reaching impact</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -94,7 +94,7 @@ export default function DonatePage() {
               {
                 icon: <TrendingUp className="w-8 h-8" />,
                 title: "$1 = 3 Meals",
-                desc: "$1 can help provide 3 meals to families and community individuals experiencing homelessness in need."
+                desc: "$1 can help provide 3 meals to families and community indivduals experiencing homelessness in need."
               },
               {
                 icon: <Leaf className="w-8 h-8" />,
@@ -118,13 +118,13 @@ export default function DonatePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-primary/30 backdrop-blur-md p-8 border border-secondary/10 rounded-3xl text-center hover:border-secondary transition-colors group"
+                className="bg-background p-8 border border-bordersubtle/20 rounded-2xl text-center hover:border-secondary transition-colors"
               >
-                <div className="text-secondary mb-6 flex justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="text-secondary mb-6 flex justify-center">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-heading mb-4 italic text-primary-foreground">{item.title}</h3>
-                <p className="text-textbody text-sm leading-relaxed italic font-paragraph">
+                <h3 className="text-xl font-heading mb-4">{item.title}</h3>
+                <p className="text-textlight text-sm leading-relaxed">
                   {item.desc}
                 </p>
               </motion.div>
@@ -133,10 +133,10 @@ export default function DonatePage() {
         </div>
       </section>
 
-      {/* Your Gift Helps To */}
-      <section className="py-32 bg-background">
+      {/* Your Gift Helps To Section */}
+      <section className="py-24 border-b border-bordersubtle/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-6xl font-heading mb-20 text-center italic text-primary-foreground">Your Gift Helps To</h2>
+          <h2 className="text-4xl md:text-5xl font-heading mb-20 text-center">Your Gift Helps To</h2>
           
           <div className="space-y-12">
             {[
@@ -144,7 +144,7 @@ export default function DonatePage() {
                 stat: "250,000+",
                 label: "Meals Annually",
                 title: "Provide over 250,000 meals annually",
-                desc: "Each meal represents more than nourishment—it offers comfort, stability, a sense of belonging and hope to individuals experiencing homelessness and families during challenging times.",
+                desc: "Each meal represents more than nourishment—it offers comfort, stability, a sense of belonging and hope to individuals experiencing homelessness and families during challenging times. Your generosity ensures no one in our community has to face hunger alone.",
                 icon: <Utensils className="w-12 h-12" />
               },
               {
@@ -157,8 +157,8 @@ export default function DonatePage() {
               {
                 stat: "Essential",
                 label: "Resources",
-                title: "Support families and community individuals with essential resources",
-                desc: "Beyond food, your contributions help fund vital programs that empower individuals, from job training to community support initiatives.",
+                title: "Support families and community indivividuals experiencing homelessness with essential resources",
+                desc: "Beyond food, your contributions help fund vital programs that empower individuals, from job training to community support initiatives. Together, we address the root causes of insecurity.",
                 icon: <Users className="w-12 h-12" />
               }
             ].map((item, i) => (
@@ -167,20 +167,20 @@ export default function DonatePage() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="flex flex-col lg:flex-row gap-12 items-center bg-secondary/5 p-8 md:p-12 rounded-[3rem] border border-secondary/10"
+                className="flex flex-col lg:flex-row gap-12 items-center bg-secondary/5 p-8 md:p-12 rounded-3xl border border-bordersubtle/20"
               >
                 <div className="lg:w-1/3 text-center lg:text-left">
-                  <div className="text-6xl md:text-8xl font-heading text-secondary mb-2 italic">{item.stat}</div>
-                  <div className="text-xs uppercase tracking-[0.3em] text-textbody/60 font-bold">{item.label}</div>
+                  <div className="text-6xl font-heading text-secondary mb-2">{item.stat}</div>
+                  <div className="text-sm uppercase tracking-[0.3em] text-textlight">{item.label}</div>
                 </div>
                 <div className="lg:w-2/3">
-                  <div className="flex items-center gap-6 mb-6">
-                    <div className="p-4 bg-primary/40 backdrop-blur-md rounded-2xl text-secondary border border-secondary/10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 bg-background rounded-full text-secondary border border-bordersubtle/20">
                       {item.icon}
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-heading italic text-primary-foreground">{item.title}</h3>
+                    <h3 className="text-2xl font-heading">{item.title}</h3>
                   </div>
-                  <p className="text-textbody text-lg leading-relaxed italic font-paragraph">
+                  <p className="text-textlight text-lg leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -190,9 +190,9 @@ export default function DonatePage() {
         </div>
       </section>
 
-      {/* Giving Options */}
-      <section id="giving-options" className="relative py-32 bg-primary text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
+      {/* Giving Options Section */}
+      <section id="giving-options" className="relative py-24 bg-primary text-primary-foreground">
+        <div className="absolute inset-0 z-0 opacity-40">
           <Image 
             src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&q=80&w=2000"
             alt="Background"
@@ -205,11 +205,11 @@ export default function DonatePage() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-5xl md:text-8xl font-heading mb-8 opacity-20 uppercase tracking-[0.5em] italic"
+              className="text-5xl md:text-7xl font-heading mb-8 opacity-40 uppercase tracking-[0.5em] text-pop"
             >
               Donate
             </motion.h2>
-            <p className="text-2xl text-textbody max-w-3xl mx-auto leading-relaxed italic font-paragraph">
+            <p className="text-2xl text-textbody max-w-3xl mx-auto leading-relaxed">
               We believe giving should be as meaningful as the impact it creates, so we've made it simple for you to support our mission in a way that works for you.
             </p>
           </div>
@@ -224,7 +224,7 @@ export default function DonatePage() {
               {
                 icon: <Calendar className="w-10 h-10" />,
                 title: "Monthly Giving",
-                desc: "Join a dedicated community of donors committed to creating lasting change. With your ongoing support, we can ensure no family is left behind."
+                desc: "Join a dedicated community of donors committed to creating lasting change. With your ongoing support, we can ensure no family or indididuals experiencing food insecurities and homelessness is left behind."
               },
               {
                 icon: <Building2 className="w-10 h-10" />,
@@ -238,61 +238,67 @@ export default function DonatePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-background/10 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 hover:bg-white/20 transition-all group"
+                className="glass-panel p-10 rounded-2xl hover:bg-white/10 transition-all group"
               >
                 <div className="text-secondary mb-8 group-hover:scale-110 transition-transform duration-300">
                   {option.icon}
                 </div>
-                <h3 className="text-2xl font-heading mb-4 italic text-white">{option.title}</h3>
-                <p className="text-textbody text-sm leading-relaxed mb-8 italic font-paragraph">
+                <h3 className="text-2xl font-heading mb-4 text-white text-pop">{option.title}</h3>
+                <p className="text-textbody text-sm leading-relaxed mb-8">
                   {option.desc}
                 </p>
-                <MagneticButton className="w-full py-6 text-xs">
+                <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-primary uppercase tracking-widest">
                   Select Option
-                </MagneticButton>
+                </Button>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-20 text-center max-w-3xl mx-auto">
+            <p className="text-textbody italic">
+              No matter how you choose to give, your contribution is a beacon of hope, transforming lives and strengthening our community. Together, we can create a future where no one faces hunger alone.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Final CTA / Contact */}
-      <section className="py-32 bg-background">
+      {/* Final CTA / Contact Section */}
+      <section className="py-24 border-t border-bordersubtle/20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-6xl font-heading mb-8 italic text-primary-foreground">Want to Make a Difference?</h2>
-            <p className="text-xl text-textbody mb-12 leading-relaxed italic font-paragraph">
+            <h2 className="text-4xl md:text-5xl font-heading mb-8">Want to Make a Difference?</h2>
+            <p className="text-xl text-textlight mb-12 leading-relaxed">
               Your donation helps fill shelves, fridges, plates and hearts. Whether it's a one-time gift or ongoing support, every dollar plants seeds of hope for neighbors in need.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-              <div className="bg-secondary/5 border border-secondary/10 p-10 rounded-[3rem] flex flex-col items-center">
-                <div className="w-16 h-16 bg-primary/40 backdrop-blur-md rounded-2xl flex items-center justify-center text-secondary mb-6 border border-secondary/10">
-                  <Mail size={32} />
+              <div className="bg-secondary/5 border border-bordersubtle/20 p-8 rounded-2xl flex flex-col items-center">
+                <div className="w-12 h-12 bg-background rounded-full flex items-center justify-center text-secondary mb-6 shadow-lg">
+                  <Mail size={24} />
                 </div>
-                <h4 className="font-heading text-2xl mb-4 italic text-primary-foreground">E-Transfer</h4>
-                <p className="text-textbody/60 text-sm mb-2 italic font-paragraph">Send transfers to:</p>
-                <p className="font-bold text-xl text-secondary tracking-widest">DONATE@BFBOW.ORG</p>
+                <h4 className="font-heading text-xl mb-4">E-Transfer</h4>
+                <p className="text-textlight text-sm mb-2">Send transfers to:</p>
+                <p className="font-bold text-lg text-foreground">TBD</p>
               </div>
               
-              <div className="bg-secondary/5 border border-secondary/10 p-10 rounded-[3rem] flex flex-col items-center">
-                <div className="w-16 h-16 bg-primary/40 backdrop-blur-md rounded-2xl flex items-center justify-center text-secondary mb-6 border border-secondary/10">
-                  <MapPin size={32} />
+              <div className="bg-secondary/5 border border-bordersubtle/20 p-8 rounded-2xl flex flex-col items-center">
+                <div className="w-12 h-12 bg-background rounded-full flex items-center justify-center text-secondary mb-6 shadow-lg">
+                  <MapPin size={24} />
                 </div>
-                <h4 className="font-heading text-2xl mb-4 italic text-primary-foreground">Physical Donations</h4>
-                <p className="text-textbody/60 text-sm mb-6 text-center italic font-paragraph">Visit our Contact page for drop-off details and hours.</p>
-                <MagneticButton className="py-4 px-8 text-xs">
+                <h4 className="font-heading text-xl mb-4">Physical Donations</h4>
+                <p className="text-textlight text-sm mb-6 text-center">Visit our Contact page for drop-off details and hours.</p>
+                <Button variant="outline" className="uppercase tracking-widest text-xs">
                   View Drop-off Details <ArrowRight size={14} className="ml-2" />
-                </MagneticButton>
+                </Button>
               </div>
             </div>
 
-            <p className="text-3xl font-heading text-secondary italic">
-              We sincerely appreciate your support. 🙏
+            <p className="text-2xl font-heading text-secondary italic">
+              We sincerely apppreciate your support and thank you for helping us feed, teach, and empower our community — together. 🙏
             </p>
           </motion.div>
         </div>

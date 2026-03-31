@@ -279,11 +279,11 @@ export default function EnhancementsDemoPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {[
-            {name: "Aged Brass", hex: "#918151", desc: "The signature greenish-gold metallic. Zero orange tones.", text: "text-primary"},
-            {name: "Forest Charcoal", hex: "#1A241A", desc: "The deep, cool green-black foundation.", text: "text-white"},
-            {name: "Deep Sea Slate", hex: "#1B262C", desc: "A rich, cool blue-gray with immense depth.", text: "text-white"},
-            {name: "Midnight Indigo", hex: "#1E2A38", desc: "A dark, atmospheric blue for cool contrast.", text: "text-white"},
-            {name: "Cool Spruce", hex: "#2D4F4F", desc: "A deep green-blue bridge between tones.", text: "text-white"},
+            {name: "Aged Brass", hex: "#918151", desc: "A muted, greenish-gold metallic. Zero orange tones.", text: "text-primary"},
+            {name: "Forest Charcoal", hex: "#1A241A", desc: "A deep, cool green-black for backgrounds.", text: "text-white"},
+            {name: "Muted Sage", hex: "#7D8C7D", desc: "A desaturated, cool green for secondary UI.", text: "text-primary"},
+            {name: "Oxidized Pewter", hex: "#5E6064", desc: "A cool, metallic gray for a modern touch.", text: "text-white"},
+            {name: "Cool Clay", hex: "#6B6359", desc: "A neutral, cool-toned brown for balance.", text: "text-white"},
           ].map((color, i) => (
             <motion.div
               key={color.name}
@@ -307,12 +307,9 @@ export default function EnhancementsDemoPage() {
         </div>
       </section>
 
-      {/* 5. Practical Application - Cool Depth Editorial Layout */}
-      <section className="py-32 bg-[#1B262C] relative overflow-hidden">
-        {/* Subtle Gradient Overlay to Green */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1B262C] via-[#1B262C] to-[#1A241A] opacity-80" />
-        
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      {/* 5. Practical Application - Boutique Editorial Layout */}
+      <section className="py-32 bg-[#1A241A] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Typography & Accents */}
             <div className="lg:col-span-5 space-y-12">
@@ -323,51 +320,51 @@ export default function EnhancementsDemoPage() {
                   className="h-px bg-[#918151]"
                 />
                 <h2 className="text-7xl md:text-8xl font-heading text-white italic leading-[0.9] tracking-tighter">
-                  Cool <br/> <span className="text-[#918151]">Depths</span>
+                  The <br/> <span className="text-[#918151]">Boutique</span> <br/> Feel
                 </h2>
               </div>
               
-              <div className="space-y-8 border-l border-[#2D4F4F] pl-8">
+              <div className="space-y-8 border-l border-[#7D8C7D]/20 pl-8">
                 <p className="text-xl text-[#7D8C7D] leading-relaxed italic font-light">
-                  "The intersection of deep water and dense forest creates a sanctuary of calm."
+                  "True sophistication lies in the restraint of color and the precision of detail."
                 </p>
-                <p className="text-white/40 leading-relaxed">
-                  By layering <span className="text-white">Deep Sea Slate</span> with our signature <span className="text-[#918151]">Aged Brass</span>, we achieve a cool, immersive atmosphere that feels sophisticated without the warmth of brown or the flatness of gray.
+                <p className="text-textbody/40 leading-relaxed">
+                  By using <span className="text-white">Forest Charcoal</span> as a canvas and <span className="text-[#918151]">Aged Brass</span> as a fine-line accent, we create a space that feels quiet, intentional, and deeply rooted.
                 </p>
                 <div className="pt-4">
                   <button className="group flex items-center gap-4 text-[#918151] font-heading italic text-lg">
-                    <span>Explore the Depths</span>
+                    <span>View the Collection</span>
                     <div className="w-12 h-px bg-[#918151] group-hover:w-20 transition-all duration-500" />
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Subtle Layering */}
+            {/* Right Column: Subtle Layering (No high-contrast cards) */}
             <div className="lg:col-span-7 relative">
               <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-white/5 relative group">
                 <img 
-                  src="https://picsum.photos/seed/deep-water/1200/800" 
-                  alt="Deep Water Texture" 
-                  className="w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-1000"
+                  src="https://picsum.photos/seed/nature-cool/1200/800" 
+                  alt="Atmospheric Nature" 
+                  className="w-full h-full object-cover opacity-40 grayscale group-hover:scale-105 transition-transform duration-1000"
                   referrerPolicy="no-referrer"
                 />
-                {/* Subtle Cool Spruce Overlay */}
-                <div className="absolute inset-0 bg-[#2D4F4F]/20 mix-blend-overlay" />
+                {/* Subtle Muted Sage Overlay */}
+                <div className="absolute inset-0 bg-[#7D8C7D]/10 mix-blend-multiply" />
                 
-                {/* Integrated Info Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-[#1B262C] to-transparent">
+                {/* Integrated Info Overlay (Low Contrast) */}
+                <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-[#1A241A] to-transparent">
                   <div className="flex items-center gap-6">
                     <div className="w-px h-12 bg-[#918151]" />
                     <div className="space-y-1">
-                      <h4 className="text-white font-heading italic text-2xl">Midnight Indigo</h4>
-                      <p className="text-[#7D8C7D] text-sm">A cool, atmospheric bridge between tones.</p>
+                      <h4 className="text-white font-heading italic text-2xl">Subtle Integration</h4>
+                      <p className="text-[#7D8C7D] text-sm">Low-contrast layering for a refined experience.</p>
                     </div>
                   </div>
                 </div>
               </div>
               
-              {/* Floating Decorative Element */}
+              {/* Floating Decorative Element (Aged Brass) */}
               <div className="absolute -top-6 -right-6 w-32 h-32 border border-[#918151]/20 rounded-full flex items-center justify-center">
                 <div className="w-24 h-24 border border-[#918151]/10 rounded-full flex items-center justify-center">
                   <Sparkles size={20} className="text-[#918151]/40" />
@@ -393,13 +390,13 @@ export default function EnhancementsDemoPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* New Tones */}
           <div className="space-y-8">
-            <h3 className="text-3xl font-heading text-primary-foreground italic border-b border-bordersubtle/30 pb-4">Cool Depths</h3>
+            <h3 className="text-3xl font-heading text-primary-foreground italic border-b border-bordersubtle/30 pb-4">Complementary Tones</h3>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { name: "Deep Sea Slate", hex: "#1B262C", desc: "A rich, cool blue-gray with immense depth." },
-                { name: "Midnight Indigo", hex: "#1E2A38", desc: "A dark, atmospheric blue for cool contrast." },
-                { name: "Cool Spruce", hex: "#2D4F4F", desc: "A deep green-blue bridge between tones." },
-                { name: "Parchment", hex: "#E8E4D9", desc: "A warm, high-end off-white for balance." },
+                { name: "Smoked Oak", hex: "#3D3630", desc: "A deep, weathered wood tone." },
+                { name: "Weathered Zinc", hex: "#5A5E63", desc: "A cool, industrial metallic gray." },
+                { name: "Parchment", hex: "#E8E4D9", desc: "A warm, high-end off-white." },
+                { name: "Deep Indigo", hex: "#1E2A38", desc: "A midnight blue for atmospheric depth." },
               ].map((color) => (
                 <div key={color.name} className="p-6 rounded-2xl border border-bordersubtle/20 flex flex-col gap-4">
                   <div className="w-full h-12 rounded-lg" style={{ backgroundColor: color.hex }} />

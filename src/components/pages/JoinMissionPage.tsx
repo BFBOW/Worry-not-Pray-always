@@ -197,18 +197,17 @@ export default function JoinMissionPage() {
               viewport={{ once: true }}
               className="relative max-w-lg lg:ml-auto lg:-mr-12"
             >
-              <div 
-                className="relative overflow-hidden group"
-                style={{ 
-                  maskImage: 'radial-gradient(circle, black 40%, transparent 85%)',
-                  WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 85%)'
-                }}
-              >
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-background group">
                 <Image 
                   src="https://i.ibb.co/Z6ZK7fR6/crosss.jpg"
                   alt="Service Calling"
                   className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent pointer-events-none" />
+                
+                {/* Decorative corner borders */}
+                <div className="absolute top-6 left-6 w-12 h-12 border-t-2 border-l-2 border-secondary/50 rounded-tl-lg" />
+                <div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-secondary/50 rounded-br-lg" />
               </div>
               
               {/* Floating Badge */}
@@ -220,7 +219,7 @@ export default function JoinMissionPage() {
               </div>
               
               {/* Soft Glow behind image */}
-              <div className="absolute inset-0 bg-secondary/10 blur-3xl -z-10 scale-110" />
+              <div className="absolute inset-0 bg-secondary/5 blur-3xl -z-10 scale-110" />
             </motion.div>
           </div>
         </div>

@@ -129,21 +129,16 @@ export default function WhoWeArePage() {
               viewport={{ once: true }}
               className="relative z-20 lg:-mr-20"
             >
-              <div 
-                className="relative overflow-hidden"
-                style={{ 
-                  maskImage: 'radial-gradient(circle, black 40%, transparent 85%)',
-                  WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 85%)'
-                }}
-              >
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/5">
                 <Image 
                   src="https://i.ibb.co/BVwBgYxx/crosss.jpg"
                   alt="Community history"
                   className="w-full h-[600px] object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent pointer-events-none" />
               </div>
               {/* Soft Glow behind image */}
-              <div className="absolute inset-0 bg-secondary/10 blur-3xl -z-10 scale-110" />
+              <div className="absolute inset-0 bg-secondary/5 blur-3xl -z-10 scale-110" />
             </motion.div>
           </div>
         </div>

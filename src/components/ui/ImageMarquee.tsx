@@ -28,50 +28,34 @@ export const ImageMarquee: React.FC<ImageMarqueeProps> = ({
         }}
       >
         {duplicatedImages.map((src, index) => {
-          // Increased randomness for a more "tossed" look
-          const rotations = ['rotate-1', 'rotate-[-1]', 'rotate-2', 'rotate-[-2]', 'rotate-3', 'rotate-[-3]'];
-          const rotation = rotations[index % rotations.length];
-          
-          const offsets = ['translate-y-2', 'translate-y-[-2]', 'translate-y-4', 'translate-y-[-4]', 'translate-y-0'];
-          const offset = offsets[index % offsets.length];
-          
-          const hasTape = index % 3 === 0;
+          const rotation = index % 2 === 0 ? 'rotate-1' : 'rotate-[-1]';
+          const offset = index % 3 === 0 ? 'translate-y-1' : index % 3 === 1 ? 'translate-y-[-1]' : 'translate-y-0';
+          const hasTape = index % 4 === 0;
 
           return (
             <div 
               key={index} 
-              className={`flex-shrink-0 px-6 transition-all duration-500 hover:z-30 ${offset}`}
+              className={`flex-shrink-0 px-4 transition-all duration-500 hover:z-30 ${offset}`}
             >
-              <div className={`relative p-3 pb-10 bg-[#F9F9F7] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5),0_20px_40px_-15px_rgba(0,0,0,0.3)] ring-1 ring-black/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.6),0_0_20px_rgba(163,160,114,0.2)] ${rotation} group/item`}>
-                
-                {/* Paper Texture Overlay */}
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]" />
-                
-                {/* Persistent Floating Glow (Tan-Green) */}
-                <div className="absolute inset-0 bg-secondary/10 blur-2xl -z-10 opacity-40 group-hover/item:opacity-100 transition-opacity" />
-                
+              <div className={`relative p-2 pb-8 bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${rotation} group/item`}>
                 {/* Tape Accent */}
                 {hasTape && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-8 bg-white/30 backdrop-blur-md border border-white/20 rotate-[-3deg] z-10 shadow-sm flex items-center justify-center">
-                    <div className="w-full h-px bg-black/5" />
-                  </div>
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-white/40 backdrop-blur-md border border-white/20 rotate-[-2deg] z-10 shadow-sm" />
                 )}
 
-                <div className="w-44 h-32 md:w-64 md:h-44 overflow-hidden bg-gray-200 border border-black/10">
+                <div className="w-40 h-28 md:w-56 md:h-36 overflow-hidden bg-gray-100">
                   <img 
                     src={src} 
                     alt={`Marquee image ${index}`} 
-                    className="w-full h-full object-cover sepia-[0.2] brightness-[0.9] saturate-[1.2] contrast-[1.05] transition-all duration-700 group-hover/item:sepia-0 group-hover/item:brightness-100 group-hover/item:scale-110"
+                    className="w-full h-full object-cover sepia-[0.15] brightness-95 saturate-[1.1] transition-all duration-700 group-hover/item:sepia-0 group-hover/item:brightness-100 group-hover/item:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  {/* Subtle Film Grain Overlay on Image */}
-                  <div className="absolute inset-0 pointer-events-none opacity-[0.15] mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
                 </div>
 
                 {/* Editorial Caption */}
-                <div className="absolute bottom-2 left-0 right-0 px-4 flex items-center justify-between opacity-60 group-hover/item:opacity-100 transition-opacity duration-300">
-                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-black/40">Archive {index % 100 + 100}</span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_5px_rgba(163,160,114,0.8)]" />
+                <div className="absolute bottom-1.5 left-0 right-0 px-3 flex items-center justify-between opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-gray-400">Sanctuary Vol. {index % 10 + 1}</span>
+                  <div className="w-1 h-1 rounded-full bg-secondary" />
                 </div>
               </div>
             </div>

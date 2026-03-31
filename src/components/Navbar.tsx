@@ -73,12 +73,6 @@ export function Navbar() {
               >
                 Enhancements
               </Link>
-              <Link 
-                to="/cool-depths" 
-                className="font-paragraph text-base text-[#918151] hover:text-[#918151]/80 transition-colors font-heading italic"
-              >
-                Cool Depths
-              </Link>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -151,13 +145,6 @@ export function Navbar() {
                 className="block font-paragraph text-base text-secondary hover:text-secondary/80 transition-colors py-2 font-heading italic"
               >
                 Enhancements
-              </Link>
-              <Link 
-                to="/cool-depths" 
-                onClick={() => setIsMenuOpen(false)}
-                className="block font-paragraph text-base text-[#918151] hover:text-[#918151]/80 transition-colors py-2 font-heading italic"
-              >
-                Cool Depths
               </Link>
             </nav>
           )}
