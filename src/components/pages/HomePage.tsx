@@ -106,7 +106,7 @@ const ParallaxImage: React.FC<{ src: string; alt: string; className?: string }> 
   const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
-    <div ref={ref} className={`relative overflow-hidden rounded-sm group/parallax ${className}`}>
+    <div ref={ref} className={`relative overflow-hidden rounded-2xl group/parallax ${className}`}>
       <motion.div 
         style={{ y }} 
         className="absolute inset-0 w-full h-[120%] transition-transform duration-700 ease-out group-hover/parallax:scale-105"
@@ -160,7 +160,7 @@ const EditorialBlock: React.FC<{
               <ParallaxImage 
                 src={image} 
                 alt={title} 
-                className="aspect-[4/3] shadow-2xl rounded-sm border border-white/5" 
+                className="aspect-[4/3] shadow-2xl rounded-2xl border border-white/5" 
               />
               {/* Subtle shadow/glow behind image */}
               <div className="absolute inset-0 bg-secondary/5 blur-2xl -z-10 scale-110" />
@@ -379,7 +379,7 @@ export default function HomePage() {
 
       {/* --- EDITORIAL MISSION OVERVIEW with Slanted Split --- */}
       <section 
-        className="w-full py-24 md:py-32 text-center relative overflow-hidden"
+        className="w-full py-6 md:py-8 text-center relative overflow-hidden"
         style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
       >
         {/* Atmospheric Background Elements - Soft glows to add depth */}
@@ -411,10 +411,10 @@ export default function HomePage() {
             </p>
           </motion.div>
         </div>
-        
+
         {/* Decorative Tapering Line */}
-        <div className="mt-16 flex justify-center relative z-10">
-          <div className="w-px h-40 bg-gradient-to-b from-secondary/40 via-secondary/10 to-transparent" />
+        <div className="mt-8 flex justify-center relative z-10">
+          <div className="w-px h-20 bg-gradient-to-b from-secondary/40 via-secondary/10 to-transparent" />
         </div>
       </section>
 

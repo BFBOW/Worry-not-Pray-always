@@ -93,8 +93,12 @@ export default function EventsPage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center"
           >
-            <div className="w-full mb-4">
-              <ImageMarquee images={marqueeImages} speed={70} />
+            <div className="w-full mb-4 relative">
+              {/* Glow behind marquee */}
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-full bg-primary/20 blur-[120px] -z-10" />
+              <div className="border-y border-primary/30 py-4 shadow-[0_0_80px_rgba(145,120,93,0.2)] bg-black/40 backdrop-blur-sm">
+                <ImageMarquee images={marqueeImages} speed={80} />
+              </div>
             </div>
 
             <div className="relative w-full py-6 flex items-center justify-center overflow-hidden">
