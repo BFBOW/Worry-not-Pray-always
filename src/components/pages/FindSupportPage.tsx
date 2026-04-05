@@ -253,7 +253,7 @@ export default function FindSupportPage() {
               </div>
               <h2 className="text-4xl font-heading mb-6 text-pop">Everyone Is Welcome</h2>
               <p className="text-xl text-textbody leading-relaxed mb-8 italic font-paragraph">
-                Our doors are open to anyone in need, regardless of age, background, or circumstance. "He answereth and saith unto them, He that hath two coats, let him impart to him that hath none; and he that hath meat, let him do likewise." — Luke 3:11. Whether you're a single parent, a senior, or a newcomer, we provide the resources you need to regain stability, a sense of belonging and hope.
+                Our doors are open to anyone in need, regardless of age, background, or circumstance. \"He answereth and saith unto them, He that hath two coats, let him impart to him that hath none; and he that hath meat, let him do likewise.\" — Luke 3:11. Whether you're a single parent, a senior, or a newcomer, we provide the resources you need to regain stability, a sense of belonging and hope.
               </p>
               <div className="bg-background/50 backdrop-blur-sm border border-white/5 p-8 rounded-2xl">
                 <div className="text-4xl font-heading text-secondary mb-2">250,000+</div>
@@ -267,7 +267,7 @@ export default function FindSupportPage() {
               viewport={{ once: true }}
               className="relative z-20 lg:-mr-20"
             >
-              <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video border border-white/5">
+            <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video border border-white/5 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent),linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] [mask-composite:intersect]">
                 <img 
                   src="https://i.ibb.co/qYnRwWFN/hwyni.webp"
                   alt="Everyone is Welcome"

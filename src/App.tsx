@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './lib/scroll-to-top';
 import HomePage from './components/pages/HomePage';
+import CoolDepthsHomePage from './components/pages/CoolDepthsHomePage';
 import WhoWeArePage from './components/pages/WhoWeArePage';
 import EventsPage from './components/pages/EventsPage';
 import DonatePage from './components/pages/DonatePage';
@@ -23,6 +24,7 @@ export default function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/cool-depths" element={<CoolDepthsHomePage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/spirit" element={<SpiritPage />} />
             <Route path="/find-support" element={<FindSupportPage />} />

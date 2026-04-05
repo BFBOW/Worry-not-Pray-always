@@ -14,13 +14,13 @@
   --color-primary: #2F3E2F;
   --color-primary-foreground: #E2E8D5; /* Brighter sage for better contrast */
   
-  --color-secondary: #D4D1A5; /* Brighter gold/olive */
+  --color-secondary: #918151;
   --color-secondary-foreground: #FFFFFF;
   
   --color-destructive: #DF3131;
   --color-destructive-foreground: #FFFFFF;
   
-  --color-buttonbackground: #A3A072;
+  --color-buttonbackground: #918151;
   --color-buttonforeground: #FFFFFF;
   
   --color-textlight: #C9D6B9;

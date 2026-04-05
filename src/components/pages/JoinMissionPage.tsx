@@ -178,7 +178,7 @@ export default function JoinMissionPage() {
                 <span className="text-secondary italic font-normal">Call to Serve</span>
               </h2>
               <p className="text-textbody/90 max-w-xl text-xl leading-relaxed mb-10 font-paragraph italic">
-                Ministry is about more than just resources—it's about a collective mission to serve our community. Discover how your unique gifts and strengths can make a lasting impact.
+                Ministry is about more than just resources—it's about a collective mission to serve our community. Discover how your unique gifts and strengths can make a lasting impact.John 15:4-5 KJV. Abide in me, and I in you. As the branch cannot bear fruit of itself, except it abide in the vine; no more can ye, except ye abide in me. I am the vine, ye are the branches
               </p>
               <div className="flex flex-col sm:flex-row gap-6 items-start">
                 <Button className="px-8 py-6 text-sm uppercase tracking-widest font-bold group bg-secondary hover:bg-secondary/80 text-primary">
@@ -197,17 +197,16 @@ export default function JoinMissionPage() {
               viewport={{ once: true }}
               className="relative max-w-lg lg:ml-auto lg:-mr-12"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-background group">
-                <Image 
-                  src="https://i.ibb.co/Z6ZK7fR6/crosss.jpg"
-                  alt="Service Calling"
-                  className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent pointer-events-none" />
-                
-                {/* Decorative corner borders */}
-                <div className="absolute top-6 left-6 w-12 h-12 border-t-2 border-l-2 border-secondary/50 rounded-tl-lg" />
-                <div className="absolute bottom-6 right-6 w-12 h-12 border-b-2 border-r-2 border-secondary/50 rounded-br-lg" />
+              <div className="relative group">
+                <div className="relative overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent),linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] [mask-composite:intersect]">
+                  <Image 
+                    src="https://i.ibb.co/Z6ZK7fR6/crosss.jpg"
+                    alt="Service Calling"
+                    className="w-full h-[500px] object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                </div>
+                {/* Soft Glow behind image - Brass/Tan-Green Halo */}
+                <div className="absolute inset-0 bg-secondary/20 blur-[100px] -z-10 scale-150 opacity-40 group-hover:opacity-70 transition-opacity duration-1000" />
               </div>
               
               {/* Floating Badge */}
@@ -217,9 +216,6 @@ export default function JoinMissionPage() {
                 </p>
                 <p className="text-[10px] uppercase tracking-widest mt-2 font-bold opacity-60">— 1 Peter 4:10</p>
               </div>
-              
-              {/* Soft Glow behind image */}
-              <div className="absolute inset-0 bg-secondary/5 blur-3xl -z-10 scale-110" />
             </motion.div>
           </div>
         </div>
@@ -276,7 +272,7 @@ export default function JoinMissionPage() {
               {
                 icon: <Handshake className="w-10 h-10" />,
                 title: "Employee Engagement",
-                desc: "Provide your team with meaningful volunteer opportunities. Group volunteer days foster teamwork and inspire a shared sense of purpose."
+                desc: "Provide your team with meaningful volunteer opportunities. Group volunteer days foster teamwork and inspire a shared sense of purpose. 1 Peter 4:10 - Each of you should use whatever gift you have received to serve others, as faithful stewards of God’s grace."
               }
             ].map((item, i) => (
               <motion.div
@@ -428,7 +424,8 @@ export default function JoinMissionPage() {
               <HeartHandshake className="mx-auto mb-6 text-secondary" size={64} />
               <h2 className="text-4xl font-heading mb-4 text-pop">Join Our Mission</h2>
               <p className="text-textbody font-medium">
-                Whether you are an individual answering a calling or an organization looking to make an impact, we welcome you. Please join us in creating a stronger, healthier, and more compassionate community.
+                Whether you are an individual answering a calling or an organization looking to make an impact, we welcome you. Please join us in creating a stronger, healthier, and more compassionate community.Psalm 133:1 KJV
+ Behold, how good and how pleasant it is For brethren to dwell together in unity!
               </p>
             </div>
 

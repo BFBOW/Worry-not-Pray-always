@@ -55,6 +55,29 @@ export default function EventsPage() {
     "https://i.ibb.co/BH6Nv488/summer-camp.jpg"
   ];
 
+  const bottomMarqueeImages = [
+    "https://i.ibb.co/twH4kYvX/IMG-5074.jpg",
+    "https://i.ibb.co/jkcnNT8P/IMG-5477.jpg",
+    "https://i.ibb.co/S76v6dHw/IMG-5442-Copy.jpg",
+    "https://i.ibb.co/b5KtqSbJ/IMG-5361.jpg",
+    "https://i.ibb.co/DfPwT0jn/IMG-5315.jpg",
+    "https://i.ibb.co/nqqSB9XK/IMG-5312-Copy.jpg",
+    "https://i.ibb.co/8D3N35Bm/IMG-5308.jpg",
+    "https://i.ibb.co/B2mF7Y9J/IMG-5304.jpg",
+    "https://i.ibb.co/B2mG6ZPw/IMG-5263.jpg",
+    "https://i.ibb.co/MDQ5Rhqd/IMG-5256.jpg",
+    "https://i.ibb.co/27Tt9X5Z/IMG-5239-Copy.jpg",
+    "https://i.ibb.co/JRmwhN90/IMG-5203.jpg",
+    "https://i.ibb.co/Ng4pCt0V/IMG-5202-Copy.jpg",
+    "https://i.ibb.co/YTFNj1DP/IMG-5133-Copy.jpg",
+    "https://i.ibb.co/9kf3QVBF/IMG-5107-Copy.jpg",
+    "https://i.ibb.co/YFBzmdLD/IMG-5010-Copy.jpg",
+    "https://i.ibb.co/j9fJknhx/IMG-5438-Copy.jpg",
+    "https://i.ibb.co/Z6Tg3Lgz/IMG-5238-Copy.jpg",
+    "https://i.ibb.co/R4h2J7CW/IMG-5210-Copy.jpg",
+    "https://i.ibb.co/KzS67s5q/IMG-5232-Copy.jpg"
+  ];
+
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
@@ -83,7 +106,7 @@ export default function EventsPage() {
   ];
 
   return (
-    <div ref={containerRef} className="bg-background min-h-screen">
+    <div ref={containerRef} className="bg-background min-h-screen relative">
       {/* Hero Section */}
       <section className="relative w-full py-4 flex items-center justify-center overflow-hidden border-b border-bordersubtle/20">
         <div className="relative z-10 w-full">
@@ -93,8 +116,12 @@ export default function EventsPage() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center"
           >
-            <div className="w-full mb-4">
-              <ImageMarquee images={marqueeImages} speed={70} />
+            <div className="w-full mb-4 relative">
+              {/* Glow behind marquee */}
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-full bg-primary/20 blur-[120px] -z-10" />
+              <div className="border-y border-primary/30 py-4 shadow-[0_0_80px_rgba(145,120,93,0.2)] bg-black/40 backdrop-blur-sm">
+                <ImageMarquee images={marqueeImages} speed={80} />
+              </div>
             </div>
 
             <div className="relative w-full py-6 flex items-center justify-center overflow-hidden">
@@ -116,23 +143,24 @@ export default function EventsPage() {
             </div>
 
             <div className="w-full mt-4">
-              <ImageMarquee images={marqueeImages} speed={70} />
+              <ImageMarquee images={bottomMarqueeImages} speed={70} />
             </div>
-
-            <motion.div 
-              style={{ opacity }}
-              className="mt-4 flex justify-center"
-            >
-              <div className="w-px h-12 bg-gradient-to-b from-secondary to-transparent" />
-            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      <section 
-        className="relative py-24 overflow-hidden"
-        style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
-      >
+      <section className="relative py-24 overflow-hidden">
+        {/* Section Background Image */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img 
+            src="https://i.ibb.co/tM58dwxZ/startral.jpg" 
+            alt="Background" 
+            className="w-full h-full object-fill opacity-40 grayscale brightness-125 sepia-[0.3] hue-rotate-[80deg] saturate-[1.8]"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-primary/75 backdrop-blur-[1px]" />
+        </div>
+
         {/* Soft Halo Glows */}
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
         <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[150px] -z-10" />

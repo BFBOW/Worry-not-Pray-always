@@ -160,10 +160,10 @@ const EditorialBlock: React.FC<{
               <ParallaxImage 
                 src={image} 
                 alt={title} 
-                className="aspect-[4/3] shadow-2xl rounded-sm border border-white/5" 
+                className="aspect-[4/3] shadow-2xl rounded-3xl border border-white/10" 
               />
-              {/* Subtle shadow/glow behind image */}
-              <div className="absolute inset-0 bg-secondary/5 blur-2xl -z-10 scale-110" />
+              {/* Subtle shadow/glow behind image - Brass/Tan-Green Halo */}
+              <div className="absolute inset-0 bg-secondary/20 blur-[60px] -z-10 scale-110 opacity-60 group-hover:opacity-100 transition-opacity duration-1000" />
             </motion.div>
           </div>
 
@@ -379,7 +379,7 @@ export default function HomePage() {
 
       {/* --- EDITORIAL MISSION OVERVIEW with Slanted Split --- */}
       <section 
-        className="w-full py-24 md:py-32 text-center relative overflow-hidden"
+        className="w-full pt-12 pb-0 md:pt-16 md:pb-0 text-center relative overflow-hidden"
         style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
       >
         {/* Atmospheric Background Elements - Soft glows to add depth */}
@@ -396,16 +396,24 @@ export default function HomePage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
         
         <div className="max-w-4xl mx-auto px-6 relative z-10">
+          {/* Vertical Line above header */}
+          <div className="mb-8 flex justify-center">
+            <div className="w-px h-16 bg-gradient-to-b from-transparent via-secondary/40 to-secondary/10" />
+          </div>
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl text-primary-foreground mb-8 leading-[0.9] tracking-tighter text-pop">
+            <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl text-primary-foreground mb-4 leading-[0.9] tracking-tighter text-pop">
               Serving the <br />
               <span className="text-secondary italic font-normal">Whole Person</span>
             </h2>
+            {/* Subtle Line below heading */}
+            <div className="w-24 h-px bg-secondary/40 mx-auto mb-8" />
+            
             <p className="font-paragraph text-xl text-textbody leading-relaxed max-w-2xl mx-auto opacity-90">
               Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal. <span className="text-secondary italic font-medium">3 John 1:2</span> — "Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well." God cares about your total well-being—body, mind, and spirit.
             </p>
@@ -413,8 +421,8 @@ export default function HomePage() {
         </div>
         
         {/* Decorative Tapering Line */}
-        <div className="mt-16 flex justify-center relative z-10">
-          <div className="w-px h-40 bg-gradient-to-b from-secondary/40 via-secondary/10 to-transparent" />
+        <div className="mt-8 flex justify-center relative z-10">
+          <div className="w-px h-24 bg-gradient-to-b from-secondary/40 via-secondary/10 to-transparent" />
         </div>
       </section>
 
@@ -432,7 +440,7 @@ export default function HomePage() {
       <EditorialBlock 
         subtitle="Spiritual Care"
         title="Faith-Based Counseling"
-        description="We offer individual and family counseling rooted in biblical principles. Our compassionate counselors provide a safe space to navigate life's challenges, find spiritual clarity, and experience emotional healing through the grace of God."
+        description="We offer individual and family counseling rooted in biblical principles. Our compassionate counselors provide a safe space to navigate life's challenges, find spiritual clarity, and experience emotional healing through the grace of God. John 16:13: When the Spirit of truth comes, he will guide you into all the truth, Psalm 32:8 : I will instruct you and teach you and will counsel you with my eye upon you. Matthew 11:28 :Come to me, all who labor and are heavy laden, and I will give you rest."
         image="https://i.ibb.co/ZzdQbF3q/photo-realistic-image-40-year-260nw-2615233105.webp"
         reverse
         link="/spirit"
@@ -442,7 +450,7 @@ export default function HomePage() {
       <EditorialBlock 
         subtitle="Empowerment"
         title="Educational Programs"
-        description="Providing skills and certifications for confidence and stable employment opportunities in our local community."
+        description="Providing skills and certifications for confidence and stable employment opportunities in our local community. John 12:26 — 'If any man serve me, let him follow me; and where I am, there shall also my servant be: if any man serve me, him will my Father honour.'"
         image="https://i.ibb.co/gZD52fZy/food-cert.jpg"
         link="/events"
         features={["First Aid CPR Training", "Food Handling Certs", "Job Support Resources"]}
@@ -470,7 +478,7 @@ export default function HomePage() {
       <EditorialBlock 
         subtitle="Spiritual Growth"
         title="Bible Study & Evangelism"
-        description="Deepening our faith through the study of God's Word and sharing the Good News with our community. Matthew 28:19 — 'Go therefore and make disciples of all nations.' We offer group studies and outreach programs designed to strengthen your spiritual foundation."
+        description="Deepening our faith through the study of God's Word and sharing the Good News with our community. Matthew 28:19 — 'Go therefore and make disciples of all nations.' We offer group studies and outreach programs designed to strengthen your spiritual foundation. 2 Timothy 2:15 KJV — Study to shew thyself approved unto God."
         image="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&q=80&w=2000"
         reverse
         link="/spirit"
@@ -669,7 +677,8 @@ export default function HomePage() {
               Thanks Be To Our God
             </h2>
             <p className="font-paragraph text-lg text-textbody mb-8 max-w-2xl mx-auto">
-              We couldn’t do this work without the grace of our God and the unwavering support of our community. Every dollar donated, every hour volunteered, and every meal provided is a testament to His love at work through all of us.
+              We couldn’t do this work without the grace of our God and the unwavering support of our community. Every dollar donated, every hour volunteered, and every meal provided is a testament to His love at work through all of us.Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need.
+Hebrews 4:16
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link 
