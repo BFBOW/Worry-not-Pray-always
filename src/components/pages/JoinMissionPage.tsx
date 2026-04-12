@@ -156,7 +156,7 @@ export default function JoinMissionPage() {
 
       {/* Service Callings Section - Editorial Split Layout with Slanted Background */}
       <section 
-        className="relative py-32 overflow-hidden"
+        className="relative py-20 overflow-hidden"
         style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
       >
         {/* Soft Glows */}
@@ -177,11 +177,20 @@ export default function JoinMissionPage() {
                 Answering the <br />
                 <span className="text-secondary italic font-normal">Call to Serve</span>
               </h2>
-              <p className="text-textbody/90 max-w-xl text-xl leading-relaxed mb-10 font-paragraph italic">
-                Ministry is about more than just resources—it's about a collective mission to serve our community. Discover how your unique gifts and strengths can make a lasting impact.John 15:4-5 KJV. Abide in me, and I in you. As the branch cannot bear fruit of itself, except it abide in the vine; no more can ye, except ye abide in me. I am the vine, ye are the branches
+              <p className="text-textbody/90 max-w-xl text-xl leading-relaxed mb-6 font-paragraph italic">
+                Ministry is about more than just resources—it's about a collective mission to serve our community. Discover how your unique gifts and strengths can make a lasting impact.
               </p>
+              <div className="mb-10 border-l-2 border-secondary pl-6 py-2 bg-secondary/5 rounded-r-sm max-w-xl">
+                <p className="text-lg italic text-secondary font-medium leading-relaxed mb-2">
+                  "Abide in me, and I in you. As the branch cannot bear fruit of itself, except it abide in the vine; no more can ye, except ye abide in me. I am the vine, ye are the branches."
+                </p>
+                <p className="text-xs uppercase tracking-widest font-bold text-secondary/80">— John 15:4-5 KJV</p>
+              </div>
               <div className="flex flex-col sm:flex-row gap-6 items-start">
-                <Button className="px-8 py-6 text-sm uppercase tracking-widest font-bold group bg-secondary hover:bg-secondary/80 text-primary">
+                <Button 
+                  onClick={() => document.getElementById('partner-form')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-6 text-sm uppercase tracking-widest font-bold group bg-secondary hover:bg-secondary/80 text-primary"
+                >
                   Explore Opportunities <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
                 <div className="flex items-center gap-3 py-3">
@@ -222,7 +231,7 @@ export default function JoinMissionPage() {
       </section>
 
       {/* Impact Section (Partnerships) - Full-Bleed Editorial Block with Glows */}
-      <section className="relative py-32 bg-primary overflow-hidden">
+      <section className="relative py-20 bg-primary overflow-hidden">
         {/* Background Decorative Numbers */}
         
         <div className="absolute inset-0 z-0 opacity-20">
@@ -301,7 +310,7 @@ export default function JoinMissionPage() {
       </section>
 
       {/* Partners Section - Editorial Split Layout */}
-      <section className="py-32 border-b border-bordersubtle/20 bg-background relative overflow-hidden">
+      <section className="py-20 border-b border-bordersubtle/20 bg-background relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div
@@ -374,7 +383,7 @@ export default function JoinMissionPage() {
       </section>
 
       {/* Ways to Serve & Partner - Systematic Numbered Grid */}
-      <section className="py-32 bg-secondary/5">
+      <section className="py-20 bg-secondary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-24">
             <h2 className="text-5xl md:text-6xl font-heading mb-6 tracking-tighter leading-[0.9]">Ways to Get Involved</h2>
@@ -417,16 +426,28 @@ export default function JoinMissionPage() {
       </section>
 
       {/* Form Section */}
-      <section id="partner-form" className="py-24 bg-secondary/5 border-t border-bordersubtle/20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="glass-panel rounded-3xl p-8 md:p-16 shadow-2xl">
+      <section 
+        id="partner-form" 
+        className="relative py-20 overflow-hidden border-t border-bordersubtle/20"
+        style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
+      >
+        {/* Soft Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="glass-panel rounded-3xl p-8 md:p-16 shadow-2xl border border-white/5">
             <div className="text-center mb-16">
               <HeartHandshake className="mx-auto mb-6 text-secondary" size={64} />
               <h2 className="text-4xl font-heading mb-4 text-pop">Join Our Mission</h2>
-              <p className="text-textbody font-medium">
-                Whether you are an individual answering a calling or an organization looking to make an impact, we welcome you. Please join us in creating a stronger, healthier, and more compassionate community.Psalm 133:1 KJV
- Behold, how good and how pleasant it is For brethren to dwell together in unity!
+              <p className="text-textbody font-medium mb-8">
+                Whether you are an individual answering a calling or an organization looking to make an impact, we welcome you. Please join us in creating a stronger, healthier, and more compassionate community.
               </p>
+              <div className="max-w-xl mx-auto border-l-2 border-secondary pl-6 py-2 bg-secondary/5 rounded-r-sm text-left">
+                <p className="text-lg italic text-secondary font-medium leading-relaxed mb-2">
+                  "Behold, how good and how pleasant it is For brethren to dwell together in unity!"
+                </p>
+                <p className="text-xs uppercase tracking-widest font-bold text-secondary/80">— Psalm 133:1 KJV</p>
+              </div>
             </div>
 
             <form ref={formRef} className="space-y-10" onSubmit={handleSubmit}>

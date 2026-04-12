@@ -234,30 +234,46 @@ export default function FindSupportPage() {
 
       {/* Everyone is Welcome with Slanted Split */}
       <section 
-        className="relative py-32 overflow-hidden"
+        className="relative py-20 overflow-hidden"
         style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
       >
         {/* Soft Glows */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="relative z-10"
             >
-              <div className="inline-flex p-3 bg-background rounded-full text-secondary mb-6 shadow-lg border border-bordersubtle/20">
-                <Users size={32} />
+              <div className="flex items-center gap-4 mb-6">
+                <div className="inline-flex p-3 bg-background rounded-full text-secondary shadow-lg border border-bordersubtle/20">
+                  <Users size={28} />
+                </div>
+                <div className="h-px w-12 bg-secondary/40" />
               </div>
-              <h2 className="text-4xl font-heading mb-6 text-pop">Everyone Is Welcome</h2>
-              <p className="text-xl text-textbody leading-relaxed mb-8 italic font-paragraph">
-                Our doors are open to anyone in need, regardless of age, background, or circumstance. \"He answereth and saith unto them, He that hath two coats, let him impart to him that hath none; and he that hath meat, let him do likewise.\" — Luke 3:11. Whether you're a single parent, a senior, or a newcomer, we provide the resources you need to regain stability, a sense of belonging and hope.
+              
+              <h2 className="font-heading text-5xl md:text-6xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter text-pop">
+                Everyone Is <br />
+                <span className="text-secondary italic font-normal">Welcome</span>
+              </h2>
+
+              <p className="text-lg text-textbody leading-relaxed mb-6 font-paragraph">
+                Our doors are open to anyone in need, regardless of age, background, or circumstance. Whether you're a single parent, a senior, or a newcomer, we provide the resources you need to regain stability, a sense of belonging and hope.
               </p>
-              <div className="bg-background/50 backdrop-blur-sm border border-white/5 p-8 rounded-2xl">
-                <div className="text-4xl font-heading text-secondary mb-2">250,000+</div>
-                <p className="text-textbody">Meals are provided annually to ensure no one in our community goes hungry.</p>
+
+              <div className="mb-8 border-l-2 border-secondary pl-6 py-2 bg-secondary/5 rounded-r-sm">
+                <p className="text-lg italic text-secondary font-medium leading-relaxed mb-2">
+                  "He answereth and saith unto them, He that hath two coats, let him impart to him that hath none; and he that hath meat, let him do likewise."
+                </p>
+                <p className="text-xs uppercase tracking-widest font-bold text-secondary/80">— Luke 3:11</p>
+              </div>
+
+              <div className="bg-background/50 backdrop-blur-sm border border-white/5 p-6 rounded-2xl inline-block">
+                <div className="text-4xl font-heading text-secondary mb-1">250,000+</div>
+                <p className="text-textbody text-sm">Meals provided annually to our community.</p>
               </div>
             </motion.div>
             
@@ -360,8 +376,8 @@ export default function FindSupportPage() {
       </section>
 
       {/* Membership Form */}
-      <section id="support-form" className="py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="support-form" className="relative py-20 overflow-hidden" style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="bg-background border border-bordersubtle/30 rounded-3xl p-8 md:p-16 shadow-2xl">
             <div className="text-center mb-16">
               <UserPlus className="mx-auto mb-6 text-secondary" size={64} />

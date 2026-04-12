@@ -43,12 +43,20 @@ export function Navbar() {
               >
                 Food for the Spirit
               </Link>
-              <Link 
-                to="/find-support" 
-                className="font-paragraph text-base text-textbody hover:text-primary-foreground transition-colors"
-              >
-                Find Support
-              </Link>
+              <div className="relative group">
+                <Link 
+                  to="/find-support" 
+                  className="font-paragraph text-base text-textbody hover:text-primary-foreground transition-colors flex items-center gap-1"
+                >
+                  Find Support
+                </Link>
+                <div className="absolute left-0 top-full pt-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                  <div className="bg-primary border border-bordersubtle shadow-2xl rounded-sm py-2 min-w-[220px]">
+                    <Link to="/find-support" className="block px-6 py-3 text-sm text-textbody hover:text-secondary hover:bg-white/5 transition-colors border-b border-white/5">Find Support Sign-up</Link>
+                    <Link to="/find-support/specialized" className="block px-6 py-3 text-sm text-textbody hover:text-secondary hover:bg-white/5 transition-colors">Holistic Care Requests</Link>
+                  </div>
+                </div>
+              </div>
               <Link 
                 to="/who-we-are" 
                 className="font-paragraph text-base text-textbody hover:text-primary-foreground transition-colors"
@@ -66,18 +74,6 @@ export function Navbar() {
                 className="font-paragraph text-base text-textbody hover:text-primary-foreground transition-colors"
               >
                 Donate
-              </Link>
-              <Link 
-                to="/enhancements" 
-                className="font-paragraph text-base text-secondary hover:text-secondary/80 transition-colors font-heading italic"
-              >
-                Enhancements
-              </Link>
-              <Link 
-                to="/cool-depths" 
-                className="font-paragraph text-base text-[#918151] hover:text-[#918151]/80 transition-colors font-heading italic"
-              >
-                Cool Depths
               </Link>
             </nav>
 
@@ -144,20 +140,6 @@ export function Navbar() {
                 className="block font-paragraph text-base text-textbody hover:text-primary-foreground transition-colors py-2"
               >
                 Donate
-              </Link>
-              <Link 
-                to="/enhancements" 
-                onClick={() => setIsMenuOpen(false)}
-                className="block font-paragraph text-base text-secondary hover:text-secondary/80 transition-colors py-2 font-heading italic"
-              >
-                Enhancements
-              </Link>
-              <Link 
-                to="/cool-depths" 
-                onClick={() => setIsMenuOpen(false)}
-                className="block font-paragraph text-base text-[#918151] hover:text-[#918151]/80 transition-colors py-2 font-heading italic"
-              >
-                Cool Depths
               </Link>
             </nav>
           )}

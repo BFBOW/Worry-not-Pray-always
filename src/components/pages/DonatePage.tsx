@@ -39,7 +39,6 @@ export default function DonatePage() {
             alt="Donate Hero"
             className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/40 to-background" />
         </motion.div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-8 text-center">
@@ -75,9 +74,15 @@ export default function DonatePage() {
       </section>
 
       {/* Stretching Every Dollar */}
-      <section className="py-32 bg-secondary/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
+      <section 
+        className="relative py-20 overflow-hidden"
+        style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
+      >
+        {/* Soft Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -134,9 +139,15 @@ export default function DonatePage() {
       </section>
 
       {/* Your Gift Helps To */}
-      <section className="py-32 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-6xl font-heading mb-20 text-center italic text-primary-foreground">Your Gift Helps To</h2>
+      <section 
+        className="relative py-20 overflow-hidden"
+        style={{ background: 'linear-gradient(250deg, #243124 50%, #3A4A3A 50.5%)' }}
+      >
+        {/* Soft Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <h2 className="text-4xl md:text-6xl font-heading mb-16 text-center italic text-primary-foreground">Your Gift Helps To</h2>
           
           <div className="space-y-12">
             {[
@@ -191,7 +202,7 @@ export default function DonatePage() {
       </section>
 
       {/* Giving Options */}
-      <section id="giving-options" className="relative py-32 bg-primary text-primary-foreground overflow-hidden">
+      <section id="giving-options" className="relative py-20 bg-primary text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
           <Image 
             src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&q=80&w=2000"
@@ -257,7 +268,7 @@ export default function DonatePage() {
       </section>
 
       {/* Final CTA / Contact */}
-      <section className="py-32 bg-background">
+      <section className="py-20 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}

@@ -21,6 +21,7 @@ export function Footer() {
               <li><Link to="/find-support" className="text-textbody hover:text-foreground transition-colors">Find Support</Link></li>
               <li><Link to="/join-mission" className="text-textbody hover:text-foreground transition-colors">Join Our Mission</Link></li>
               <li><Link to="/donate" className="text-textbody hover:text-foreground transition-colors">Donate</Link></li>
+              <li><Link to="/spirit-suggestions" className="text-secondary hover:text-foreground transition-colors font-bold">Spirit Suggestions</Link></li>
             </ul>
           </div>
 

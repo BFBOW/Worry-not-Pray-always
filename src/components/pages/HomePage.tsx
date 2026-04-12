@@ -125,9 +125,10 @@ const EditorialBlock: React.FC<{
   reverse?: boolean;
   link: string;
   features?: string[];
-}> = ({ title, subtitle, description, image, reverse, link, features }) => {
+  scripture?: { verse: string; ref: string };
+}> = ({ title, subtitle, description, image, reverse, link, features, scripture }) => {
   return (
-    <section className="w-full py-0 relative overflow-hidden">
+    <section className="w-full py-8 relative overflow-hidden">
       {/* Atmospheric Background Elements */}
       <div className={`absolute top-1/2 ${reverse ? 'left-0' : 'right-0'} -translate-y-1/2 w-64 h-64 bg-secondary/5 rounded-full blur-[100px] -z-10`} />
       
@@ -135,7 +136,7 @@ const EditorialBlock: React.FC<{
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-secondary/10 to-transparent" />
       
       <div className="max-w-[85rem] mx-auto px-6">
-        <div className={`py-2 md:py-4 flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-12 relative group`}>
+        <div className={`py-4 md:py-8 flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-12 relative group`}>
           {/* Decorative Tapering Border - Top Corner */}
           <div className={`absolute -top-4 ${reverse ? '-right-4' : '-left-4'} w-64 h-64 pointer-events-none hidden lg:block z-0`}>
             <div className={`absolute top-0 ${reverse ? 'right-0' : 'left-0'} w-full h-px bg-gradient-to-${reverse ? 'l' : 'r'} from-secondary/50 via-secondary/10 to-transparent`} />
@@ -155,20 +156,21 @@ const EditorialBlock: React.FC<{
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-20 lg:-mt-12 lg:-mb-12"
+              className="relative z-20 lg:-mt-8 lg:-mb-8"
             >
               <ParallaxImage 
                 src={image} 
                 alt={title} 
                 className="aspect-[4/3] shadow-2xl rounded-3xl border border-white/10" 
               />
+              
               {/* Subtle shadow/glow behind image - Brass/Tan-Green Halo */}
               <div className="absolute inset-0 bg-secondary/20 blur-[60px] -z-10 scale-110 opacity-60 group-hover:opacity-100 transition-opacity duration-1000" />
             </motion.div>
           </div>
 
           {/* Content Side */}
-          <div className="w-full lg:w-7/12 py-12">
+          <div className="w-full lg:w-7/12 py-8">
             <motion.div
               initial={{ opacity: 0, x: reverse ? -30 : 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -197,9 +199,18 @@ const EditorialBlock: React.FC<{
                 <span className="text-secondary italic font-normal">{title.split(' ').slice(-1)}</span>
               </h2>
               
-              <p className="font-paragraph text-base text-textbody leading-relaxed mb-6 max-w-lg">
+              <p className="font-paragraph text-base text-textbody leading-relaxed mb-4 max-w-lg">
                 {description}
               </p>
+
+              {scripture && (
+                <div className="mb-6 py-2">
+                  <p className="text-lg italic text-sage font-medium leading-relaxed mb-1 drop-shadow-[0_1px_1px_rgba(27,38,27,0.5)]">
+                    "{scripture.verse}"
+                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-sage/70">— {scripture.ref}</p>
+                </div>
+              )}
 
               {features && (
                 <motion.div 
@@ -237,7 +248,7 @@ const EditorialBlock: React.FC<{
                 to={link}
                 className="group inline-flex items-center gap-2 px-6 py-2.5 bg-secondary text-white font-paragraph text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-secondary/90 transition-all shadow-md shadow-secondary/10 hover:-translate-y-0.5"
               >
-                Explore Program
+                {link === "/spirit" && title.includes("Bible Study") ? "Sign Up" : "Find Support"}
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -296,7 +307,7 @@ export default function HomePage() {
             </h1>
             
             <p className="font-paragraph text-xl text-textbody leading-relaxed mb-12 max-w-md">
-              At BFBOW, we're a sanctuary where faith meets action. We provide essential sustenance, spiritual growth, and a compassionate community for all who needs it. <span className="text-secondary italic">Proverbs 19:17</span> says "Whoever is kind to the poor lends to the Lord, and he will reward them for what they have done."
+              At BFBOW, we're a sanctuary where faith meets action. We provide essential sustenance, spiritual growth, and a compassionate community for all who needs it. <span className="text-sage italic font-medium drop-shadow-[0_1px_1px_rgba(27,38,27,0.4)]">Proverbs 19:17</span> says "Whoever is kind to the poor lends to the Lord, and he will reward them for what they have done."
             </p>
 
             <div className="flex flex-wrap gap-6">
@@ -361,7 +372,7 @@ export default function HomePage() {
       <div className="w-full bg-secondary py-4 overflow-hidden flex items-center">
         <motion.div 
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
           className="flex whitespace-nowrap gap-12 px-6"
         >
           {[...Array(8)].map((_, i) => (
@@ -379,7 +390,7 @@ export default function HomePage() {
 
       {/* --- EDITORIAL MISSION OVERVIEW with Slanted Split --- */}
       <section 
-        className="w-full pt-12 pb-0 md:pt-16 md:pb-0 text-center relative overflow-hidden"
+        className="w-full py-0 text-center relative overflow-hidden"
         style={{ background: 'linear-gradient(110deg, #3A4A3A 50%, #243124 50.5%)' }}
       >
         {/* Atmospheric Background Elements - Soft glows to add depth */}
@@ -414,9 +425,15 @@ export default function HomePage() {
             {/* Subtle Line below heading */}
             <div className="w-24 h-px bg-secondary/40 mx-auto mb-8" />
             
-            <p className="font-paragraph text-xl text-textbody leading-relaxed max-w-2xl mx-auto opacity-90">
-              Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal. <span className="text-secondary italic font-medium">3 John 1:2</span> — "Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well." God cares about your total well-being—body, mind, and spirit.
+            <p className="font-paragraph text-xl text-textbody leading-relaxed max-w-2xl mx-auto opacity-90 mb-8">
+              Our ministry extends beyond the plate. We believe in nurturing the spirit just as we nourish the body, creating a cycle of sense of belonging, hope and renewal. God cares about your total well-being—body, mind, and spirit.
             </p>
+            <div className="max-w-2xl mx-auto py-4">
+              <p className="text-sage italic font-medium text-xl md:text-2xl leading-relaxed mb-3 drop-shadow-[0_1px_1px_rgba(27,38,27,0.5)]">
+                "Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well."
+              </p>
+              <p className="text-sage/60 text-xs uppercase tracking-[0.2em] font-bold">— 3 John 1:2</p>
+            </div>
           </motion.div>
         </div>
         
@@ -431,29 +448,32 @@ export default function HomePage() {
       <EditorialBlock 
         subtitle="Sustenance & Crisis Relief"
         title="Food Assistance & Emergency Support"
-        description="Ensuring no one goes hungry by providing regular access to nutritious food for families, while offering immediate relief for individuals in crisis. Revelation 7:16-17 — 'They shall hunger no more, neither thirst any more... for the Lamb which is in the midst of the throne shall feed them.'"
+        description="Ensuring no one goes hungry by providing regular access to nutritious food for families, while offering immediate relief for individuals in crisis."
         image="https://i.ibb.co/PGcNVvXM/delivery.jpg"
         link="/find-support"
         features={["Weekly distribution", "Tailored dietary options", "Ready-to-eat meals", "Hygiene & baby care", "Homelessness support"]}
+        scripture={{ verse: "They shall hunger no more, neither thirst any more... for the Lamb which is in the midst of the throne shall feed them.", ref: "Revelation 7:16-17" }}
       />
 
       <EditorialBlock 
         subtitle="Spiritual Care"
         title="Faith-Based Counseling"
-        description="We offer individual and family counseling rooted in biblical principles. Our compassionate counselors provide a safe space to navigate life's challenges, find spiritual clarity, and experience emotional healing through the grace of God. John 16:13: When the Spirit of truth comes, he will guide you into all the truth, Psalm 32:8 : I will instruct you and teach you and will counsel you with my eye upon you. Matthew 11:28 :Come to me, all who labor and are heavy laden, and I will give you rest."
+        description="We offer individual and family counseling rooted in biblical principles. Our compassionate counselors provide a safe space to navigate life's challenges, find spiritual clarity, and experience emotional healing through the grace of God."
         image="https://i.ibb.co/ZzdQbF3q/photo-realistic-image-40-year-260nw-2615233105.webp"
         reverse
-        link="/spirit"
+        link="/find-support/specialized"
         features={["Individual Spiritual Guidance", "Family & Marriage Support", "Grief & Loss Counseling", "Youth Mentorship"]}
+        scripture={{ verse: "I will instruct you and teach you and will counsel you with my eye upon you.", ref: "Psalm 32:8" }}
       />
 
       <EditorialBlock 
         subtitle="Empowerment"
         title="Educational Programs"
-        description="Providing skills and certifications for confidence and stable employment opportunities in our local community. John 12:26 — 'If any man serve me, let him follow me; and where I am, there shall also my servant be: if any man serve me, him will my Father honour.'"
+        description="Providing skills and certifications for confidence and stable employment opportunities in our local community."
         image="https://i.ibb.co/gZD52fZy/food-cert.jpg"
-        link="/events"
+        link="/join-mission"
         features={["First Aid CPR Training", "Food Handling Certs", "Job Support Resources"]}
+        scripture={{ verse: "I can do all things through Christ who strengthens me.", ref: "Phil 4:13 (KJV)" }}
       />
 
       <EditorialBlock 
@@ -462,27 +482,30 @@ export default function HomePage() {
         description="No one should feel forgotten. Our visitation team brings the ministry to those who are shut-in, sick, or hospitalized. We provide prayer, companionship, and a tangible connection to the community for those unable to attend in person."
         image="https://i.ibb.co/998Qc5Hk/sickpray.jpg"
         reverse
-        link="/join-mission"
+        link="/find-support/specialized"
         features={["Hospital Bedside Visits", "Home Visits for Shut-ins", "Nursing Home Outreach", "Phone Call Ministry"]}
+        scripture={{ verse: "Whatever you did for one of the least of these brothers and sisters of mine, you did for me.", ref: "Matthew 25:40" }}
       />
 
       <EditorialBlock 
         subtitle="Restoration & Hope"
         title="Prison Ministry"
-        description="Visiting those in correctional facilities to share the message of redemption and hope. Matthew 25:36 — 'I was in prison and you came to visit me.' We provide spiritual support, mentorship, and resources for successful reintegration."
+        description="Visiting those in correctional facilities to share the message of redemption and hope. We provide spiritual support, mentorship, and resources for successful reintegration."
         image="https://i.ibb.co/8nSvRByM/prisonministry.jpg"
-        link="/join-mission"
+        link="/find-support/specialized"
         features={["Facility Visitations", "Spiritual Mentorship", "Re-entry Support", "Family Connection"]}
+        scripture={{ verse: "I was in prison and you came to visit me.", ref: "Matthew 25:36" }}
       />
 
       <EditorialBlock 
         subtitle="Spiritual Growth"
         title="Bible Study & Evangelism"
-        description="Deepening our faith through the study of God's Word and sharing the Good News with our community. Matthew 28:19 — 'Go therefore and make disciples of all nations.' We offer group studies and outreach programs designed to strengthen your spiritual foundation. 2 Timothy 2:15 KJV — Study to shew thyself approved unto God."
+        description="Deepening our faith through the study of God's Word and sharing the Good News with our community. We offer group studies and outreach programs designed to strengthen your spiritual foundation."
         image="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&q=80&w=2000"
         reverse
         link="/spirit"
         features={["Weekly Group Studies", "Community Outreach", "Discipleship Training", "Evangelism Workshops"]}
+        scripture={{ verse: "Study to shew thyself approved unto God.", ref: "2 Timothy 2:15 KJV" }}
       />
 
       {/* --- FEATURE:FOOD FOR THE SPIRIT (Parallax Background) --- */}
@@ -516,12 +539,12 @@ export default function HomePage() {
             >
               <Leaf className="w-10 h-10 text-secondary mx-auto mb-6" />
             </motion.div>
-            <h2 className="font-heading text-3xl md:text-5xl text-primary-foreground mb-6 text-pop">
-              Food for the Spirit
+            <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl text-primary-foreground mb-6 leading-[0.85] tracking-tighter text-pop">
+              Food for the <br />
+              <span className="text-secondary italic font-normal">Spirit</span>
              </h2>
             <p className="font-paragraph text-xl text-textbody mb-10 max-w-2xl mx-auto leading-relaxed">
-              "Man shall not live by bread alone.Matthew 14:16
-'But Jesus said, “They need not go away; you give them something to eat.”' The story of Jesus feeding the 5,000 appears in all four gospels (Mark 6, Luke 9, and John 6)" Join our digital ministry to receive daily devotionals, prayer requests, and bible study invitations directly to your phone or inbox.
+              "Man shall not live by bread alone. But Jesus said, 'They need not go away; you give them something to eat.' The story of Jesus feeding the 5,000 appears in all four gospels." Join our digital ministry to receive daily devotionals, prayer requests, and bible study invitations directly to your phone or inbox. <span className="text-sage italic font-medium drop-shadow-[0_1px_1px_rgba(27,38,27,0.4)]">Matthew 14:16</span>
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -545,13 +568,17 @@ export default function HomePage() {
       </section>
 
       {/* --- UPCOMING EVENTS (List Layout) --- */}
-      <section className="w-full max-w-[80rem] mx-auto px-6 md:px-12 py-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-8 border-b border-bordersubtle/20 pb-4">
-          <div>
-            <h2 className="font-heading text-2xl text-primary-foreground mb-2">Community Calendar</h2>
-            <p className="font-paragraph text-sm text-textbody"> Join us at our upcoming gatherings and distributions.</p>
+      <section className="w-full max-w-[80rem] mx-auto px-6 md:px-12 py-12">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-primary/30 pb-8">
+          <div className="flex flex-col items-center md:items-start">
+            <Leaf className="w-8 h-8 text-secondary mb-4 animate-pulse" />
+            <h2 className="font-heading text-5xl md:text-6xl lg:text-7xl text-primary-foreground leading-[0.85] mb-4 uppercase tracking-tighter">
+              Community <br />
+              <span className="text-secondary italic font-normal">Calendar</span>
+            </h2>
+            <p className="font-paragraph text-base md:text-lg text-textbody max-xl italic"> Join us at our upcoming gatherings and distributions. <span className="text-sage font-medium drop-shadow-[0_1px_1px_rgba(27,38,27,0.4)]">"God measures the heart by what we give."</span></p>
           </div>
-          <Link to="/events" className="hidden md:flex items-center text-secondary hover:text-white transition-colors mt-4 md:mt-0 text-sm font-bold uppercase tracking-widest">
+          <Link to="/events" className="hidden md:flex items-center text-secondary hover:text-white transition-colors mt-4 md:mt-0 text-sm font-bold uppercase tracking-widest border-b border-secondary/30 pb-1">
             View Full Calendar <ArrowRight className="ml-2 w-3 h-3" />
           </Link>
         </div>
@@ -571,30 +598,38 @@ export default function HomePage() {
               }
             }}
           >
-            <EventRow 
-              date="OCT 12"
-              title="Fall Harvest Distribution"
-              location="Belleville Church Hall"
-              time="10:00 AM - 2:00 PM"
-            />
-            <EventRow 
-              date="OCT Date TBA"
-              title="Virtual Bible Study: Hope"
-              location="Online (Zoom)"
-              time="7:00 PM - 8:30 PM"
-            />
-            <EventRow 
-              date="NOV Date TBA"
-              title="Community Thanksgiving Prep"
-              location="Volunteer Center"
-              time="9:00 AM - 4:00 PM"
-            />
-            <EventRow 
-              date="NOV Date TBA"
-              title="Wellness & Health Screening"
-              location="Community Center Annex"
-              time="11:00 AM - 3:00 PM"
-            />
+            <Link to="/events">
+              <EventRow 
+                date="OCT 12"
+                title="Fall Harvest Distribution"
+                location="Belleville Church Hall"
+                time="10:00 AM - 2:00 PM"
+              />
+            </Link>
+            <Link to="/events">
+              <EventRow 
+                date="OCT Date TBA"
+                title="Virtual Bible Study: Hope"
+                location="Online (Zoom)"
+                time="7:00 PM - 8:30 PM"
+              />
+            </Link>
+            <Link to="/events">
+              <EventRow 
+                date="NOV Date TBA"
+                title="Community Thanksgiving Prep"
+                location="Volunteer Center"
+                time="9:00 AM - 4:00 PM"
+              />
+            </Link>
+            <Link to="/events">
+              <EventRow 
+                date="NOV Date TBA"
+                title="Wellness & Health Screening"
+                location="Community Center Annex"
+                time="11:00 AM - 3:00 PM"
+              />
+            </Link>
           </motion.div>
         </div>
         
@@ -606,22 +641,30 @@ export default function HomePage() {
       </section>
 
       {/* --- PARTNERS & IMPACT (Grid) --- */}
-      <section className="w-full bg-[#2A382A] py-10 border-t border-bordersubtle/10">
+      <section className="w-full bg-[#2A382A] py-12 border-t border-bordersubtle/10 relative overflow-hidden">
+        {/* Soft Halo Glows */}
+        <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[150px] -z-10 -translate-x-1/2 -translate-y-1/2" />
+        
         <div className="max-w-[100rem] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="font-heading text-2xl md:text-3xl text-primary-foreground mb-4">
-                Stronger Together
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-px bg-secondary" />
+                <span className="text-[10px] uppercase tracking-[0.4em] text-secondary font-bold">Collaborators</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading mb-6 leading-[0.8] tracking-tighter text-pop">
+                Stronger <br />
+                <span className="text-secondary italic font-normal">Together</span>
               </h2>
-              <p className="font-paragraph text-sm text-textbody mb-6 leading-relaxed">
+              <p className="font-paragraph text-lg text-textbody/90 mb-8 leading-relaxed italic">
                 We are proud to work alongside dedicated organizations that share our passion, hope and vision of a hunger-free community.
               </p>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-4">
                 {[
-                  { name: "Specialty\nFood Bank" },
+                  { src: "https://i.ibb.co/C3K7tkQn/bsdac.jpg", name: "BSDAC" },
+                  { src: "https://i.ibb.co/84MPnGPs/where.png", name: "Where" },
                   { name: "Local\nFarms Co-op" },
-                  { name: "Community\nHealth Alliance" },
-                  { name: "Belleville\nOutreach" }
+                  { name: "Community\nHealth Alliance" }
                 ].map((partner, i) => (
                   <motion.div 
                     key={i}
@@ -629,16 +672,24 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="p-4 bg-primary border border-bordersubtle/20 flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity"
+                    className="aspect-square bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center p-6 overflow-hidden group hover:bg-white/10 hover:border-secondary/40 transition-all duration-500 shadow-xl"
                   >
-                    <span className="font-heading text-lg text-center text-primary-foreground">
-                      {partner.name.split('\n').map((line, j) => (
-                        <React.Fragment key={j}>
-                          {line}
-                          {j === 0 && <br/>}
-                        </React.Fragment>
-                      ))}
-                    </span>
+                    {partner.src ? (
+                      <Image 
+                        src={partner.src}
+                        alt={partner.name}
+                        className="w-full h-full object-contain transition-all duration-500 group-hover:scale-110"
+                      />
+                    ) : (
+                      <span className="font-heading text-lg text-center text-primary-foreground opacity-70 group-hover:opacity-100 transition-opacity">
+                        {partner.name.split('\n').map((line, j) => (
+                          <React.Fragment key={j}>
+                            {line}
+                            {j === 0 && <br/>}
+                          </React.Fragment>
+                        ))}
+                      </span>
+                    )}
                   </motion.div>
                 ))}
               </div>
@@ -664,32 +715,37 @@ export default function HomePage() {
       </section>
 
       {/* --- CTA SECTION --- */}
-      <section className="w-full py-12 px-6 relative overflow-hidden">
+      <section className="w-full py-16 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-secondary/10" />
-        <div className="max-w-3xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-heading text-3xl md:text-5xl text-primary-foreground mb-6 text-pop">
-              Thanks Be To Our God
+            <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl text-primary-foreground leading-[0.85] mb-8 uppercase tracking-tighter text-pop">
+              Thanks Be <br />
+              To Our <span className="text-secondary italic font-normal">God</span>
             </h2>
-            <p className="font-paragraph text-lg text-textbody mb-8 max-w-2xl mx-auto">
-              We couldn’t do this work without the grace of our God and the unwavering support of our community. Every dollar donated, every hour volunteered, and every meal provided is a testament to His love at work through all of us.Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need.
-Hebrews 4:16
+            <p className="font-paragraph text-xl text-textbody mb-8 max-w-3xl mx-auto leading-relaxed italic">
+              We couldn’t do this work without the grace of our God and the unwavering support of our community. Every dollar donated, every hour volunteered, and every meal provided is a testament to His love at work through all of us. <br /><br />
+              <span className="text-sage italic font-bold text-2xl drop-shadow-[0_1px_1px_rgba(27,38,27,0.5)]">
+                "Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need."
+              </span>
+              <br />
+              <span className="text-[10px] uppercase tracking-[0.2em] text-sage/70 font-bold">— Hebrews 4:16</span>
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link 
                 to="/donate"
-                className="px-8 py-3 bg-secondary text-white font-paragraph text-base font-semibold rounded-sm hover:bg-secondary/90 transition-all shadow-md shadow-secondary/20 hover:-translate-y-0.5"
+                className="px-10 py-4 bg-secondary text-white font-paragraph text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-secondary/90 transition-all shadow-xl shadow-secondary/20 hover:-translate-y-1"
               >
                 Donate Now
               </Link>
               <Link 
-                to="/join-mission"
-                className="px-8 py-3 bg-transparent border border-bordersubtle text-primary-foreground font-paragraph text-base font-semibold rounded-sm hover:border-primary-foreground hover:text-white transition-all"
+                to="/join-mission#partner-form"
+                className="px-10 py-4 bg-transparent border-2 border-secondary text-primary-foreground font-paragraph text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-secondary hover:text-white transition-all hover:-translate-y-1"
               >
                 Volunteer With Us
               </Link>

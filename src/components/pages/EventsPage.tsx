@@ -87,21 +87,45 @@ export default function EventsPage() {
       date: 'Every Wednesday',
       time: '10:00 AM - 2:00 PM',
       location: 'Main Community Center - New Location TBA',
-      desc: 'Join us for our weekly distribution of fresh produce, perishable, non-perishable and pantry staples to the community. Colossians 1:10 ESV / 5 helpful votes Helpful Not Helpful So as to walk in a manner worthy of the Lord, fully pleasing to him: bearing fruit in every good work and increasing in the knowledge of God; Colossians 1:10'
+      desc: 'Join us for our weekly distribution of fresh produce, perishable, non-perishable and pantry staples to the community.',
+      scripture: {
+        text: "So as to walk in a manner worthy of the Lord, fully pleasing to him: bearing fruit in every good work and increasing in the knowledge of God",
+        ref: "Colossians 1:10 ESV"
+      }
     },
     {
-      title: 'Community Bible Study - Jesus said unto them, Go ye into all the world, and preach the gospel to every creature. He that believeth and is baptized shall be saved Mark 16:15-16 KJV',
+      title: 'Community Bible Study',
       date: 'Every Tuesday',
       time: '6:30 PM - 8:00 PM',
       location: 'Belleville Food Bank On Wheels Chapel',
-      desc: 'Come join us for a time of spiritual growth and fellowship as we dive into the scriptures together. Study to show thyself approved unto God, a workman that has nothing to be ashamed of, rightly dividing the word of truth” (2 Tim. 2:15'
+      desc: 'Come join us for a time of spiritual growth and fellowship as we dive into the scriptures together.',
+      scripture: [
+        {
+          text: "Jesus said unto them, Go ye into all the world, and preach the gospel to every creature. He that believeth and is baptized shall be saved",
+          ref: "Mark 16:15-16 KJV"
+        },
+        {
+          text: "Study to show thyself approved unto God, a workman that has nothing to be ashamed of, rightly dividing the word of truth",
+          ref: "2 Timothy 2:15"
+        }
+      ]
     },
     {
       title: 'Volunteer Orientation',
       date: 'First TBA of Month',
       time: '9:00 AM - 11:00 AM',
       location: 'Hub Office',
-      desc: "New to Belleville Food Bank On Wheels? We welcome you to join us and learn how you can make an impact in our community. Isaiah 58:10 — 'And if thou draw out thy soul to the hungry, and satisfy the afflicted soul; then shall thy light rise in obscurity, and thy darkness be as the noon day.' 2 Corinthians 9:7-8 — 'Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver. And God is able to bless you abundantly, so that in all things at all times, having all that you need, you will abound in every good work.'"
+      desc: "New to Belleville Food Bank On Wheels? We welcome you to join us and learn how you can make an impact in our community.",
+      scripture: [
+        {
+          text: "And if thou draw out thy soul to the hungry, and satisfy the afflicted soul; then shall thy light rise in obscurity, and thy darkness be as the noon day.",
+          ref: "Isaiah 58:10"
+        },
+        {
+          text: "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver. And God is able to bless you abundantly, so that in all things at all times, having all that you need, you will abound in every good work.",
+          ref: "2 Corinthians 9:7-8"
+        }
+      ]
     }
   ];
 
@@ -136,9 +160,15 @@ export default function EventsPage() {
                   Community <br />
                   <span className="text-secondary italic font-normal">Gatherings</span>
                 </h1>
-                <p className="font-paragraph text-base md:text-lg text-textbody max-w-2xl mx-auto leading-relaxed italic">
-                  Please join us for our community events, food distribution programs, and special gatherings. Every event is an opportunity to strengthen our community and share hope. God measures the heart by what we give; He that hath pity upon the poor lendeth unto the Lord; and that which he hath given will he pay him again." – Proverbs 19:17 (KJV)
+                <p className="font-paragraph text-base md:text-lg text-textbody max-w-2xl mx-auto leading-relaxed italic mb-6">
+                  Please join us for our community events, food distribution programs, and special gatherings. Every event is an opportunity to strengthen our community and share hope.
                 </p>
+                <div className="max-w-xl mx-auto border-l-2 border-secondary pl-6 py-2 bg-secondary/5 rounded-r-sm text-left">
+                  <p className="text-sm italic text-secondary font-medium leading-relaxed mb-1">
+                    "God measures the heart by what we give; He that hath pity upon the poor lendeth unto the Lord; and that which he hath given will he pay him again."
+                  </p>
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-secondary/80">— Proverbs 19:17 (KJV)</p>
+                </div>
               </div>
             </div>
 
@@ -184,6 +214,20 @@ export default function EventsPage() {
               <div className="flex-grow">
                 <h3 className="text-2xl font-heading mb-4 text-pop group-hover:text-secondary transition-colors">{event.title}</h3>
                 <p className="text-textbody text-lg mb-6 leading-relaxed italic font-paragraph">{event.desc}</p>
+                
+                {event.scripture && (
+                  <div className="mb-6 space-y-4">
+                    {(Array.isArray(event.scripture) ? event.scripture : [event.scripture]).map((s, si) => (
+                      <div key={si} className="border-l-2 border-secondary/30 pl-4 py-1 bg-secondary/5 rounded-r-sm">
+                        <p className="text-sm italic text-secondary font-medium leading-relaxed mb-1">
+                          "{s.text}"
+                        </p>
+                        <p className="text-[10px] uppercase tracking-widest font-bold text-secondary/60">— {s.ref}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <div className="flex flex-wrap gap-6 text-base text-textbody">
                   <div className="flex items-center gap-2">
                     <Clock size={16} className="text-secondary" />

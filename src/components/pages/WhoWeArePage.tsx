@@ -11,7 +11,9 @@ import {
   BookOpen, 
   Users, 
   Calendar,
-  CheckCircle2
+  CheckCircle2,
+  ExternalLink,
+  AlertCircle
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Link } from 'react-router-dom';
@@ -35,7 +37,7 @@ export default function WhoWeArePage() {
           className="absolute inset-0 z-0"
         >
           <Image 
-            src="https://i.ibb.co/cS994Lj2/jesusgiveswho.jpg"
+            src="https://i.ibb.co/JjsmyMLV/breadoflife.png"
             alt="Who We Are Hero"
             className="w-full h-full object-cover"
           />
@@ -77,31 +79,31 @@ export default function WhoWeArePage() {
               “The Need is Great, The Need is Real.”
             </h2>
             <p className="text-xl font-heading uppercase tracking-widest opacity-60">
-              — Marcia White - CBC News Toronto
+              — Marcia White - Whitby Specialty Food Bank
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* History Section with Image Overlap */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-12 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="relative z-10"
             >
-              <div className="inline-flex p-3 bg-secondary/10 rounded-full text-secondary mb-6">
+              <div className="inline-flex p-3 bg-secondary/10 rounded-full text-secondary mb-4">
                 <History size={32} />
               </div>
-              <h2 className="text-4xl md:text-5xl font-heading mb-8 text-pop">Changing by Faith.</h2>
-              <p className="text-lg text-textlight leading-relaxed mb-8">
+              <h2 className="text-4xl md:text-5xl font-heading mb-6 text-pop">Changing by Faith.</h2>
+              <p className="text-lg text-textlight leading-relaxed mb-6">
                 TBD
               </p>
               
-              <div className="space-y-8">
+              <div className="space-y-6">
                 <h3 className="text-sm uppercase tracking-[0.3em] font-bold text-secondary">Key Milestones</h3>
                 {[
                   { year: '20xx', text: 'Opened our first standalone location.' },
@@ -115,10 +117,10 @@ export default function WhoWeArePage() {
                   </div>
                 ))}
               </div>
-              <p className="mt-12 text-sm italic text-secondary/70 border-l-2 border-secondary/30 pl-4">
+              <p className="mt-8 text-sm italic text-secondary/70 border-l-2 border-secondary/30 pl-4">
                 "Then he took the five loaves and the two fishes, and looking up to heaven, he blessed them, and brake, and gave to the disciples to set before the multitude. And they did eat, and were all filled: and there was taken up of fragments that remained to them twelve baskets." — Luke 9:16-17
               </p>
-              <p className="mt-12 text-xl font-heading italic text-secondary">
+              <p className="mt-8 text-xl font-heading italic text-secondary">
                 Through each step, our focus has remained on serving with dignity and love.
               </p>
             </motion.div>
@@ -167,23 +169,145 @@ export default function WhoWeArePage() {
             <h3 className="text-4xl font-heading mb-6">Hunger is More Than a Lack of Food</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {[
-              "In 2022, 18% of Canadian families reported test experiencing some level of food insecurity, an increase from 16% in 2021.",
-              "Approximately 18.7% of Ontario households faced food insecurity, reflecting a growing concern within the province.",
-              "In the fiscal year ending June 2024, food bank visits in Toronto surpassed 2.5 million, marking a 51% increase compared to the previous year.",
-              "In 2022, 41% of female lone-parent families in Canada experienced food insecurity, underscoring significant disparities."
-            ].map((stat, i) => (
+              {
+                text: "Food bank usage in the Greater Toronto Area (GTA) has reached unprecedented, record-high levels, with over 4.1 million visits recorded between April 2024 and March 2025—an 18% increase from the previous year and a 340% increase since 2019.",
+                icon: <TrendingUp className="text-secondary" />,
+                accent: "Record High"
+              },
+              {
+                text: "Over 1 in 10 Torontonians now rely on food banks, with 1 in 4 clients being children and over half of surveyed households missing meals to pay for other expenses.",
+                icon: <Users className="text-secondary" />,
+                accent: "1 in 10 Rely"
+              },
+              {
+                text: "In 2022, 18% of Canadian families reported experiencing some level of food insecurity, an increase from 16% in 2021.",
+                icon: <AlertCircle className="text-secondary" />,
+                accent: "18% Insecurity"
+              },
+              {
+                text: "Approximately 18.7% of Ontario households faced food insecurity, reflecting a growing concern within the province.",
+                icon: <AlertCircle className="text-secondary" />,
+                accent: "Ontario Crisis"
+              },
+              {
+                text: "In the fiscal year ending June 2024, food bank visits in Toronto surpassed 2.5 million, marking a 51% increase compared to the previous year.",
+                icon: <TrendingUp className="text-secondary" />,
+                accent: "51% Increase"
+              },
+              {
+                text: "In 2022, 41% of female lone-parent families in Canada experienced food insecurity, underscoring significant disparities.",
+                icon: <Heart className="text-secondary" />,
+                accent: "Vulnerable Families"
+              },
+              {
+                text: "Key 2024-2025 Toronto Food Bank Statistics: Total Visits: Over 4.1 million visits, representing a 340% surge since 2019.",
+                icon: <TrendingUp className="text-secondary" />,
+                accent: "340% Surge"
+              },
+              {
+                text: "Monthly Average: Over 344,000 visits per month in 2025, up from ~78,000 in 2019.",
+                icon: <Calendar className="text-secondary" />,
+                accent: "Rising Average"
+              },
+              {
+                text: "First-Time Clients: More than 112,000 new, first-time individuals used food banks.",
+                icon: <Users className="text-secondary" />,
+                accent: "New Clients"
+              },
+              {
+                text: "Client Profile: 1 in 4 users are children, and 18% of households with children reported they went hungry at least once a week.",
+                icon: <Users className="text-secondary" />,
+                accent: "Child Hunger"
+              },
+              {
+                text: "Employment & Income: Nearly 46% of food bank users live in households with at least one employed person, highlighting the gap between wages and living costs.",
+                icon: <TrendingUp className="text-secondary" />,
+                accent: "Working Poor"
+              },
+              {
+                text: "Common Causes: High food prices, unaffordable housing (median rental costs of $1,300/month), and inadequate income supports.",
+                icon: <AlertCircle className="text-secondary" />,
+                accent: "Root Causes"
+              },
+              {
+                text: "The situation remains a 'food insecurity emergency,' with 59% of visits coming from returning clients, indicating a long-term, structural crisis rather than temporary distress.",
+                icon: <AlertCircle className="text-secondary" />,
+                accent: "Emergency"
+              },
+              {
+                text: "The 2025 Who's Hungry report emphasizes that the majority of visits are now driven by the need for consistent, recurring support.",
+                icon: <BookOpen className="text-secondary" />,
+                accent: "Recurring Need"
+              },
+              {
+                type: "sources",
+                title: "Data Sources & Reports",
+                links: [
+                  { label: "CBC News: Who's Hungry 2025", url: "https://www.cbc.ca/news/canada/toronto/whos-hungry-2025-toronto-food-banks-9.6952657" },
+                  { label: "Daily Bread: Who's Hungry Report", url: "https://www.dailybread.ca/research-and-advocacy/research/whos-hungry-report/" },
+                  { label: "CP24: Rising Poverty in Ontario", url: "https://www.cp24.com/local/toronto/2025/12/01/food-banks-are-breaking-under-the-weight-of-rising-poverty-in-ontario-new-report-says/" }
+                ],
+                icon: <BookOpen className="text-secondary" />
+              }
+            ].map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white/5 border border-white/10 p-8 rounded-2xl"
+                className={`relative group p-8 rounded-2xl border transition-all duration-500 ${
+                  'type' in item && item.type === 'sources' 
+                    ? "bg-secondary/5 border-secondary/20 hover:bg-secondary/10 p-6" 
+                    : "bg-white/5 border-white/10 hover:border-secondary/50 hover:bg-white/[0.08]"
+                }`}
               >
-                <TrendingUp className="text-secondary mb-4" />
-                <p className="text-textbody leading-relaxed">{stat}</p>
+                <div className="flex items-start justify-between mb-6">
+                  <div className="p-3 bg-secondary/10 rounded-xl">
+                    {item.icon}
+                  </div>
+                  {'accent' in item && (
+                    <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-secondary px-3 py-1 bg-secondary/20 rounded-full border border-secondary/30 shadow-[0_0_10px_rgba(212,209,165,0.2)]">
+                      {item.accent}
+                    </span>
+                  )}
+                </div>
+
+                {'type' in item && item.type === 'sources' ? (
+                  <div>
+                    <h4 className="font-heading text-lg mb-4 text-primary-foreground">{item.title}</h4>
+                    <div className="flex flex-col gap-3">
+                      {item.links.map((link, li) => (
+                        <a 
+                          key={li}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 p-3 bg-black/20 rounded-xl border border-white/5 hover:border-secondary/30 hover:bg-black/40 transition-all group/link"
+                        >
+                          <ExternalLink size={12} className="text-secondary shrink-0 group-hover/link:scale-110 transition-transform" />
+                          <span className="text-xs text-textbody group-hover/link:text-secondary transition-colors line-clamp-1">{link.label}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-textbody leading-relaxed text-lg italic font-paragraph">
+                    {item.text.includes(':') ? (
+                      <>
+                        <span className="font-bold text-primary-foreground not-italic">{item.text.split(':')[0]}:</span>
+                        {item.text.split(':').slice(1).join(':')}
+                      </>
+                    ) : (
+                      item.text
+                    )}
+                  </p>
+                )}
+                
+                {/* Decorative corner accent */}
+                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-tr-2xl pointer-events-none" />
               </motion.div>
             ))}
           </div>
@@ -214,9 +338,11 @@ export default function WhoWeArePage() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-secondary font-heading text-xl mb-8 opacity-60 uppercase tracking-[0.2em]"
+              className="text-secondary font-heading text-xl mb-8 opacity-80 uppercase tracking-[0.2em]"
             >
-              Hebrews 13:16 "And do not forget to do good and to share with others, for with such sacrifices God is pleased"
+              "And do not forget to do good and to share with others, for with such sacrifices God is pleased"
+              <br />
+              <span className="text-sm mt-4 block">— Hebrews 13:16</span>
             </motion.div>
             <h2 className="text-4xl md:text-6xl font-heading mb-8 text-pop">Faith That Moves Us</h2>
           </div>
@@ -324,28 +450,21 @@ export default function WhoWeArePage() {
         </div>
       </section>
 
-      {/* Team Introduction */}
-      <section className="py-24 bg-secondary/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-6xl font-heading mb-8">Meet the People Behind the Purpose</h2>
-            <p className="text-xl text-textlight max-w-3xl mx-auto leading-relaxed">
-              At our Belleville Food Bank On Wheels, our team is united by a shared passion for service. From our leadership to our volunteers, every member brings dedication, compassion, and faith to their role. Together, we make a difference every day.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Dedicated Team Section */}
-      <section className="py-24">
+      <section className="py-24 bg-secondary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h3 className="text-sm uppercase tracking-[0.3em] font-bold text-secondary mb-4">Our Dedicated Team</h3>
-            <h2 className="text-4xl font-heading">The Hearts Behind the Mission</h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-6xl font-heading mb-4">Our Dedicated Team</h2>
+              <h3 className="text-2xl font-heading text-secondary italic mb-8">The Hearts Behind the Mission</h3>
+              <p className="text-xl text-textlight max-w-3xl mx-auto leading-relaxed mb-12">
+                At our Belleville Food Bank On Wheels, our team is united by a shared passion for service. From our leadership to our volunteers, every member brings dedication, compassion, and faith to their role. Together, we make a difference every day.
+              </p>
+            </motion.div>
           </div>
           
           <motion.div

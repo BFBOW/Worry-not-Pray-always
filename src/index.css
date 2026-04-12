@@ -17,6 +17,12 @@
   --color-secondary: #918151;
   --color-secondary-foreground: #FFFFFF;
   
+  --color-indigo: #4F46E5;
+  --color-sage: #A3A072;
+  --color-forest: #1B261B;
+  --color-cream: #FDFBF7;
+  --color-ochre: #B37D2E;
+  
   --color-destructive: #DF3131;
   --color-destructive-foreground: #FFFFFF;
   
@@ -51,7 +57,7 @@
 
 @layer utilities {
   .text-pop {
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(163, 160, 114, 0.2);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(163, 160, 114, 0.25);
   }
   .glass-panel {
     @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl;
