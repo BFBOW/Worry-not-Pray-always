@@ -19,6 +19,94 @@ import { Button } from '../ui/button';
 import { Link } from 'react-router-dom';
 import { Image } from '../ui/image';
 
+// --- Editorial Components ---
+
+const TeamMarquee = () => {
+  const row1 = [
+    "https://i.ibb.co/MySXL9NQ/d5c6c379-b51e-4b4f-85e2-6ad91ae18947.webp",
+    "https://i.ibb.co/xKvBYNrw/e3a412a0-b4a3-473b-b39a-f90f4af5ddc4.webp",
+    "https://i.ibb.co/R4HBXRrL/e3301a0c-8bbb-4ae1-a257-5d731afd16ff.webp",
+    "https://i.ibb.co/8g9FR8vN/f4d137cf-2677-4829-90a8-c4b971a3f048.webp",
+    "https://i.ibb.co/yF3mWVrR/fc93081a-8e95-4b62-8181-be6886859196.webp",
+    "https://i.ibb.co/S7910cS6/0da8ee09-2074-42c9-9a7b-50afccbf8534.webp",
+    "https://i.ibb.co/0VyJCj9j/1c3e81ac-60bc-4259-87e1-11f32147143c.webp",
+    "https://i.ibb.co/x8FcrqhP/1cc00514-b1f0-4dfd-a127-9cdb49a89fff.webp",
+    "https://i.ibb.co/qLGVTjkD/2afe86f5-7df8-4370-8f1e-1d71ddec4d41.webp",
+    "https://i.ibb.co/zVwJHSTb/3ca5737a-b9ab-4ac1-b744-d22445739e00.webp",
+    "https://i.ibb.co/DDxYpHqf/5b3e0b12-8eeb-403c-be4f-3b938b1c77db.webp",
+    "https://i.ibb.co/DHjHY63v/5c9ee2ca-6f92-40a5-a0f6-59b5e418d8fa.webp",
+    "https://i.ibb.co/pBN7jhKJ/5ef52f62-4d86-4f86-90d0-4d11ecfeb64c.webp",
+    "https://i.ibb.co/Vb0HkZy/8e080ff2-a942-43c3-b9d7-9c1b6bc73e5e.webp"
+  ];
+  const row2 = [
+    "https://i.ibb.co/DhBv9C4/20ee3561-7f2c-4ffa-8d07-c7103f48d688.webp",
+    "https://i.ibb.co/HDjrfGDg/29bf776b-a3b9-4f86-a069-f27171db5b11.webp",
+    "https://i.ibb.co/wF2zZpxz/29e750c1-a22c-4550-893f-827a73faa29d.webp",
+    "https://i.ibb.co/yc3Ndnjm/55fdd256-0e98-48b2-9562-cde787940929.webp",
+    "https://i.ibb.co/d4SVX7Kb/312b7b10-1f6a-4b41-a822-54919ac514f0.webp",
+    "https://i.ibb.co/Qjd46jhy/505f07ec-6f69-4446-81e7-097d6d9d65fa.webp",
+    "https://i.ibb.co/mrNgsJh2/2377f121-e736-4435-a40a-fdcc24458c9d.webp",
+    "https://i.ibb.co/0pXvsT3g/3873cfa6-e172-44d9-b22b-0111f798b5c2.webp",
+    "https://i.ibb.co/CKGsKJwq/3958cf9e-4547-4322-a391-c4ebc294cad3.webp",
+    "https://i.ibb.co/DHHvj07p/5743d7dd-5274-4b95-97d2-6d638ed1d99d.webp",
+    "https://i.ibb.co/4w1Gxy8V/7989e09b-0e1f-41e1-8698-45afb2aeeec2.webp",
+    "https://i.ibb.co/ZzMmHbwW/8323e6c5-7bb4-43da-9f7d-6a599526c5ed.webp",
+    "https://i.ibb.co/4RCgBkdK/38820fe0-240d-40f9-ad01-dce285d6b492.webp",
+    "https://i.ibb.co/RGM1b2nc/98801d33-b99a-4a4e-92b5-3b1b93fa1afd.webp"
+  ];
+  const row3 = [
+    "https://i.ibb.co/NgjWdfDn/526857d5-c01d-48f1-b390-a8de8811dcbe.webp",
+    "https://i.ibb.co/j9QVrjZg/42726269-9e28-4179-b180-d90525ed38fd.webp",
+    "https://i.ibb.co/9kk0q7vM/69179655-ddcd-438a-a0d7-c819330105fe.webp",
+    "https://i.ibb.co/XZJhXk0V/a8ac465d-a7ae-4574-8814-1e8aae77f2c9.webp",
+    "https://i.ibb.co/bh6Jgyh/a396e73f-4abc-4023-ae2e-7628f0cc93ac.webp",
+    "https://i.ibb.co/Q3q8Ndkf/b5bc0b95-bd27-477e-8a12-61854d6e33a3.webp",
+    "https://i.ibb.co/Kxjqpp1p/b78cef94-1776-4c5e-89b3-1230d55865ec.webp",
+    "https://i.ibb.co/B5ZgTWgM/b90db9b2-c029-4bd4-b1cf-e6ab8220b022.webp",
+    "https://i.ibb.co/cKDDh6JR/b61409b6-12c0-477e-8c45-73cada3d10bf.webp",
+    "https://i.ibb.co/nVRhDq6/bd9387b1-7979-4153-8370-1130ce38f131.webp",
+    "https://i.ibb.co/6c0scmt6/cc23a8eb-4e00-46c7-9e01-4f4eaf9e8350.webp",
+    "https://i.ibb.co/8DfzpR7x/cc32b658-7e6a-48fc-889e-d97ad72646fe.webp",
+    "https://i.ibb.co/1fD5RZV8/d0e73a81-c542-4dff-b6d3-9374f1ff27c4.webp",
+    "https://i.ibb.co/yB5M5GRs/d3cf9959-2d86-4070-a4d4-d4800be50e52.webp"
+  ];
+
+  const MarqueeRow = ({ images, direction = "left", speed = 40 }: { images: string[], direction?: "left" | "right", speed?: number }) => {
+    return (
+      <div className="flex overflow-hidden gap-4 py-2">
+        <motion.div
+          animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
+          transition={{ repeat: Infinity, ease: "linear", duration: speed }}
+          className="flex gap-4 whitespace-nowrap"
+        >
+          {[...images, ...images].map((img, i) => {
+            const widths = ["w-48", "w-64", "w-80", "w-56"];
+            const width = widths[i % widths.length];
+            return (
+              <div key={i} className={`relative ${width} h-48 rounded-xl overflow-hidden border border-white/10 shadow-lg shrink-0`}>
+                <Image src={img} alt="Team member" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+            );
+          })}
+        </motion.div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="w-full space-y-4 py-8 relative">
+      {/* Side Fades */}
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+      
+      <MarqueeRow images={row1} direction="left" speed={60} />
+      <MarqueeRow images={row2} direction="right" speed={50} />
+      <MarqueeRow images={row3} direction="left" speed={70} />
+    </div>
+  );
+};
+
 export default function WhoWeArePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -379,7 +467,7 @@ export default function WhoWeArePage() {
       </section>
 
       {/* Volunteers Section */}
-      <section className="relative py-24 bg-primary text-primary-foreground">
+      <section className="relative py-24 bg-primary text-primary-foreground mb-24">
         <div className="absolute inset-0 z-0 opacity-10">
           <Image 
             src="https://i.ibb.co/NgRFZ4gn/IMG-5076-Copy.jpg"
@@ -451,40 +539,34 @@ export default function WhoWeArePage() {
       </section>
 
       {/* Dedicated Team Section */}
-      <section className="py-24 bg-secondary/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 bg-black overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20">
+          <Image 
+            src="https://i.ibb.co/8gtLwMHZ/colalgebg.jpg"
+            alt="Team Background"
+            className="w-full h-full object-contain object-top brightness-110 contrast-110"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-6xl font-heading mb-4">Our Dedicated Team</h2>
+              <h2 className="text-4xl md:text-6xl font-heading mb-4 text-primary-foreground">Our Dedicated Team</h2>
               <h3 className="text-2xl font-heading text-secondary italic mb-8">The Hearts Behind the Mission</h3>
-              <p className="text-xl text-textlight max-w-3xl mx-auto leading-relaxed mb-12">
+              <p className="text-xl text-textbody max-w-3xl mx-auto leading-relaxed mb-12">
                 At our Belleville Food Bank On Wheels, our team is united by a shared passion for service. From our leadership to our volunteers, every member brings dedication, compassion, and faith to their role. Together, we make a difference every day.
               </p>
             </motion.div>
           </div>
           
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="max-w-5xl mx-auto"
-          >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <Image 
-                src="https://i.ibb.co/HDnFrzFs/BFBOWTeam.png"
-                alt="The BFBOW Team"
-                className="w-full h-auto block"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent pointer-events-none" />
-            </div>
-            <p className="mt-8 text-center text-textlight italic font-paragraph text-lg">
-              United by faith, driven by compassion, and dedicated to serving our community with love.
-            </p>
-          </motion.div>
+          <TeamMarquee />
+          
+          <p className="mt-8 text-center text-textbody italic font-paragraph text-lg">
+            United by faith, driven by compassion, and dedicated to serving our community with love.
+          </p>
         </div>
       </section>
     </div>

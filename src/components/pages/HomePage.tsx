@@ -167,6 +167,21 @@ const EditorialBlock: React.FC<{
               {/* Subtle shadow/glow behind image - Brass/Tan-Green Halo */}
               <div className="absolute inset-0 bg-secondary/20 blur-[60px] -z-10 scale-110 opacity-60 group-hover:opacity-100 transition-opacity duration-1000" />
             </motion.div>
+
+            {scripture && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="mt-8 lg:mt-12 text-center lg:text-left px-4"
+              >
+                <p className="text-lg italic text-sage font-medium leading-relaxed mb-1 drop-shadow-[0_1px_1px_rgba(27,38,27,0.5)]">
+                  "{scripture.verse}"
+                </p>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-sage/70">— {scripture.ref}</p>
+              </motion.div>
+            )}
           </div>
 
           {/* Content Side */}
@@ -202,15 +217,6 @@ const EditorialBlock: React.FC<{
               <p className="font-paragraph text-base text-textbody leading-relaxed mb-4 max-w-lg">
                 {description}
               </p>
-
-              {scripture && (
-                <div className="mb-6 py-2">
-                  <p className="text-lg italic text-sage font-medium leading-relaxed mb-1 drop-shadow-[0_1px_1px_rgba(27,38,27,0.5)]">
-                    "{scripture.verse}"
-                  </p>
-                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-sage/70">— {scripture.ref}</p>
-                </div>
-              )}
 
               {features && (
                 <motion.div 
